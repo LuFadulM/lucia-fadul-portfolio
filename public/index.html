@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucía Fadul — Operations</title>
+<meta name="description" content="Operations for early-stage startups. An index of systems currently in production.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23DA8B00'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%230B1512'%3ELF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Instrument+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2ECE1;
+  --tint:#E7DECE;
+  --rule:#D3C7B3;
+  --ink:#15110C;
+  --muted:#6B6152;
+  --forest:#0B1512;
+  --forest-2:#132420;
+  --dark-ink:#EDE6D9;
+  --dark-muted:#8B998F;
+  --sea:#0A5B4F;
+  --mango:#DA8B00;
+  --disp:"Fraunces",Georgia,serif;
+  --body:"Instrument Sans",system-ui,sans-serif;
+  --mono:"Martian Mono",ui-monospace,monospace;
+  --gut:clamp(18px,4.5vw,60px);
+  --rail:64px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gut)}
+.mono{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.disp{font-family:var(--disp);font-variation-settings:"SOFT" 40,"WONK" 1}
+
+/* ===== rail ===== */
+.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:60;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  border-right:1px solid var(--rule);background:var(--paper)}
+.rail a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted);
+  text-decoration:none;writing-mode:vertical-rl;padding:3px 0;transition:color .2s}
+.rail a.on{color:var(--ink)}
+.rail a.on::after{content:"";display:block;width:5px;height:5px;border-radius:50%;
+  background:var(--mango);margin:7px auto 0}
+.clock{position:fixed;left:0;bottom:0;width:var(--rail);padding:14px 0;text-align:center;
+  border-right:1px solid var(--rule);border-top:1px solid var(--rule);background:var(--paper);z-index:61}
+.clock b{display:block;font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.04em}
+.clock span{display:block;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;color:var(--muted);margin-top:3px}
+main{margin-left:var(--rail)}
+@media(max-width:1080px){
+  .rail,.clock{display:none}
+  main{margin-left:0}
+  :root{--rail:0px}
+}
+
+/* ===== masthead ===== */
+.mast{border-bottom:1px solid var(--rule)}
+.mast .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding-top:16px;padding-bottom:16px}
+.mast span{color:var(--muted)}
+.hero{padding:clamp(52px,10vw,132px) 0 clamp(40px,6vw,72px);border-bottom:1px solid var(--rule)}
+h1{margin:0;font-family:var(--disp);font-weight:900;font-variation-settings:"SOFT" 30,"WONK" 1;
+  font-size:clamp(46px,10.4vw,146px);line-height:.85;letter-spacing:-.045em}
+h1 i{font-style:normal;color:var(--sea)}
+.hero-foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:22px 40px;margin-top:clamp(34px,5vw,62px);padding-top:26px;border-top:1px solid var(--rule)}
+.hero-foot p{margin:0;font-size:16.5px;max-width:44ch}
+.hero-foot p.big{font-size:clamp(17px,1.9vw,21px);line-height:1.5}
+.up{opacity:0;transform:translateY(16px)}
+.up.in{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.2,.7,.25,1),transform .8s cubic-bezier(.2,.7,.25,1)}
+
+/* ===== section heads ===== */
+.sec{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 26px;margin-bottom:clamp(30px,4vw,52px)}
+.sec-head .num{color:var(--mango)}
+h2{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 40,"WONK" 1;
+  font-size:clamp(27px,4.4vw,48px);line-height:1.02;letter-spacing:-.03em;max-width:20ch}
+.sec-note{max-width:56ch;color:var(--muted);margin:14px 0 0;font-size:16px}
+
+/* ===== index ===== */
+.idx{border-top:1px solid var(--rule)}
+.ent{display:grid;grid-template-columns:58px minmax(0,1fr) minmax(0,300px);gap:8px 30px;
+  align-items:start;padding:clamp(22px,3vw,34px) 0;border-bottom:1px solid var(--rule);
+  text-decoration:none;transition:background .25s ease}
+.ent:hover,.ent:focus-visible{background:var(--tint)}
+.ent .n{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--mango);padding-top:.9em}
+.ent h3{margin:0 0 8px;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(25px,4.6vw,54px);line-height:.98;letter-spacing:-.032em}
+.ent p{margin:0;color:var(--muted);font-size:15.5px;max-width:52ch}
+.ent .meta{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;line-height:1.9;
+  color:var(--ink);padding-top:.7em;text-transform:uppercase}
+.ent .meta em{font-style:normal;color:var(--muted)}
+@media(max-width:820px){
+  .ent{grid-template-columns:38px minmax(0,1fr);gap:6px 16px}
+  .ent .meta{grid-column:2;padding-top:12px}
+}
+
+/* ===== dark ===== */
+.dark{background:var(--forest);color:var(--dark-ink);border-bottom:0}
+.dark h2,.dark h3{color:var(--dark-ink)}
+.dark .sec-note{color:var(--dark-muted)}
+.dark .sec-head .num{color:var(--mango)}
+.case{border-top:1px solid #24352F;padding:clamp(30px,4vw,46px) 0}
+.case-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:26px}
+.case h3{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(22px,3.4vw,34px);letter-spacing:-.028em;line-height:1.04}
+.tag{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mango);border:1px solid #3A4B44;border-radius:100px;padding:5px 12px}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px 34px}
+.fld .mono{color:var(--dark-muted);display:block;margin-bottom:10px}
+.fld p{margin:0;font-size:15px;line-height:1.58;color:#C9D3CC}
+.fld ul{margin:0;padding-left:16px;font-size:15px;line-height:1.55;color:#C9D3CC}
+.fld li{margin-bottom:6px}
+.fld li::marker{color:var(--mango)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-family:var(--mono);font-size:9px;letter-spacing:.08em;background:var(--forest-2);
+  border-radius:3px;padding:5px 9px;color:#9FB0A7;text-transform:uppercase}
+
+/* ===== demo ===== */
+.demo{margin-top:30px;background:var(--forest-2);border:1px solid #24352F;border-radius:4px;overflow:hidden}
+.demo-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 17px;border-bottom:1px solid #24352F}
+.demo-bar .mono{color:var(--dark-muted)}
+.btn{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--mango);color:#1A1200;border:0;border-radius:3px;padding:10px 15px;cursor:pointer;
+  font-weight:500;transition:filter .16s}
+.btn:hover{filter:brightness(1.12)}
+.btn[disabled]{background:#2C3D37;color:#7E8C84;cursor:default}
+.demo-body{padding:4px 17px 18px}
+.mail{display:grid;grid-template-columns:118px minmax(0,1fr) auto;gap:14px;align-items:baseline;
+  padding:11px 0;border-bottom:1px solid #1B2A25;font-size:14px}
+.mail-from{font-family:var(--mono);font-size:9.5px;color:var(--dark-muted);overflow:hidden;text-overflow:ellipsis}
+.mail-sub{color:#C9D3CC;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 8px;border-radius:3px;white-space:nowrap;opacity:0;transition:opacity .3s}
+.badge.on{opacity:1}
+.b-reply{background:var(--sea);color:#DFF3ED}
+.b-followup{background:var(--mango);color:#1A1200}
+.b-sent,.b-internal,.b-auto{background:#26362F;color:#8B998F}
+@media(max-width:640px){.mail{grid-template-columns:1fr auto;gap:4px 10px}.mail-from{grid-column:1/-1}}
+.demo-out{margin-top:16px;border-top:1px solid #24352F;padding-top:16px;display:none}
+.demo-out.on{display:block}
+.tally{display:flex;flex-wrap:wrap;gap:9px 22px;margin-bottom:16px}
+.tally div{font-family:var(--mono);font-size:10px;color:var(--dark-muted);letter-spacing:.03em}
+.tally b{color:var(--dark-ink);font-weight:500}
+.draft{background:#0E1B17;border-left:2px solid var(--mango);padding:14px 16px}
+.draft .mono{color:var(--dark-muted);display:block;margin-bottom:9px}
+.draft p{margin:0 0 9px;font-size:14px;line-height:1.6;color:#C9D3CC}
+.draft p:last-child{margin-bottom:0}
+
+/* ===== tools ===== */
+.tool{border:1px solid #24352F;border-radius:4px;background:var(--forest-2);overflow:hidden;margin-bottom:26px}
+.tool-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px;
+  padding:14px 17px;border-bottom:1px solid #24352F}
+.tool-h h3{margin:0;font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.02em}
+.tool-h .mono{color:var(--mango)}
+.tool-b{padding:18px 17px 20px}
+.tool-note{margin:0 0 18px;font-size:14.5px;color:#B4C0B8;max-width:64ch}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px 15px}
+.lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--dark-muted);display:block;margin-bottom:6px}
+.tool input,.tool textarea{width:100%;font-family:var(--body);font-size:14px;line-height:1.45;
+  padding:9px 11px;border:1px solid #2E4038;border-radius:3px;background:#0C1815;color:var(--dark-ink)}
+.tool textarea{resize:vertical;min-height:60px}
+.tool input:focus,.tool textarea:focus{border-color:var(--mango);outline:none}
+.acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.btn-l{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  background:none;color:var(--dark-ink);border:1px solid #3A4B44;border-radius:3px;padding:10px 15px;cursor:pointer}
+.btn-l:hover{border-color:var(--mango);color:var(--mango)}
+.hint{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--dark-muted)}
+.out{margin-top:20px;border-top:1px solid #24352F;padding-top:18px;display:none}
+.out.on{display:block}
+.guard{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;padding:12px 14px;border-radius:3px;margin-bottom:16px;line-height:1.7}
+.guard.pass{background:#0C2A25;color:#7FD8C4}
+.guard.fail{background:#33240A;color:#F0BE63}
+.msg{background:#0C1815;border:1px solid #24352F;border-radius:3px;padding:14px 15px;margin-bottom:13px}
+.msg-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-bottom:11px}
+.msg-h .mono{color:var(--dark-muted)}
+.count{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em}
+.count.ok{color:#7FD8C4}
+.count.over{color:var(--mango)}
+.msg pre{margin:0;font-family:var(--body);font-size:14px;line-height:1.62;white-space:pre-wrap;word-break:break-word;color:#C9D3CC}
+.copy{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;background:none;
+  border:1px solid #3A4B44;border-radius:3px;padding:5px 9px;cursor:pointer;color:var(--dark-muted)}
+.copy:hover{border-color:var(--mango);color:var(--mango)}
+.tzw{overflow-x:auto}
+table.tz{border-collapse:collapse;min-width:700px;width:100%}
+.tz th,.tz td{font-family:var(--mono);font-size:9px;padding:8px 3px;text-align:center;
+  border:1px solid #24352F;background:#0C1815;white-space:nowrap;color:#A9B7AE}
+.tz th:first-child,.tz td:first-child{text-align:left;padding:8px 11px;min-width:120px;color:var(--dark-ink)}
+.tz td.work{background:#14332C;color:#BFE0D6}
+.tz td.all,.tz th.all{background:var(--mango);color:#1A1200}
+.tz thead th{cursor:pointer}
+.lg{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:13px}
+.lg span{font-family:var(--mono);font-size:8.5px;color:var(--dark-muted);display:flex;align-items:center;gap:7px;letter-spacing:.06em}
+.sw{width:10px;height:10px;border-radius:2px;border:1px solid #24352F}
+table.q{border-collapse:collapse;width:100%;margin-top:8px}
+.q th{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dark-muted);
+  text-align:left;padding:0 10px 9px 0;border-bottom:1px solid #24352F;font-weight:500}
+.q td{padding:11px 10px 11px 0;border-bottom:1px solid #1B2A25;font-size:14px;color:#C9D3CC}
+.q td:last-child,.q th:last-child{padding-right:0;text-align:right}
+.pill{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:100px}
+.p-wait{background:#26362F;color:#8B998F}
+.p-due{background:var(--mango);color:#1A1200}
+.p-over{background:var(--sea);color:#DFF3ED}
+@media(max-width:600px){.q th:nth-child(2),.q td:nth-child(2){display:none}}
+
+/* ===== about ===== */
+.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,64px)}
+.about p{margin:0 0 18px;font-size:clamp(16.5px,1.7vw,18.5px);line-height:1.62;max-width:52ch}
+.about p:last-child{margin-bottom:0}
+.about b{font-weight:600}
+.pull{font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 50,"WONK" 1;
+  font-size:clamp(24px,3.4vw,38px);line-height:1.12;letter-spacing:-.028em;margin:0;color:var(--sea)}
+
+/* ===== track ===== */
+.tl{border-top:1px solid var(--rule)}
+.tli{display:grid;grid-template-columns:58px minmax(0,190px) minmax(0,1fr);gap:6px 30px;
+  padding:22px 0;border-bottom:1px solid var(--rule)}
+.tli .n{font-family:var(--mono);font-size:9.5px;color:var(--mango);padding-top:.5em}
+.tli .when{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;color:var(--muted);padding-top:.5em;text-transform:uppercase}
+.tli h4{margin:0 0 3px;font-family:var(--disp);font-weight:600;font-size:20px;letter-spacing:-.022em}
+.tli .org{color:var(--muted);font-size:14.5px;margin:0 0 8px}
+.tli p.d{margin:0;font-size:15.5px;max-width:62ch}
+@media(max-width:820px){.tli{grid-template-columns:38px minmax(0,1fr)}.tli .when{grid-column:2;padding-top:0;margin-bottom:6px}}
+
+/* ===== stack ===== */
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px 34px}
+.st h4{margin:0 0 11px;font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mango);padding-bottom:9px;border-bottom:1px solid var(--rule);font-weight:500}
+.st ul{list-style:none;margin:0;padding:0}
+.st li{font-size:15px;padding:3px 0;color:var(--ink)}
+
+/* ===== contact ===== */
+.end{background:var(--sea);color:#EAF6F2;padding:clamp(56px,8vw,104px) 0}
+.end h2{color:#fff;max-width:16ch;font-weight:900;font-size:clamp(32px,6vw,68px);letter-spacing:-.038em;line-height:.98}
+.end .mono{color:#8FC9BB}
+.end p{max-width:52ch;color:#C4E3DA;font-size:17px;margin:18px 0 0}
+.links{display:flex;flex-wrap:wrap;gap:11px;margin-top:32px}
+.links a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+  border:1px solid #3E8477;border-radius:3px;padding:13px 19px;transition:background .16s,border-color .16s}
+.links a:hover{background:#0D6C5E;border-color:#EAF6F2}
+.links a.pri{background:var(--mango);border-color:var(--mango);color:#1A1200;font-weight:500}
+.links a.pri:hover{filter:brightness(1.1)}
+.colo{display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:space-between;
+  margin-top:clamp(38px,5vw,62px);padding-top:20px;border-top:1px solid #3E8477;color:#8FC9BB}
+
+.me{display:inline-flex;align-items:center;gap:9px}
+.av{width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;
+  filter:saturate(0);border:1px solid var(--rule)}
+.about{grid-template-columns:minmax(230px,330px) minmax(250px,1fr) minmax(250px,1fr)}
+.pf{margin:0}
+.pf img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
+.pf figcaption{margin-top:11px;color:var(--muted);line-height:1.8}
+@media(max-width:940px){.about{grid-template-columns:1fr}.pf img{max-width:340px}}
+
+.tool select{width:100%;font-family:var(--body);font-size:14px;padding:9px 11px;
+  border:1px solid #2E4038;border-radius:3px;background:#0C1815;color:var(--dark-ink)}
+.tool select:focus{border-color:var(--mango);outline:none}
+.bps{border-top:1px solid var(--rule)}
+.bp{border-bottom:1px solid var(--rule)}
+.bp-h{display:grid;grid-template-columns:58px minmax(0,1fr) minmax(0,190px);gap:8px 30px;
+  width:100%;text-align:left;background:none;border:0;font:inherit;color:inherit;
+  padding:24px 0;cursor:pointer;align-items:start;transition:background .2s}
+.bp-h:hover{background:var(--tint)}
+.bp-h .n{font-family:var(--mono);font-size:10px;color:var(--mango);padding-top:.5em}
+.bp-t b{display:block;font-family:var(--disp);font-weight:600;font-size:clamp(19px,2.5vw,26px);
+  letter-spacing:-.024em;line-height:1.12;margin-bottom:6px}
+.bp-t em{font-style:normal;color:var(--muted);font-size:15px;display:block;max-width:54ch}
+.bp-m{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);padding-top:.6em;line-height:2.2}
+.plat{display:block;font-style:normal;color:var(--sea);font-weight:700;letter-spacing:.12em}
+.bp-f{display:none;padding:0 0 30px}
+.bp.open .bp-f{display:block}
+.bp.open .bp-h{background:var(--tint)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));gap:9px}
+.node{background:var(--tint);border-top:2px solid var(--rule);padding:13px 14px 15px;
+  opacity:0;transform:translateY(8px)}
+.bp.open .node{opacity:1;transform:none;transition:opacity .45s ease,transform .45s ease}
+.node.t{border-top-color:var(--mango)}
+.node.o{border-top-color:var(--sea);background:#E2EBE5}
+.node .mono{display:block;color:var(--muted);margin-bottom:7px}
+.node.t .mono{color:#9A6100}
+.node.o .mono{color:var(--sea)}
+.node p{margin:0;font-size:14px;line-height:1.5}
+@media(max-width:820px){
+  .bp-h{grid-template-columns:38px minmax(0,1fr);gap:6px 16px}
+  .bp-m{grid-column:2;padding-top:10px;line-height:1.9}
+  .plat{display:inline;margin-right:10px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .up,.up.in{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="rail" aria-hidden="true">
+  <a href="#index" data-r="index">01 &nbsp;Index</a>
+  <a href="#systems" data-r="systems">02 &nbsp;Systems</a>
+  <a href="#tools" data-r="tools">03 &nbsp;Tools</a>
+  <a href="#builds" data-r="builds">04 &nbsp;Builds</a>
+  <a href="#about" data-r="about">05 &nbsp;About</a>
+  <a href="#record" data-r="record">06 &nbsp;Record</a>
+</div>
+<div class="clock" aria-hidden="true"><b id="clk">—</b><span>Colombia</span></div>
+
+<main>
+
+<div class="mast">
+  <div class="wrap mono">
+    <span class="me"><img class="av" src="/images/avatar.jpg" alt="">Lucía Fadul</span>
+    <span>Operations &amp; executive support</span>
+    <span>Colombia — US hours</span>
+    <span>EN / ES</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <h1 class="up">Most of my job is <i>deleting</i> my job.</h1>
+    <div class="hero-foot">
+      <div class="up"><span class="mono" style="color:var(--muted)">Position</span>
+        <p class="big" style="margin-top:9px">I run operations for early-stage US startups and keep turning the repetitive parts into systems that run without me.</p></div>
+      <div class="up"><span class="mono" style="color:var(--muted)">What follows</span>
+        <p style="margin-top:9px">An index of what's currently in production. The problem, what I built, the rules that keep it honest, and what it costs to run.</p></div>
+      <div class="up"><span class="mono" style="color:var(--muted)">Three of them</span>
+        <p style="margin-top:9px">are sitting further down as working tools. Use them. They run in your browser and send nothing anywhere.</p></div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="index">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono num">§ 01</span><h2>In production</h2></div>
+    <div class="idx">
+      <a class="ent up" href="#jd">
+        <span class="n">001</span>
+        <div><h3>JD Package Engine</h3><p>One intake call becomes six publication-ready documents, with client names firewalled out of everything that goes out before a candidate is qualified.</p></div>
+        <span class="meta">~200 JDs<br><em>6 artifacts per intake</em></span>
+      </a>
+      <a class="ent up" href="#inbox">
+        <span class="n">002</span>
+        <div><h3>Inbox Tracker</h3><p>Scans the full inbox daily, sorts every thread into five categories, and drafts the follow-up the moment someone goes quiet.</p></div>
+        <span class="meta">5 thread types<br><em>3-day trigger</em></span>
+      </a>
+      <a class="ent up" href="#brief">
+        <span class="n">003</span>
+        <div><h3>Daily Call Brief</h3><p>Calendar, Slack and pipeline data consolidated into one prioritized brief before leadership walks into back-to-back client calls.</p></div>
+        <span class="meta">50+ accounts<br><em>Lands before call one</em></span>
+      </a>
+      <a class="ent up" href="#outreach">
+        <span class="n">004</span>
+        <div><h3>Outreach Kit</h3><p>Recruiter messages, connection requests, intro emails and follow-ups, each written to a fixed word budget and a fixed set of beats.</p></div>
+        <span class="meta">4 touchpoints<br><em>120-word cap</em></span>
+      </a>
+      <a class="ent up" href="#backoffice">
+        <span class="n">005</span>
+        <div><h3>Payroll &amp; Onboarding Runbooks</h3><p>Multi-country payroll, contractor records and new-hire ramp, written down as procedures anyone on the team can execute without me.</p></div>
+        <span class="meta">2 regions<br><em>Ramp time &minus;50%</em></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="systems">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono num">§ 02</span><h2>Opened up</h2></div>
+    <p class="sec-note" style="margin-top:-30px;margin-bottom:40px">Client names and confidential terms are missing on purpose. That firewall is part of the design, not an omission.</p>
+
+    <article class="case up" id="jd">
+      <div class="case-h"><h3>JD Package Engine</h3><span class="tag">Recruiting ops</span></div>
+      <div class="g4">
+        <div class="fld"><span class="mono">Problem</span><p>Every search started from a blank page. Intake calls produced an hour of messy transcript, and the resulting job descriptions drifted in voice and structure depending on who wrote them. Sensitive client detail leaked into candidate-facing copy.</p></div>
+        <div class="fld"><span class="mono">Built</span><p>A pipeline that turns one transcript into a full package:</p>
+          <ul><li>Published JD, third person, website-ready</li><li>Internal brief with verbatim calibration quotes</li><li>Outreach #1 and #2, to a strict word budget</li><li>Intro email, booking link front-loaded</li><li>Platform fields and screening questions</li><li>Green-flag / red-flag criteria per role</li></ul></div>
+        <div class="fld"><span class="mono">Rules that hold it</span>
+          <ul><li>No client name or URL before intro-email stage — outreach uses stage, backer, category and traction signal instead</li><li>Off-record intel and restricted commercial terms live only in the internal brief, with distribution flagged</li><li>Anything demographic gets marked non-actionable and never shapes sourcing</li><li>Conflicting sources get reconciled and flagged, never silently resolved</li></ul></div>
+        <div class="fld"><span class="mono">Result</span><p>Around 200 job descriptions on this template, adopted org-wide. Turnaround dropped from a from-scratch write to an edit pass, and nothing confidential has to be caught by a reviewer — it never enters the published doc at all.</p>
+          <div class="chips"><span class="chip">Notion</span><span class="chip">Slack</span><span class="chip">Claude</span><span class="chip">Docs</span></div></div>
+      </div>
+    </article>
+
+    <article class="case up" id="inbox">
+      <div class="case-h"><h3>Inbox Tracker</h3><span class="tag">Pipeline hygiene</span></div>
+      <div class="g4">
+        <div class="fld"><span class="mono">Problem</span><p>Intro emails go out from a shared team address; replies land in mine. Across dozens of concurrent searches, someone who replies on day four and hears nothing is a lost placement. Manual scanning missed people and ate the first hour of every morning.</p></div>
+        <div class="fld"><span class="mono">Built</span><p>A daily scan with defined queries and a fixed classification model. Every thread lands in exactly one bucket, and anyone past the three-day threshold gets a follow-up draft written automatically.</p></div>
+        <div class="fld"><span class="mono">How it runs</span>
+          <ul><li>Three queries cover the window: today's inbox, sent intros, threads I'm on</li><li>A reply only counts from a non-team address that isn't an auto-reply</li><li>Day three with no answer flips a thread into the queue</li><li>Drafts are created, never sent — I review before anything goes</li></ul></div>
+        <div class="fld"><span class="mono">Result</span><p>Triage went from an open-ended morning task to a report with a defined output. Nobody sits unanswered, and the follow-up decision is a rule rather than a judgment call I re-make every day.</p>
+          <div class="chips"><span class="chip">Gmail</span><span class="chip">Claude</span><span class="chip">Slack</span></div></div>
+      </div>
+      <div class="demo">
+        <div class="demo-bar"><span class="mono">Sample inbox — same classification rules</span><button class="btn" id="run">Run triage</button></div>
+        <div class="demo-body">
+          <div id="mailbox"></div>
+          <div class="demo-out" id="out">
+            <div class="tally" id="tally"></div>
+            <div class="draft"><span class="mono">Draft generated — day 4, no reply</span>
+              <p>Hi Priya — following up on my note about the founding engineer role. Wanted to make sure it didn't get buried.</p>
+              <p>Short version: Series A, ex-payments team, moving fast on this one. Comp and scope are in the thread below.</p>
+              <p>If the timing is off, say so and I'll close the loop. If not, grab a time here: [booking link]</p></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case up" id="brief">
+      <div class="case-h"><h3>Daily Call Brief</h3><span class="tag">Executive support</span></div>
+      <div class="g4">
+        <div class="fld"><span class="mono">Problem</span><p>Leadership walks into back-to-back client calls across 50+ accounts. The context for each one — where the search stands, what was promised last time, who's waiting on us — was scattered across calendar, Slack and the tracker.</p></div>
+        <div class="fld"><span class="mono">Built</span><p>A brief assembled every morning: today's calls in order, and for each the open roles, pipeline movement since last contact, outstanding commitments, and the one thing that most needs a decision.</p></div>
+        <div class="fld"><span class="mono">How it runs</span>
+          <ul><li>Calendar sets the order and the deadline</li><li>Slack supplies what changed since last contact</li><li>Pipeline data supplies stage counts and stalls</li><li>Anything unresolved is listed as an open item, not omitted</li></ul></div>
+        <div class="fld"><span class="mono">Result</span><p>Calls start with context instead of reconstruction. Questions that used to surface mid-call get answered before it. The format is fixed, so it reads in under two minutes.</p>
+          <div class="chips"><span class="chip">Calendar</span><span class="chip">Slack</span><span class="chip">Notion</span><span class="chip">Pylon</span></div></div>
+      </div>
+    </article>
+
+    <article class="case up" id="outreach">
+      <div class="case-h"><h3>Outreach Kit</h3><span class="tag">Templates</span></div>
+      <div class="g4">
+        <div class="fld"><span class="mono">Constraint</span><p>Outreach fails long. Every message has a word budget and a fixed beat structure, so writing one is assembly rather than composition.</p></div>
+        <div class="fld"><span class="mono">Four touchpoints</span>
+          <ul><li>Outreach #1 — three paragraphs, ~120 words</li><li>Outreach #2 — one sentence, ~40 words</li><li>Intro email — ~200 words, link in the first two lines</li><li>Follow-up — triggered by the tracker, not by memory</li></ul></div>
+        <div class="fld"><span class="mono">Banned</span>
+          <ul><li>Company background walls and full benefits lists</li><li>Interview process breakdowns before a recruiter call</li><li>Repeated visa and relocation disclaimers</li><li>False personalization — no "saw your profile" unless it's true</li></ul></div>
+        <div class="fld"><span class="mono">Why it's a system</span><p>Because the rules are written down, anyone can produce outreach that reads consistently, and a reviewer checks it against a list instead of a feeling.</p></div>
+      </div>
+    </article>
+
+    <article class="case up" id="backoffice">
+      <div class="case-h"><h3>Payroll &amp; Onboarding Runbooks</h3><span class="tag">Back office</span></div>
+      <div class="g4">
+        <div class="fld"><span class="mono">Problem</span><p>Payroll across Colombia and international contractors meant different compliance rules, currencies and rails on one monthly deadline. Onboarding lived in the head of whoever ran the last one, so every hire cost a senior person a week.</p></div>
+        <div class="fld"><span class="mono">Built</span><p>Written runbooks. The payroll cycle as a dated checklist with verification before each run, and onboarding as a sequence covering contracts, accounts, tooling and first-week training — every step naming its owner.</p></div>
+        <div class="fld"><span class="mono">Also standardized</span>
+          <ul><li>Client intake, contracts and follow-up sequences</li><li>Insurance eligibility checks before services start</li><li>Referral review with document requests tracked to close</li><li>QA passes on internal tools, bugs routed to engineering</li></ul></div>
+        <div class="fld"><span class="mono">Result</span><p>Payroll runs on schedule and survives a handoff. Documented onboarding halved new-hire ramp time in a prior role. The procedure is the training material.</p>
+          <div class="chips"><span class="chip">Deel</span><span class="chip">QuickBooks</span><span class="chip">Notion</span><span class="chip">Airtable</span></div></div>
+      </div>
+    </article>
+  </div>
+</section>
+<section class="sec dark" id="tools" style="border-top:1px solid #24352F">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono num">§ 03</span><h2>Three of them, running</h2></div>
+    <p class="sec-note" style="margin-top:-30px;margin-bottom:40px">Not screenshots. These work. Nothing is sent anywhere — it all runs in your browser.</p>
+
+    <div class="tool up" id="composer">
+      <div class="tool-h"><h3>Message composer</h3><span class="mono">With confidentiality check</span></div>
+      <div class="tool-b">
+        <p class="tool-note">The message an assistant writes forty times a week: chasing something, introducing someone, declining, rescheduling, reaching out cold. Pick the situation, give it the facts, get three lengths. Anything you list as confidential gets scanned for before it goes out.</p>
+        <div class="fg">
+          <label><span class="lbl">Situation</span><select id="c_sc">
+            <option value="cold">Cold outreach</option>
+            <option value="intro">Intro on behalf of an exec</option>
+            <option value="chase">Chasing something overdue</option>
+            <option value="resched">Rescheduling or apologising</option>
+            <option value="decline">Declining politely</option>
+          </select></label>
+          <label><span class="lbl">Tone</span><select id="c_tone">
+            <option value="direct">Direct</option>
+            <option value="warm">Warm</option>
+            <option value="formal">Formal</option>
+          </select></label>
+          <label><span class="lbl">Recipient first name</span><input id="c_name" value="Priya"></label>
+          <label><span class="lbl">On behalf of (optional)</span><input id="c_boss" value="our Head of Engineering"></label>
+          <label><span class="lbl">Key detail — amount, comp, deadline</span><input id="c_detail" value="$180–220K plus equity, San Francisco"></label>
+          <label><span class="lbl">Link (optional)</span><input id="c_link" value="cal.com/lucia/30min"></label>
+          <label style="grid-column:1/-1"><span class="lbl">Context — what this is about</span><textarea id="c_ctx">a Series A company in agentic payments whose revenue tripled in nine months, hiring a founding engineer to own the ledger and settlement engine</textarea></label>
+          <label style="grid-column:1/-1"><span class="lbl">The ask — one line</span><input id="c_ask" value="a 20-minute call this week"></label>
+          <label style="grid-column:1/-1"><span class="lbl">Never mention — comma separated</span><input id="c_never" value="Northbeam, bounty rate, Q3 layoffs"></label>
+        </div>
+        <div class="acts"><button class="btn" id="c_go">Generate</button><span class="hint">Nothing leaves your browser</span></div>
+        <div class="out" id="c_out"></div>
+      </div>
+    </div>
+
+    <div class="tool up" id="overlap">
+      <div class="tool-h"><h3>Meeting overlap finder</h3><span class="mono">Live, DST-aware</span></div>
+      <div class="tool-b">
+        <p class="tool-note">One call, six time zones, and nobody wants a 6am. Mango columns work for everyone. Click a column header to copy the line for the invite.</p>
+        <div class="tzw"><table class="tz" id="tztable"></table></div>
+        <div class="lg">
+          <span><i class="sw" style="background:#0C1815"></i>Outside hours</span>
+          <span><i class="sw" style="background:#14332C"></i>Working hours locally</span>
+          <span><i class="sw" style="background:var(--mango);border-color:var(--mango)"></i>Works for everyone</span>
+        </div>
+        <div class="acts"><span class="hint" id="tzcopied">Click a column header to copy</span></div>
+      </div>
+    </div>
+
+    <div class="tool up" id="queue">
+      <div class="tool-h"><h3>Follow-up queue</h3><span class="mono">3-day rule, applied</span></div>
+      <div class="tool-b">
+        <p class="tool-note">Add anyone you're waiting on. The threshold decides who gets chased, so it's a rule instead of something you re-litigate every morning. Drafts are for review, never sent.</p>
+        <div class="fg">
+          <label><span class="lbl">Name</span><input id="q_name" placeholder="Candidate or contact"></label>
+          <label><span class="lbl">Role or subject</span><input id="q_role" placeholder="Head of GTM"></label>
+          <label><span class="lbl">Date sent</span><input id="q_date" type="date"></label>
+        </div>
+        <div class="acts"><button class="btn" id="q_add">Add</button><button class="btn-l" id="q_draft">Draft all overdue</button></div>
+        <table class="q" id="q_table"><thead><tr><th>Name</th><th>Subject</th><th>Waiting</th><th>Status</th></tr></thead><tbody></tbody></table>
+        <div class="out" id="q_out"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="builds">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono num">§ 04</span><h2>Automations, specified</h2></div>
+    <p class="sec-note" style="margin-top:-30px;margin-bottom:38px">These aren't past projects dressed up as case studies. They're specifications — trigger, steps, and what happens when something is missing — written out precisely enough to hand me one and have it running this week. Every one of them automates something I've done by hand for long enough to know where it breaks. Open any row.</p>
+    <div class="bps">
+      <article class="bp up">
+        <button class="bp-h" aria-expanded="false">
+          <span class="n">B01</span>
+          <span class="bp-t"><b>Inbox to task, triaged</b><em>Turns a starred email into a dated task with a named owner, and tells the channel it exists.</em></span>
+          <span class="bp-m"><i class="plat">Zapier</i>~3 hrs/week back</span>
+        </button>
+        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>You star an email in Gmail</p></div><div class="node"><span class="mono">Step 01</span><p>Reads the sender, the subject and any date mentioned in the body</p></div><div class="node"><span class="mono">Step 02</span><p>Creates a task in Notion or ClickUp with that due date and the right owner</p></div><div class="node"><span class="mono">Step 03</span><p>Attaches the thread link so nobody has to go searching for context</p></div><div class="node o"><span class="mono">Result</span><p>Posts in the team channel. Your inbox stays a queue instead of a filing cabinet.</p></div></div></div>
+      </article>
+      <article class="bp up">
+        <button class="bp-h" aria-expanded="false">
+          <span class="n">B02</span>
+          <span class="bp-t"><b>Client intake, provisioned in one pass</b><em>One form submission creates the folder, the contract, the CRM record and the welcome email.</em></span>
+          <span class="bp-m"><i class="plat">Make</i>~90 min per client</span>
+        </button>
+        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>A new client submits the intake form</p></div><div class="node"><span class="mono">Step 01</span><p>Creates their Drive folder from the standard template</p></div><div class="node"><span class="mono">Step 02</span><p>Generates the contract with their details merged in</p></div><div class="node"><span class="mono">Step 03</span><p>Creates the CRM record and links the folder to it</p></div><div class="node"><span class="mono">Step 04</span><p>Sends the welcome email with the booking link already in it</p></div><div class="node o"><span class="mono">Result</span><p>Slack notification with everything linked. Onboarding starts the same hour, not the next day.</p></div></div></div>
+      </article>
+      <article class="bp up">
+        <button class="bp-h" aria-expanded="false">
+          <span class="n">B03</span>
+          <span class="bp-t"><b>Invoice chase that escalates itself</b><em>Finds what's overdue, picks the right message for how late it is, and drafts it.</em></span>
+          <span class="bp-m"><i class="plat">n8n</i>~2 hrs/week back</span>
+        </button>
+        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>Runs every weekday at 8am</p></div><div class="node"><span class="mono">Step 01</span><p>Reads the invoice sheet and finds anything unpaid past its due date</p></div><div class="node"><span class="mono">Step 02</span><p>Picks the message by age — a nudge at 7 days, a firmer note at 14, escalation to the account owner at 30</p></div><div class="node"><span class="mono">Step 03</span><p>Creates the draft and stops there. It never sends</p></div><div class="node o"><span class="mono">Result</span><p>A morning list of drafts to approve. Nobody gets chased twice and nobody gets forgotten.</p></div></div></div>
+      </article>
+      <article class="bp up">
+        <button class="bp-h" aria-expanded="false">
+          <span class="n">B04</span>
+          <span class="bp-t"><b>Meeting to action items</b><em>Pulls commitments out of a call transcript and turns them into tasks with real owners.</em></span>
+          <span class="bp-m"><i class="plat">n8n</i>~4 hrs/week back</span>
+        </button>
+        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>A call transcript lands in the folder</p></div><div class="node"><span class="mono">Step 01</span><p>Separates decisions, commitments and open questions — they need different handling</p></div><div class="node"><span class="mono">Step 02</span><p>Assigns each action to the person who agreed to it, on the date they said</p></div><div class="node"><span class="mono">Step 03</span><p>Creates the tasks and posts a summary in the channel</p></div><div class="node o"><span class="mono">Result</span><p>Anything without a named owner gets flagged rather than quietly dropped.</p></div></div></div>
+      </article>
+      <article class="bp up">
+        <button class="bp-h" aria-expanded="false">
+          <span class="n">B05</span>
+          <span class="bp-t"><b>Payroll pre-flight check</b><em>Runs the checks three days early, so errors get caught before the run instead of after it.</em></span>
+          <span class="bp-m"><i class="plat">Make</i>Catches the expensive mistake</span>
+        </button>
+        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>Three days before every payroll date</p></div><div class="node"><span class="mono">Step 01</span><p>Pulls the contractor list from Deel and the hours from the tracker</p></div><div class="node"><span class="mono">Step 02</span><p>Compares against last cycle and flags anything moving more than 10%</p></div><div class="node"><span class="mono">Step 03</span><p>Flags missing timesheets, expired contracts and unconfirmed bank details</p></div><div class="node o"><span class="mono">Result</span><p>A review checklist in your inbox with three days of runway to fix whatever it found.</p></div></div></div>
+      </article>
+      <article class="bp up">
+        <button class="bp-h" aria-expanded="false">
+          <span class="n">B06</span>
+          <span class="bp-t"><b>Weekly leadership brief, assembled</b><em>The Friday summary nobody has time to write, written before anyone asks for it.</em></span>
+          <span class="bp-m"><i class="plat">n8n</i>~2 hrs/week back</span>
+        </button>
+        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>Friday at 3pm</p></div><div class="node"><span class="mono">Step 01</span><p>Pulls the week's calendar, CRM movement and closed tasks</p></div><div class="node"><span class="mono">Step 02</span><p>Compares against last week and surfaces only what actually changed</p></div><div class="node"><span class="mono">Step 03</span><p>Lists open items with names and dates attached to them</p></div><div class="node o"><span class="mono">Result</span><p>One brief in the inbox before the weekend. Monday starts with decisions instead of archaeology.</p></div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono num">§ 05</span><h2>How I got here</h2></div>
+    <div class="about">
+      <figure class="pf up">
+        <img src="/images/portrait.jpg" alt="Portrait of Lucía Fadul" width="760" height="950" loading="lazy">
+        <figcaption class="mono">Lucía Fadul<br>Colombia</figcaption>
+      </figure>
+      <div class="up">
+        <p>I'm from <b>Córdoba</b>, on the Colombian Caribbean coast. My first real job was at the town hall in Chinú, where I administered a database of <b>8,000+ families</b> whose subsidies depended on their kids staying in school and up to date on health checks. Fifty people a day came to the counter. If a record was wrong, a family didn't eat that month.</p>
+        <p>That's where the whole thing starts. I studied <b>Systems and Telecommunications Engineering</b>, taught adults Windows and Office at SENA, then spent two years in Boston as an au pair — which is how I actually learned English, and also how I learned that a schedule for three children under five is a production system with no margin.</p>
+      </div>
+      <div class="up">
+        <p class="pull" style="margin-bottom:26px">Everything since has been the same job in a different costume: make the process survive the person running it.</p>
+        <p>Since then it's been remote operations for US teams — executive support in Miami, a back office in Colombia, then payroll, intake and SOPs at a YC health startup, and now recruiting operations for another one, across 50+ active clients.</p>
+        <p>The pattern is consistent enough that I stopped pretending it was a coincidence. I get handed something repetitive and undocumented, and I hand back a written procedure that somebody else can run. Then I go find the next one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="record">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono num">§ 06</span><h2>Record</h2></div>
+    <div class="tl">
+      <div class="tli up"><span class="n">01</span><span class="when">Feb 2026 — present</span>
+        <div><h4>Operations Assistant</h4><p class="org">Contrario AI (YC 22) · Remote, US</p>
+        <p class="d">Day-to-day operations across 50+ active clients and recruiter partners. Built and maintains the five systems indexed above.</p></div></div>
+      <div class="tli up"><span class="n">02</span><span class="when">Mar 2025 — Apr 2026</span>
+        <div><h4>Operations Manager</h4><p class="org">Solum Health (YC 22) · Remote, US</p>
+        <p class="d">Multi-country payroll, client scheduling and intake, insurance verification, SOP authoring, AI agent workflow design, and QA testing alongside engineering.</p></div></div>
+      <div class="tli up"><span class="n">03</span><span class="when">Sep 2024 — Feb 2025</span>
+        <div><h4>Back Office Assistant</h4><p class="org">Leanware · Remote, Colombia</p>
+        <p class="d">Administrative, financial and operational support. Scheduling, invoicing and time tracking, with no-code automation replacing the manual steps.</p></div></div>
+      <div class="tli up"><span class="n">04</span><span class="when">Sep 2022 — Aug 2024</span>
+        <div><h4>Supervisor &amp; Virtual Office Assistant</h4><p class="org">The Org — AO Investment · Remote, US</p>
+        <p class="d">Led a remote follow-up team. Built the manuals, workflows and training programs, and produced the monthly management reports leadership decided from.</p></div></div>
+      <div class="tli up"><span class="n">05</span><span class="when">Aug 2022 — Dec 2024</span>
+        <div><h4>Marketing &amp; Administrative Assistant</h4><p class="org">Melocoton LLC · Remote, Colombia</p>
+        <p class="d">Managed CEO and CCO calendars, cutting scheduling conflicts by 40%. Wrote the SOPs and training manuals that halved new-hire onboarding time.</p></div></div>
+      <div class="tli up"><span class="n">06</span><span class="when">2016 — 2022</span>
+        <div><h4>Earlier</h4><p class="org">Fueled on Bacon · EF Education First · Town Hall Chinú · SENA</p>
+        <p class="d">Executive assistant work in Miami, two years in Boston as an au pair, a public-sector database of 8,000+ beneficiary records, and IT instruction for adult learners.</p></div></div>
+    </div>
+    <div class="st" style="margin-top:clamp(46px,6vw,76px)">
+      <div><h4>Automation &amp; AI</h4><ul><li>Zapier</li><li>Make</li><li>n8n</li><li>Claude</li><li>ChatGPT</li><li>Python</li></ul></div>
+      <div><h4>Ops &amp; projects</h4><ul><li>Notion</li><li>Airtable</li><li>ClickUp</li><li>Slack</li><li>Pylon</li><li>Google Workspace</li></ul></div>
+      <div><h4>Finance &amp; people</h4><ul><li>Deel</li><li>QuickBooks</li><li>Zoho</li><li>International payroll</li><li>Contracts &amp; onboarding</li></ul></div>
+      <div><h4>CRM &amp; growth</h4><ul><li>HubSpot</li><li>Salesforce</li><li>GoHighLevel</li><li>Canva</li><li>Adobe Creative Suite</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="end" id="contact">
+  <div class="wrap">
+    <span class="mono">§ 07 &nbsp;&nbsp; Open to</span>
+    <h2 style="margin-top:20px">Executive Assistant. Operations. Chief of Staff support.</h2>
+    <p>Remote, US hours, English and Spanish. If there's something specific in your workflow you want to see me handle, send it over. I'd rather show the work than describe it.</p>
+    <div class="links">
+      <a class="pri" href="mailto:luciafadul01@gmail.com">luciafadul01@gmail.com</a>
+      <a href="https://www.linkedin.com/in/lufadulm/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+573043144750">+57 304 314 4750</a>
+    </div>
+    <div class="colo mono"><span>Lucía Fadul — Colombia</span><span>Designed, written and built by me</span></div>
+  </div>
+</section>
+
+</main>
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* reveal */
+  var ups = document.querySelectorAll(".up");
+  if(reduce || !("IntersectionObserver" in window)){
+    ups.forEach(function(e){ e.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:.08});
+    ups.forEach(function(e,i){ e.style.transitionDelay = Math.min(i,6)*55+"ms"; io.observe(e); });
+  }
+
+  /* rail */
+  var links = document.querySelectorAll(".rail a");
+  var secs = Array.prototype.map.call(links, function(a){ return document.getElementById(a.dataset.r); });
+  function railSync(){
+    var y = window.scrollY + window.innerHeight*0.35, cur = -1;
+    secs.forEach(function(s,i){ if(s && s.offsetTop <= y) cur = i; });
+    links.forEach(function(a,i){ a.classList.toggle("on", i===cur); });
+  }
+  window.addEventListener("scroll", railSync, {passive:true}); railSync();
+
+  /* clock */
+  function tick(){
+    var el = document.getElementById("clk");
+    if(el) el.textContent = new Intl.DateTimeFormat("en-GB",{timeZone:"America/Bogota",hour:"2-digit",minute:"2-digit"}).format(new Date());
+  }
+  tick(); setInterval(tick, 20000);
+
+  var esc = function(s){ return s.replace(/[&<>]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); };
+  var words = function(s){ return s.trim().split(/\s+/).filter(Boolean).length; };
+  var v = function(id){ return document.getElementById(id).value.trim(); };
+
+  function blk(label, cap, text){
+    var n = words(text), over = cap && n > cap;
+    return '<div class="msg"><div class="msg-h"><span class="mono">'+label+'</span>'+
+      '<span style="display:flex;gap:10px;align-items:center">'+
+      '<span class="count '+(over?"over":"ok")+'">'+n+" words"+(cap?" / "+cap:"")+'</span>'+
+      '<button class="copy" data-copy="'+esc(text).replace(/"/g,"&quot;")+'">Copy</button></span></div>'+
+      "<pre>"+esc(text)+"</pre></div>";
+  }
+
+  /* triage demo */
+  var threads = [
+    {from:"priya.raman@…", sub:"Re: Founding Engineer — intro", cat:"followup", label:"Follow-up · day 4"},
+    {from:"team@contrario.ai", sub:"Sourcing sync — Thursday", cat:"internal", label:"Internal"},
+    {from:"d.okafor@…", sub:"Re: Would love to chat — sending times", cat:"reply", label:"Candidate reply"},
+    {from:"mailer-daemon", sub:"Automatic reply: Out of office until Sept 2", cat:"auto", label:"Auto-reply"},
+    {from:"team@contrario.ai", sub:"Excited to let you know… — Staff Designer", cat:"sent", label:"Sent · awaiting"},
+    {from:"j.moreau@…", sub:"Re: Head of GTM — a few questions first", cat:"reply", label:"Candidate reply"},
+    {from:"hello@…", sub:"Partnership enquiry", cat:"inbound", label:"New inbound"},
+    {from:"team@contrario.ai", sub:"Excited to let you know… — Backend Lead", cat:"followup", label:"Follow-up · day 6"}
+  ];
+  var cls = {reply:"b-reply", followup:"b-followup", sent:"b-sent", internal:"b-internal", auto:"b-auto", inbound:"b-sent"};
+  var box = document.getElementById("mailbox");
+  threads.forEach(function(t){
+    var el = document.createElement("div"); el.className = "mail";
+    el.innerHTML = '<span class="mail-from"></span><span class="mail-sub"></span><span class="badge '+cls[t.cat]+'"></span>';
+    el.querySelector(".mail-from").textContent = t.from;
+    el.querySelector(".mail-sub").textContent = t.sub;
+    el.querySelector(".badge").textContent = t.label;
+    box.appendChild(el);
+  });
+  document.getElementById("run").addEventListener("click", function(){
+    var btn = this, out = document.getElementById("out");
+    btn.disabled = true; btn.textContent = "Scanning…";
+    var badges = box.querySelectorAll(".badge"), step = reduce ? 0 : 120;
+    badges.forEach(function(b,i){ setTimeout(function(){ b.classList.add("on"); }, i*step); });
+    setTimeout(function(){
+      var c = {reply:0, followup:0, sent:0, internal:0, auto:0, inbound:0};
+      threads.forEach(function(t){ c[t.cat]++; });
+      document.getElementById("tally").innerHTML =
+        "<div><b>"+c.reply+"</b> replies — respond today</div>"+
+        "<div><b>"+c.followup+"</b> past 3 days — drafts created</div>"+
+        "<div><b>"+c.sent+"</b> awaiting reply</div>"+
+        "<div><b>"+(c.internal+c.auto+c.inbound)+"</b> no action</div>";
+      out.classList.add("on"); btn.textContent = "Triage complete";
+    }, badges.length*step + 200);
+  });
+
+  /* composer */
+  var TONE = {
+    direct:  function(n){ return "Hi "+n+" — "; },
+    warm:    function(n){ return "Hi "+n+", hope your week is going well. "; },
+    formal:  function(n){ return "Dear "+n+",\n\n"; }
+  };
+  var SC = {
+    cold: function(f,o){ return {
+      one: o+"I'm working with "+f.ctx+". Worth "+f.ask+"?",
+      msg: o+"I'm working with "+f.ctx+".\n\n"+f.detail+". I thought of you before I thought of a list.\n\nOpen to "+f.ask+"?"+(f.link?" "+f.link:""),
+      eml: o+"I'm reaching out about "+f.ctx+".\n\n"+(f.link?"Grab a time here: "+f.link+"\n\n":"")+
+           "The relevant details: "+f.detail+". "+(f.boss?"You'd be working directly with "+f.boss+". ":"")+
+           "They move quickly, so this won't drag on for months.\n\nIf the timing is wrong, say so and I'll leave it there. Otherwise, "+f.ask+" is all I'm asking for."
+    };},
+    intro: function(f,o){ return {
+      one: o+"introducing you to "+(f.boss||"my colleague")+" about "+f.ctx+". "+f.ask+"?",
+      msg: o+"I'm writing on behalf of "+(f.boss||"my colleague")+" about "+f.ctx+".\n\n"+f.detail+".\n\nI'm looking after the scheduling, so "+f.ask+" — just reply here and I'll handle the rest."+(f.link?"\n\n"+f.link:""),
+      eml: o+"I'm writing on behalf of "+(f.boss||"my colleague")+", who'd like to speak with you about "+f.ctx+".\n\n"+
+           (f.link?"You can book directly here: "+f.link+"\n\n":"")+
+           "Context: "+f.detail+".\n\nI handle the calendar, so anything scheduling-related comes to me rather than to them. Reply here with "+f.ask+" and I'll confirm within the day."
+    };},
+    chase: function(f,o){ return {
+      one: o+"following up on "+f.ctx+". "+f.detail+". Can you confirm "+f.ask+"?",
+      msg: o+"following up on "+f.ctx+" — wanted to make sure it hadn't got buried.\n\nWhere it stands: "+f.detail+".\n\nCould you confirm "+f.ask+"? If something's blocking it on your side, tell me what and I'll work around it."+(f.link?"\n\n"+f.link:""),
+      eml: o+"I'm following up on "+f.ctx+".\n\nWhere things stand: "+f.detail+". "+(f.link?"Details here: "+f.link+" ":"")+
+           "\n\nI'd like to close this out rather than keep it open, so could you confirm "+f.ask+"?\n\nIf it's stuck on something, let me know what it is — chasing you again next week helps neither of us."
+    };},
+    resched: function(f,o){ return {
+      one: o+"I need to move "+f.ctx+". "+f.detail+". Does "+f.ask+" work?",
+      msg: o+"I need to move "+f.ctx+", and I'm sorry for the short notice.\n\n"+f.detail+".\n\nWould "+f.ask+" work instead? If not, send me two windows that do and I'll make one of them happen."+(f.link?"\n\n"+f.link:""),
+      eml: o+"I need to move "+f.ctx+", and I want to apologise for doing it at short notice.\n\n"+
+           "The reason, briefly: "+f.detail+".\n\n"+(f.link?"You can pick a new time directly here: "+f.link+"\n\n":"")+
+           "Would "+f.ask+" work? If none of those suit, send me two windows that do and I'll build the rest of the day around them. The change is on my side, so the inconvenience shouldn't be on yours."
+    };},
+    decline: function(f,o){ return {
+      one: o+"we're going to pass on "+f.ctx+". "+f.detail+". Thank you for putting it together.",
+      msg: o+"thank you for "+f.ctx+" — I know what goes into putting one together.\n\nWe're going to pass. "+f.detail+".\n\nI'd rather tell you now than leave you waiting on a maybe. "+f.ask+".",
+      eml: o+"thank you for "+f.ctx+". I know how much work goes into one of these.\n\n"+
+           "We've decided to pass, and I'd rather tell you plainly than leave you chasing a maybe. "+f.detail+".\n\n"+
+           "This isn't a reflection of the quality of what you sent. "+f.ask+", and I'll keep your details on file so we're not starting from zero next time."
+    };}
+  };
+  document.getElementById("c_go").addEventListener("click", function(){
+    var f = {
+      ctx: v("c_ctx"), ask: v("c_ask"), detail: v("c_detail"),
+      link: v("c_link"), boss: v("c_boss"), name: v("c_name") || "there"
+    };
+    var m = SC[document.getElementById("c_sc").value](f, TONE[document.getElementById("c_tone").value](f.name));
+
+    var never = v("c_never").split(/,\s*/).filter(Boolean);
+    var all = (m.one+" "+m.msg+" "+m.eml).toLowerCase();
+    var hits = never.filter(function(t){ return all.indexOf(t.toLowerCase()) > -1; });
+    var guard = hits.length
+      ? '<div class="guard fail"><b>HOLD</b> — these appear in the drafts and you marked them confidential: '+hits.join(", ")+". Take them out, or move them to an internal note, before this goes anywhere.</div>"
+      : '<div class="guard pass"><b>CLEAR</b> — none of the '+never.length+" confidential terms appear in any of the three drafts.</div>";
+
+    var out = document.getElementById("c_out");
+    out.innerHTML = guard + blk("One-liner — chat or DM", 45, m.one) +
+      blk("Message — email or long-form DM", 130, m.msg) +
+      blk("Full email", 220, m.eml);
+    out.classList.add("on");
+  });
+
+  /* blueprints */
+  Array.prototype.forEach.call(document.querySelectorAll(".bp-h"), function(btn){
+    btn.addEventListener("click", function(){
+      var bp = btn.parentNode, open = bp.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      if(open && !reduce){
+        Array.prototype.forEach.call(bp.querySelectorAll(".node"), function(n,i){
+          n.style.transitionDelay = (i*80)+"ms";
+        });
+      }
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    var b = e.target.closest(".copy"); if(!b) return;
+    navigator.clipboard.writeText(b.getAttribute("data-copy")).then(function(){
+      var t = b.textContent; b.textContent = "Copied"; setTimeout(function(){ b.textContent = t; }, 1400);
+    });
+  });
+
+  /* overlap */
+  var zones = [
+    {label:"Colombia (me)", tz:"America/Bogota", abbr:"COT"},
+    {label:"San Francisco", tz:"America/Los_Angeles", abbr:"PT"},
+    {label:"Denver", tz:"America/Denver", abbr:"MT"},
+    {label:"Chicago", tz:"America/Chicago", abbr:"CT"},
+    {label:"New York", tz:"America/New_York", abbr:"ET"},
+    {label:"London", tz:"Europe/London", abbr:"UK"}
+  ];
+  var base = new Date(); base.setUTCMinutes(0,0,0);
+  var utc = function(h){ return new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth(), base.getUTCDate(), h)); };
+  var hourIn = function(tz,d){ return parseInt(new Intl.DateTimeFormat("en-US",{timeZone:tz,hour:"2-digit",hour12:false}).format(d),10); };
+  var slots = [];
+  for(var h=0; h<24; h++){
+    var d = utc(h);
+    var cells = zones.map(function(z){
+      var hr = hourIn(z.tz, d);
+      return {text:new Intl.DateTimeFormat("en-US",{timeZone:z.tz,hour:"numeric",minute:"2-digit",hour12:true}).format(d), work: hr>=9 && hr<=17};
+    });
+    slots.push({i:h, cells:cells, all: cells.every(function(c){ return c.work; })});
+  }
+  var vis = slots.filter(function(s){ var hr = hourIn("America/Bogota", utc(s.i)); return hr>=5 && hr<=21; });
+  var html = '<thead><tr><th style="cursor:default">Working day</th>';
+  vis.forEach(function(o,k){ html += '<th class="'+(o.all?"all":"")+'" data-k="'+k+'">'+o.cells[0].text.replace(":00","")+"</th>"; });
+  html += "</tr></thead><tbody>";
+  zones.forEach(function(z,zi){
+    html += "<tr><td>"+z.label+' <span style="opacity:.55">'+z.abbr+"</span></td>";
+    vis.forEach(function(o){
+      var c = o.cells[zi];
+      html += '<td class="'+(o.all?"all":(c.work?"work":""))+'">'+c.text.replace(" ","").replace(":00","")+"</td>";
+    });
+    html += "</tr>";
+  });
+  document.getElementById("tztable").innerHTML = html + "</tbody>";
+  document.getElementById("tztable").addEventListener("click", function(e){
+    var th = e.target.closest("th[data-k]"); if(!th) return;
+    var o = vis[parseInt(th.getAttribute("data-k"),10)];
+    var line = zones.map(function(z,zi){ return o.cells[zi].text+" "+z.abbr; }).join("  /  ");
+    navigator.clipboard.writeText(line).then(function(){
+      document.getElementById("tzcopied").textContent = "Copied — "+line;
+    });
+  });
+
+  /* queue */
+  var DAY = 86400000, today = new Date(); today.setHours(0,0,0,0);
+  var iso = function(d){ return new Date(d).toISOString().slice(0,10); };
+  var q = [
+    {name:"Priya Raman", role:"Founding Engineer", sent: iso(today - 4*DAY)},
+    {name:"Daniel Okafor", role:"Head of GTM", sent: iso(today - 1*DAY)},
+    {name:"Jules Moreau", role:"Backend Lead", sent: iso(today - 7*DAY)}
+  ];
+  document.getElementById("q_date").value = iso(today);
+  var days = function(s){ return Math.max(0, Math.round((today - new Date(s+"T00:00:00")) / DAY)); };
+  var stat = function(n){ return n >= 6 ? {k:"over", t:"Overdue"} : n >= 3 ? {k:"due", t:"Follow up"} : {k:"wait", t:"Awaiting"}; };
+  function render(){
+    document.querySelector("#q_table tbody").innerHTML = q.map(function(r){
+      var n = days(r.sent), s = stat(n);
+      return "<tr><td>"+esc(r.name)+'</td><td style="opacity:.6">'+esc(r.role)+"</td>"+
+        '<td style="font-family:var(--mono);font-size:11px">'+n+(n===1?" day":" days")+"</td>"+
+        '<td><span class="pill p-'+s.k+'">'+s.t+"</span></td></tr>";
+    }).join("");
+  }
+  render();
+  document.getElementById("q_add").addEventListener("click", function(){
+    var n = v("q_name"), r = v("q_role"), d = v("q_date");
+    if(!n || !d){ document.getElementById("q_name").focus(); return; }
+    q.push({name:n, role:r || "—", sent:d});
+    ["q_name","q_role"].forEach(function(id){ document.getElementById(id).value = ""; });
+    render();
+  });
+  document.getElementById("q_draft").addEventListener("click", function(){
+    var due = q.filter(function(r){ return days(r.sent) >= 3; }), out = document.getElementById("q_out");
+    if(!due.length){
+      out.innerHTML = '<div class="guard pass"><b>NOTHING DUE</b> — everyone is inside the three-day window.</div>';
+      out.classList.add("on"); return;
+    }
+    out.innerHTML = due.map(function(r){
+      var n = days(r.sent), first = r.name.split(" ")[0];
+      var body = "Hi "+first+" — following up on my note about the "+r.role+" role. Wanted to make sure it didn't get buried.\n\n"+
+        (n >= 6 ? "I know timing is everything with these. If it's not the right moment, tell me and I'll close the loop — no hard feelings.\n\n"
+                : "Short version: the team is moving quickly, and comp and scope are in the thread below.\n\n")+
+        "If you're still interested, grab a time here: [booking link]";
+      return blk("Draft for "+r.name+" — day "+n, 0, body);
+    }).join("");
+    out.classList.add("on");
+  });
+})();
+</script>
+</body>
+</html>
