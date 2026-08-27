@@ -160,7 +160,10 @@ h2{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOF
 .tool-h .mono{color:var(--mango)}
 .tool-b{padding:18px 17px 20px}
 .tool-note{margin:0 0 18px;font-size:14.5px;color:#B4C0B8;max-width:64ch}
-.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px 15px}
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fg>label{display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
+@media(max-width:900px){.fg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.fg{grid-template-columns:1fr}}
 .lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
   color:var(--dark-muted);display:block;margin-bottom:6px}
 .tool input,.tool textarea{width:100%;font-family:var(--body);font-size:14px;line-height:1.45;
@@ -258,8 +261,10 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
 .pf figcaption{margin-top:11px;color:var(--muted);line-height:1.8}
 @media(max-width:940px){.about{grid-template-columns:1fr}.pf img{max-width:340px}}
 
-.tool select{width:100%;font-family:var(--body);font-size:14px;padding:9px 11px;
-  border:1px solid #2E4038;border-radius:3px;background:#0C1815;color:var(--dark-ink)}
+.tool select{width:100%;font-family:var(--body);font-size:14px;line-height:1.45;padding:9px 34px 9px 11px;
+  border:1px solid #2E4038;border-radius:3px;color:var(--dark-ink);cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+  background:#0C1815 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238B998F' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 12px center}
 .tool select:focus{border-color:var(--mango);outline:none}
 .bps{border-top:1px solid var(--rule)}
 .bp{border-bottom:1px solid var(--rule)}
@@ -828,6 +833,7 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
     slots.push({i:h, cells:cells, all: cells.every(function(c){ return c.work; })});
   }
   var vis = slots.filter(function(s){ var hr = hourIn("America/Bogota", utc(s.i)); return hr>=5 && hr<=21; });
+  vis.sort(function(a,b){ return hourIn("America/Bogota", utc(a.i)) - hourIn("America/Bogota", utc(b.i)); });
   var html = '<thead><tr><th style="cursor:default">Working day</th>';
   vis.forEach(function(o,k){ html += '<th class="'+(o.all?"all":"")+'" data-k="'+k+'">'+o.cells[0].text.replace(":00","")+"</th>"; });
   html += "</tr></thead><tbody>";
