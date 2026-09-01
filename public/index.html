@@ -297,6 +297,102 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
   .bp-m{grid-column:2;padding-top:10px;line-height:1.9}
   .plat{display:inline;margin-right:10px}
 }
+/* ===== design pieces ===== */
+.dp{border-top:1px solid #24352F;padding:clamp(32px,4.5vw,52px) 0}
+.dp-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:7px}
+.dp h3{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(22px,3.4vw,34px);letter-spacing:-.028em;line-height:1.04}
+.dp-spec{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--dark-muted);margin:0 0 26px}
+.dp-grid{display:grid;gap:28px 36px}
+@media(min-width:920px){.dp-grid{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);align-items:start}}
+.dp--wide .dp-grid{grid-template-columns:1fr}
+.dp--wide .dp-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px 34px;margin-top:6px}
+.dp-body .fld{margin-bottom:20px}
+.dp-body .fld:last-child{margin-bottom:0}
+.flag{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--mango);border:1px solid #3A4B44;border-radius:100px;padding:5px 11px;margin-bottom:14px}
+
+/* specimen frames */
+.art{box-shadow:0 2px 10px rgba(0,0,0,.34);margin-bottom:12px;border-radius:2px;overflow:hidden}
+.art-cap{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--dark-muted);margin:0 0 18px}
+
+/* business card */
+.bc{container-type:inline-size;aspect-ratio:1.75/1;background:var(--paper);color:var(--ink);position:relative}
+.bc-in{position:absolute;inset:0;padding:7.14cqw;display:flex;flex-direction:column;font-family:var(--body)}
+.bc-mark{font-family:var(--mono);font-weight:500;font-size:2.9cqw;letter-spacing:.17em;color:var(--mango)}
+.bc-name{font-weight:600;line-height:1;margin-top:auto;color:var(--ink);
+  font-size:var(--bcName,9.1cqw);letter-spacing:var(--bcTrack,-.03em);white-space:nowrap;overflow:hidden}
+.bc-title{font-weight:400;font-size:3.5cqw;margin-top:1.6cqw;color:var(--muted)}
+.bc-rule{height:1px;background:var(--rule);margin:5.4cqw 0 4.2cqw}
+.bc-meta{display:flex;gap:7cqw;font-size:3.1cqw;line-height:1.45;color:var(--muted)}
+.bc-meta.stacked{flex-direction:column;gap:0}
+
+/* lawn sign and rider */
+.signwrap{transform-origin:top left;transition:transform .3s cubic-bezier(.2,.7,.3,1)}
+.lawn{container-type:inline-size;aspect-ratio:4/3;background:var(--sea);color:#EAF6F2;position:relative}
+.lawn-in{position:absolute;inset:0;padding:8.33cqw;display:flex;flex-direction:column;justify-content:space-between;
+  font-family:var(--body);font-weight:600;line-height:.94}
+.lawn-mark{font-size:var(--lwMark,10cqw);letter-spacing:.01em;white-space:nowrap;overflow:hidden}
+.lawn-name{font-size:var(--lwName,9.2cqw);letter-spacing:-.028em;white-space:nowrap;overflow:hidden}
+.lawn-phone{font-size:var(--lwPhone,10.4cqw);letter-spacing:-.02em;margin-top:.6cqw;white-space:nowrap;overflow:hidden}
+.rider{container-type:inline-size;aspect-ratio:4/1;background:var(--sea);color:#EAF6F2;position:relative}
+.rider-in{position:absolute;inset:0;padding:0 8.33cqw;display:flex;align-items:center;
+  font-family:var(--body);font-weight:600;font-size:var(--rdSize,8.7cqw);letter-spacing:-.015em;white-space:nowrap;overflow:hidden}
+
+/* instagram set */
+.igset{display:grid;gap:9px;grid-template-columns:repeat(3,1fr)}
+.ig{container-type:inline-size;aspect-ratio:1/1;position:relative;overflow:hidden;border-radius:2px}
+.ig-ph{position:absolute;inset:0}
+.ig-1 .ig-ph{background:linear-gradient(158deg,#DCD9CE,#B4B2A4 46%,#8E9184)}
+.ig-2 .ig-ph{background:linear-gradient(200deg,#9FAAA2,#6E7C74 52%,#4A5852)}
+.ig-3 .ig-ph{background:linear-gradient(140deg,#4C5A55,#26332E 55%,#111A17)}
+.ig-scrim{position:absolute;left:0;right:0;bottom:0;height:var(--igScrimH,58%);
+  background:linear-gradient(to top,rgba(9,16,13,var(--igScrimO,.86)),rgba(9,16,13,0))}
+.ig-in{position:absolute;left:var(--igPad,6cqw);right:var(--igPad,6cqw);bottom:var(--igPad,6cqw);
+  color:#F4F1E9;font-family:var(--body)}
+.ig-label{font-family:var(--mono);font-weight:500;font-size:var(--igLabel,2.6cqw);letter-spacing:.13em;color:var(--mango)}
+.ig-addr{font-weight:600;font-size:var(--igAddr,5.7cqw);letter-spacing:-.028em;line-height:1.08;margin-top:2.6cqw}
+.ig-agent{font-weight:400;font-size:2.3cqw;margin-top:3cqw;color:rgba(244,241,233,.78)}
+@media(max-width:560px){.igset{grid-template-columns:1fr}}
+
+/* letter page specimen */
+.doc{aspect-ratio:8.5/11;background:var(--paper);color:var(--ink);container-type:inline-size;position:relative}
+.doc-in{position:absolute;inset:0;padding:9cqw 9.5cqw;font-family:var(--body)}
+.doc-kicker{font-family:var(--mono);font-size:2.1cqw;letter-spacing:.15em;text-transform:uppercase;color:var(--mango)}
+.doc-h1{font-weight:600;font-size:6.6cqw;line-height:1.04;letter-spacing:-.03em;margin:2.6cqw 0 1.4cqw}
+.doc-sub{font-size:2.7cqw;color:var(--muted)}
+.doc-rule{height:1px;background:var(--rule);margin:5cqw 0}
+.doc-h2{font-weight:600;font-size:2.5cqw;letter-spacing:.02em;margin:0 0 1.6cqw}
+.doc-p{font-size:2.4cqw;line-height:1.55;color:var(--muted);margin:0 0 4.4cqw;max-width:46ch}
+.doc-li{font-size:2.4cqw;line-height:1.55;color:var(--muted);margin:0 0 1.2cqw;padding-left:2.6cqw;position:relative}
+.doc-li::before{content:"";position:absolute;left:0;top:.62em;width:1.1cqw;height:1px;background:var(--mango)}
+
+/* controls under a specimen */
+.dc{border-top:1px solid #24352F;margin-top:22px;padding-top:18px}
+.dc-row{margin-bottom:15px}
+.dc-row:last-of-type{margin-bottom:0}
+.dc-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px}
+.dc-top span:first-child{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dark-muted)}
+.dc-val{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--mango)}
+.dc input[type=range]{width:100%;accent-color:var(--mango);background:none;border:0;padding:0;margin:0;display:block}
+.dc-read{margin-top:18px;padding-top:14px;border-top:1px solid #24352F;
+  font-family:var(--mono);font-size:9px;letter-spacing:.05em;line-height:2;color:var(--dark-muted)}
+.dc-read b{color:var(--dark-ink);font-weight:500}
+.dc-warn{color:#F0BE63;margin-top:9px;display:none}
+.dc-warn.on{display:block}
+.names{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:16px}
+.names span{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dark-muted)}
+.names button{font-family:var(--body);font-size:13px;cursor:pointer;background:none;color:#C9D3CC;
+  border:1px solid #3A4B44;border-radius:3px;padding:5px 11px}
+.names button:hover{border-color:var(--mango);color:var(--mango)}
+.names button.on{background:var(--mango);border-color:var(--mango);color:#1A1200}
+.dsum{border:1px solid #24352F;border-radius:4px;background:var(--forest-2);padding:20px 22px;margin-top:34px}
+.dsum h4{margin:0 0 14px;font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.02em;color:var(--dark-ink)}
+.dsum pre{margin:0;font-family:var(--mono);font-size:10px;line-height:2;white-space:pre-wrap;
+  word-break:break-word;color:#B4C0B8;letter-spacing:.02em}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .up,.up.in{opacity:1;transform:none;transition:none}
@@ -310,8 +406,9 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
   <a href="#systems" data-r="systems">02 &nbsp;Systems</a>
   <a href="#tools" data-r="tools">03 &nbsp;Tools</a>
   <a href="#builds" data-r="builds">04 &nbsp;Builds</a>
-  <a href="#about" data-r="about">05 &nbsp;About</a>
-  <a href="#record" data-r="record">06 &nbsp;Record</a>
+  <a href="#design" data-r="design">05 &nbsp;Design</a>
+  <a href="#about" data-r="about">06 &nbsp;About</a>
+  <a href="#record" data-r="record">07 &nbsp;Record</a>
 </div>
 <div class="clock" aria-hidden="true"><b id="clk">…</b><span>Colombia</span></div>
 
@@ -575,9 +672,225 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
     </div>
   </div>
 </section>
+<section class="sec dark" id="design" style="border-top:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="sec-head"><span class="mono num">§ 05</span><h2>The other half: design</h2></div>
+    <p class="sec-note" style="margin-top:-30px;margin-bottom:38px">Operations pays the bills, but a good half of the job has always been making the thing look like it came from one company. Cards, signage, social sets, document templates. The client work sits in accounts I no longer have access to, so these specimens are built fresh on an invented brand. The controls under each one are the real decisions, and they print the numbers you would type into Canva.</p>
+
+    <div class="names" id="nameSet">
+      <span>Stress test the name</span>
+      <button data-name="Jo Ng">Jo Ng</button>
+      <button data-name="Daniela Restrepo" class="on">Daniela Restrepo</button>
+      <button data-name="Christopher Vandenbergh">Christopher Vandenbergh</button>
+      <button data-name="María José Restrepo-Ochoa">María José Restrepo-Ochoa</button>
+    </div>
+
+    <article class="dp up" id="d-card">
+      <div class="dp-h"><h3>Business card</h3><span class="tag">Print</span></div>
+      <p class="dp-spec">3.5 × 2 in · 0.125 in bleed · one typeface</p>
+      <div class="dp-grid">
+        <div>
+          <div class="art bc" id="bcArt">
+            <div class="bc-in">
+              <div class="bc-mark">SAMPLE REALTY</div>
+              <div class="bc-name" data-fill="name">Daniela Restrepo</div>
+              <div class="bc-title">Sales Representative</div>
+              <div class="bc-rule"></div>
+              <div class="bc-meta" id="bcMeta">
+                <span><i data-fill="phone" style="font-style:normal">416 000 0000</i><br>daniela@samplerealty.ca</span>
+                <span>samplerealty.ca<br>Toronto, ON</span>
+              </div>
+            </div>
+          </div>
+          <p class="art-cap">Drawn at trim, not a screenshot. Resize the window and the type scales with the card.</p>
+          <div class="dc">
+            <div class="dc-row">
+              <div class="dc-top"><span>Name size</span><span class="dc-val" id="vBcName">23 pt</span></div>
+              <input type="range" id="bcName" min="12" max="34" step="0.5" value="23">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Name tracking</span><span class="dc-val" id="vBcTrack">−30</span></div>
+              <input type="range" id="bcTrack" min="-80" max="60" step="5" value="-30">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Contact block</span><span class="dc-val" id="vBcMeta">Two columns</span></div>
+              <input type="range" id="bcCols" min="0" max="1" step="1" value="1">
+            </div>
+            <div class="dc-read">
+              Canva: name <b><span id="rBcName">23</span> pt</b> semibold, letter spacing <b><span id="rBcTrack">−30</span></b>. Title 9 pt regular. Rule 0.5 pt. Contact 8 pt, line spacing 1.45.
+              <div class="dc-warn" id="bcWarn">The name is past the safe margin. Size it down, or the long-name agents get a broken card.</div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-body">
+          <div class="fld"><span class="mono">Brief</span><p>A card layout that has to hold for eighty-five people. One card is not the problem. The template is, and it always breaks on the name.</p></div>
+          <div class="fld"><span class="mono">Constraints</span>
+            <ul><li>No brand guide, so weight and size carry the hierarchy instead of colour</li><li>Six pieces of contact information have to fit without crowding the name</li><li>Nothing within a quarter inch of the trim</li></ul></div>
+          <div class="fld"><span class="mono">What I decided</span>
+            <ul><li>The person's name is the largest element, not the brokerage. A card is handed over by a human.</li><li>Name and title pair tightly, then a rule opens space before the contact block, so the eye reads two groups instead of five lines</li><li>Contact runs in two columns rather than one stack, which stops the lower third going heavy</li><li>Tracking pulled in slightly. At this size the default spacing reads loose against the small text under it.</li></ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dp up" id="d-sign">
+      <div class="dp-h"><h3>Lawn sign and rider</h3><span class="tag">Large format</span></div>
+      <p class="dp-spec">24 × 18 in and 24 × 6 in · read from a moving car</p>
+      <div class="dp-grid">
+        <div>
+          <div class="signwrap" id="signWrap">
+            <div class="art lawn">
+              <div class="lawn-in">
+                <div class="lawn-mark">SAMPLE REALTY</div>
+                <div>
+                  <div class="lawn-name" data-fill="name">Daniela Restrepo</div>
+                  <div class="lawn-phone" data-fill="phone">416 000 0000</div>
+                </div>
+              </div>
+            </div>
+            <div class="art rider"><div class="rider-in">OPEN HOUSE SUNDAY</div></div>
+          </div>
+          <p class="art-cap" id="distCap">Viewing distance: standing at the sign</p>
+          <div class="dc">
+            <div class="dc-row">
+              <div class="dc-top"><span>Brokerage mark</span><span class="dc-val" id="vLwMark">2.1 in</span></div>
+              <input type="range" id="lwMark" min="1.5" max="5.5" step="0.1" value="2.1">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Agent name</span><span class="dc-val" id="vLwName">1.6 in</span></div>
+              <input type="range" id="lwName" min="1" max="4" step="0.1" value="1.6">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Phone</span><span class="dc-val" id="vLwPhone">2.0 in</span></div>
+              <input type="range" id="lwPhone" min="1" max="4" step="0.1" value="2">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Rider line</span><span class="dc-val" id="vRdSize">1.5 in</span></div>
+              <input type="range" id="rdSize" min="1" max="3.4" step="0.1" value="1.5">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Step back from the sign</span><span class="dc-val" id="vDist">0 ft</span></div>
+              <input type="range" id="lwDist" min="0" max="60" step="5" value="0">
+            </div>
+            <div class="dc-read">
+              Canva: mark <b><span id="rLwMark">2.1</span> in</b>, name <b><span id="rLwName">1.6</span> in</b>, phone <b><span id="rLwPhone">2.0</span> in</b>, rider <b><span id="rRdSize">1.5</span> in</b>. Margins 2 in all round.
+              <div class="dc-warn" id="lwWarn">That is wider than the sign. It will spill past the 2 in margin.</div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-body">
+          <div class="fld"><span class="mono">Brief</span><p>Signage that stays legible from across a street, in the rain, at thirty kilometres an hour. The only piece here where viewing distance sets the type size instead of taste.</p></div>
+          <div class="fld"><span class="mono">Constraints</span>
+            <ul><li>Roughly one inch of cap height per ten feet of reading distance, so the phone number sets its own minimum</li><li>Three pieces of information at most. Anything past that will not be read.</li><li>The rider is one line, with no room to be clever</li></ul></div>
+          <div class="fld"><span class="mono">What I decided</span>
+            <ul><li>Brokerage largest, at the top. From the street the brand is what identifies the sign; the agent details are for people who already stopped.</li><li>Contrast over colour. A mid tone on a mid tone disappears at distance even when it looks fine on screen.</li><li>Generous margins, because signs get bent, mounted crooked and half hidden by a hedge.</li><li>Use the step-back control rather than your eye at full screen. That is the only honest test.</li></ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dp up dp--wide" id="d-social">
+      <div class="dp-h"><h3>Instagram set</h3><span class="tag">Social template</span></div>
+      <p class="dp-spec">1080 × 1080 · three states of one listing · built for someone else to fill in</p>
+      <div class="dp-grid">
+        <div>
+          <div class="igset">
+            <div class="ig ig-1"><div class="ig-ph"></div><div class="ig-scrim"></div>
+              <div class="ig-in"><div class="ig-label">NEW LISTING</div>
+                <div class="ig-addr">412 Roncesvalles Ave</div>
+                <div class="ig-agent" data-fill="name">Daniela Restrepo</div></div></div>
+            <div class="ig ig-2"><div class="ig-ph"></div><div class="ig-scrim"></div>
+              <div class="ig-in"><div class="ig-label">OPEN HOUSE SUN 2 TO 4</div>
+                <div class="ig-addr">412 Roncesvalles Ave</div>
+                <div class="ig-agent" data-fill="name">Daniela Restrepo</div></div></div>
+            <div class="ig ig-3"><div class="ig-ph"></div><div class="ig-scrim"></div>
+              <div class="ig-in"><div class="ig-label">SOLD</div>
+                <div class="ig-addr">412 Roncesvalles Ave</div>
+                <div class="ig-agent" data-fill="name">Daniela Restrepo</div></div></div>
+          </div>
+          <p class="art-cap">Three deliberately different photos: bright, mid, dark. One scrim value has to serve all three.</p>
+          <div class="dc">
+            <div class="dc-row">
+              <div class="dc-top"><span>Address size</span><span class="dc-val" id="vIgAddr">62 px</span></div>
+              <input type="range" id="igAddr" min="34" max="90" step="2" value="62">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Status label</span><span class="dc-val" id="vIgLabel">28 px</span></div>
+              <input type="range" id="igLabel" min="16" max="48" step="1" value="28">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Left and bottom margin</span><span class="dc-val" id="vIgPad">64 px</span></div>
+              <input type="range" id="igPad" min="24" max="120" step="4" value="64">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Scrim darkness</span><span class="dc-val" id="vIgO">86%</span></div>
+              <input type="range" id="igO" min="0" max="100" step="2" value="86">
+            </div>
+            <div class="dc-row">
+              <div class="dc-top"><span>Scrim height</span><span class="dc-val" id="vIgH">58%</span></div>
+              <input type="range" id="igH" min="25" max="100" step="1" value="58">
+            </div>
+            <div class="dc-read">
+              Canva: address <b><span id="rIgAddr">62</span> px</b> semibold, tracking −20. Label <b><span id="rIgLabel">28</span> px</b>, tracking +130. Text starts <b><span id="rIgPad">64</span> px</b> from the left and bottom on all three. Gradient <b>#09100D</b> at <b><span id="rIgO">86</span>%</b>, transparent by <b><span id="rIgH">58</span>%</b> height.
+              <div class="dc-warn" id="igWarn">At this value the text is fighting the bright photo on the left. Check the first tile, not the last.</div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-body">
+          <div class="fld"><span class="mono">Brief</span><p>New listing, open house, sold. Three posts that read as a set when they surface months apart in a feed, and that someone else can fill in without asking me anything.</p></div>
+          <div class="fld"><span class="mono">Constraints</span>
+            <ul><li>Photos arrive at unpredictable crops and quality, so the layout cannot depend on the image</li><li>Text has to stay legible over photography without an overlay swallowing the house</li><li>Posted weekly, so filling it in should take minutes</li></ul></div>
+          <div class="fld"><span class="mono">What I decided</span>
+            <ul><li>The text block holds the same position on all three. Only the label and the photo change, which is what makes them read as a series.</li><li>A gradient scrim instead of a flat box, so the photo stays visible and one value works over both bright and dark images</li><li>The address is the headline, not the status. People scroll for the property.</li></ul></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dp up" id="d-doc">
+      <div class="dp-h"><h3>Recruiting template system</h3><span class="tag">Document design</span></div>
+      <p class="dp-spec">Contrario AI · adopted org-wide · around 200 documents built on it</p>
+      <div class="dp-grid">
+        <div>
+          <div class="art doc">
+            <div class="doc-in">
+              <div class="doc-kicker">Role specification</div>
+              <div class="doc-h1">Founding Engineer</div>
+              <div class="doc-sub">Series A · agentic payments · San Francisco</div>
+              <div class="doc-rule"></div>
+              <div class="doc-h2">About the role</div>
+              <p class="doc-p">You would own the ledger and settlement engine end to end, from the data model through the reconciliation logic that finance actually closes the month on.</p>
+              <div class="doc-h2">What you will own</div>
+              <div class="doc-li">Design the double-entry ledger and its invariants</div>
+              <div class="doc-li">Ship the settlement engine to production</div>
+              <div class="doc-li">Decide the build and buy line on payment rails</div>
+              <div class="doc-h2" style="margin-top:4.6cqw">Must have</div>
+              <p class="doc-p">Five years building systems where money moves, and the judgment to know which correctness problems are worth slowing down for.</p>
+            </div>
+          </div>
+          <p class="art-cap">Rebuilt here from the original, which lives in a client account.</p>
+        </div>
+        <div class="dp-body">
+          <span class="flag">Real prior work, rebuilt</span>
+          <div class="fld"><span class="mono">Brief</span><p>Every recruiter wrote job descriptions in their own format, so clients received documents that did not look like they came from the same company. One template the team would actually use.</p></div>
+          <div class="fld"><span class="mono">Constraints</span>
+            <ul><li>Documents get pasted into LinkedIn, Notion and client email, so the hierarchy has to survive losing all of its styling</li><li>Non-designers fill them in daily, so anything fussy is broken within a week</li><li>Existing colours and one typeface, with no licensing budget</li></ul></div>
+          <div class="fld"><span class="mono">What I decided</span>
+            <ul><li>Three levels of hierarchy and no more, which are role title, section and body, sized far enough apart to read the structure at a glance</li><li>Section headings carry weight rather than colour, so the page survives greyscale printing and a plain-text paste</li><li>A fixed line length on body copy. That was the change that made the documents start to feel finished.</li></ul></div>
+          <div class="fld"><span class="mono">Result</span><p>Around 200 job descriptions built on it, and the JD Package Engine in section 02 is this template with the writing rules attached.</p>
+            <div class="chips"><span class="chip">Canva</span><span class="chip">Docs</span><span class="chip">Notion</span><span class="chip">Adobe CS</span></div></div>
+        </div>
+      </div>
+    </article>
+
+    <div class="dsum up">
+      <h4>Your numbers</h4>
+      <pre id="dspec"></pre>
+      <div class="acts"><button class="btn" id="dcopy">Copy the spec</button><span class="hint">Move the sliders, take the numbers to Canva</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="about">
   <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 05</span><h2>How I got here</h2></div>
+    <div class="sec-head"><span class="mono num">§ 06</span><h2>How I got here</h2></div>
     <div class="about">
       <figure class="pf up">
         <img src="/images/portrait.jpg" alt="Portrait of Lucía Fadul" width="520" height="520" loading="lazy">
@@ -598,7 +911,7 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
 
 <section class="sec" id="record">
   <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 06</span><h2>Record</h2></div>
+    <div class="sec-head"><span class="mono num">§ 07</span><h2>Record</h2></div>
     <div class="tl">
       <div class="tli up"><span class="n">01</span><span class="when">Feb 2026 – present</span>
         <div><h4>Operations Assistant</h4><p class="org">Contrario AI (YC 22) · Remote, US</p>
@@ -630,7 +943,7 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
 
 <section class="end" id="contact">
   <div class="wrap">
-    <span class="mono">§ 07 &nbsp;&nbsp; Open to</span>
+    <span class="mono">§ 08 &nbsp;&nbsp; Open to</span>
     <h2 style="margin-top:20px">Executive Assistant. Operations. Chief of Staff support.</h2>
     <p>Remote, US hours, English and Spanish. If there's something specific in your workflow you want to see me handle, send it over. I'd rather show the work than describe it.</p>
     <div class="links">
@@ -898,6 +1211,137 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
     }).join("");
     out.classList.add("on");
   });
+
+  /* ===== design specimens ===== */
+  var PT_CARD = (1/72)/3.5*100;   /* one point across a 3.5 in card */
+  var IN_SIGN = 100/24;           /* one inch across a 24 in sign   */
+  var PX_IG   = 100/1080;         /* one pixel across a 1080 post   */
+  var num = function(id){ return parseFloat(document.getElementById(id).value); };
+  var put = function(id, txt){ var el = document.getElementById(id); if(el) el.textContent = txt; };
+  var setv = function(el, k, val){ if(el) el.style.setProperty(k, val); };
+  var track = function(n){ return (n < 0 ? "−" : "+") + Math.abs(n); };
+
+  var bcArt = document.getElementById("bcArt");
+  var signWrap = document.getElementById("signWrap");
+  var currentName = "Daniela Restrepo";
+
+  function fillIdentity(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-fill="name"]'), function(el){
+      el.textContent = currentName;
+    });
+  }
+
+  function drawBc(){
+    var size = num("bcName"), tr = num("bcTrack"), cols = document.getElementById("bcCols").value === "1";
+    setv(bcArt, "--bcName", (size * PT_CARD) + "cqw");
+    setv(bcArt, "--bcTrack", (tr/1000) + "em");
+    document.getElementById("bcMeta").classList.toggle("stacked", !cols);
+    put("vBcName", size + " pt"); put("rBcName", size);
+    put("vBcTrack", track(tr));   put("rBcTrack", track(tr));
+    put("vBcMeta", cols ? "Two columns" : "One stack");
+    var nm = bcArt.querySelector(".bc-name");
+    document.getElementById("bcWarn").classList.toggle("on", nm.scrollWidth > nm.clientWidth + 1);
+  }
+
+  function drawSign(){
+    var mk = num("lwMark"), nm = num("lwName"), ph = num("lwPhone"),
+        rd = num("rdSize"), d = num("lwDist");
+    var lawn = signWrap.querySelector(".lawn");
+    setv(lawn, "--lwMark",  (mk * IN_SIGN) + "cqw");
+    setv(lawn, "--lwName",  (nm * IN_SIGN) + "cqw");
+    setv(lawn, "--lwPhone", (ph * IN_SIGN) + "cqw");
+    setv(signWrap.querySelector(".rider"), "--rdSize", (rd * IN_SIGN) + "cqw");
+
+    put("vLwMark", mk.toFixed(1) + " in");   put("rLwMark", mk.toFixed(1));
+    put("vLwName", nm.toFixed(1) + " in");   put("rLwName", nm.toFixed(1));
+    put("vLwPhone", ph.toFixed(1) + " in");  put("rLwPhone", ph.toFixed(1));
+    put("vRdSize", rd.toFixed(1) + " in");   put("rRdSize", rd.toFixed(1));
+    put("vDist", d + " ft");
+
+    var scale = 1 / (1 + d/14);
+    signWrap.style.transform = "scale(" + scale.toFixed(3) + ")";
+    signWrap.style.marginBottom = (-(1 - scale) * signWrap.offsetHeight) + "px";
+    put("distCap", d === 0
+      ? "Viewing distance: standing at the sign"
+      : "Viewing distance: " + d + " ft, about " +
+        (d <= 15 ? "the front walk" : d <= 30 ? "the sidewalk" : "a car going past") +
+        ". Can you still read the phone number?");
+
+    var spill = [".lawn-mark", ".lawn-name", ".lawn-phone", ".rider-in"].some(function(sel){
+      var el = signWrap.querySelector(sel);
+      return el.scrollWidth > el.clientWidth + 1;
+    });
+    document.getElementById("lwWarn").classList.toggle("on", spill);
+  }
+
+  function drawIg(){
+    var ad = num("igAddr"), lb = num("igLabel"), pd = num("igPad"),
+        op = num("igO"), ht = num("igH");
+    Array.prototype.forEach.call(document.querySelectorAll(".ig"), function(ig){
+      setv(ig, "--igAddr",  (ad * PX_IG) + "cqw");
+      setv(ig, "--igLabel", (lb * PX_IG) + "cqw");
+      setv(ig, "--igPad",   (pd * PX_IG) + "cqw");
+      setv(ig, "--igScrimO", op/100);
+      setv(ig, "--igScrimH", ht + "%");
+    });
+    put("vIgAddr", ad + " px");  put("rIgAddr", ad);
+    put("vIgLabel", lb + " px"); put("rIgLabel", lb);
+    put("vIgPad", pd + " px");   put("rIgPad", pd);
+    put("vIgO", op + "%");       put("rIgO", op);
+    put("vIgH", ht + "%");       put("rIgH", ht);
+    document.getElementById("igWarn").classList.toggle("on", op < 55);
+  }
+
+  function writeSpec(){
+    var cols = document.getElementById("bcCols").value === "1";
+    document.getElementById("dspec").textContent =
+      "BUSINESS CARD · 3.5 x 2 in, 0.25 in margins\n" +
+      "  Name          Semibold " + num("bcName") + " pt, tracking " + track(num("bcTrack")) + "\n" +
+      "  Title         Regular 9 pt\n" +
+      "  Rule          0.5 pt\n" +
+      "  Contact       Regular 8 pt, " + (cols ? "two columns" : "one stack") + ", line spacing 1.45\n\n" +
+      "LAWN SIGN · 24 x 18 in, 2 in margins\n" +
+      "  Brokerage     Semibold " + num("lwMark").toFixed(1) + " in\n" +
+      "  Agent name    Semibold " + num("lwName").toFixed(1) + " in\n" +
+      "  Phone         Semibold " + num("lwPhone").toFixed(1) + " in\n" +
+      "RIDER · 24 x 6 in, same side margins\n" +
+      "  One line      Semibold " + num("rdSize").toFixed(1) + " in\n\n" +
+      "INSTAGRAM · 1080 x 1080, three posts\n" +
+      "  Address       Semibold " + num("igAddr") + " px, tracking -20\n" +
+      "  Status label  " + num("igLabel") + " px, tracking +130\n" +
+      "  Margin        " + num("igPad") + " px left and bottom, identical on all three\n" +
+      "  Scrim         #09100D at " + num("igO") + "%, transparent by " + num("igH") + "% height\n\n" +
+      "COLOURS         Forest #0B1512 · Sea #0A5B4F · Mango #DA8B00 · Paper #F2ECE1";
+  }
+
+  function drawDesign(){ fillIdentity(); drawBc(); drawSign(); drawIg(); writeSpec(); }
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll("#design input[type=range]"), function(i){
+      i.addEventListener("input", drawDesign);
+    });
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll("#nameSet button"), function(b){
+      b.addEventListener("click", function(){
+        currentName = b.getAttribute("data-name");
+        Array.prototype.forEach.call(document.querySelectorAll("#nameSet button"), function(o){
+          o.classList.toggle("on", o === b);
+        });
+        drawDesign();
+      });
+    });
+
+  document.getElementById("dcopy").addEventListener("click", function(){
+    var btn = this;
+    navigator.clipboard.writeText(document.getElementById("dspec").textContent).then(function(){
+      btn.textContent = "Copied";
+      setTimeout(function(){ btn.textContent = "Copy the spec"; }, 1500);
+    }).catch(function(){ btn.textContent = "Select the text above"; });
+  });
+
+  window.addEventListener("resize", drawSign, {passive:true});
+  drawDesign();
 })();
 </script>
 </body>
