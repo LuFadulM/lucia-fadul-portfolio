@@ -99,6 +99,14 @@ h2{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOF
   .ent .meta{grid-column:2;padding-top:12px}
 }
 
+.idx-lbl{display:grid;grid-template-columns:58px minmax(0,1fr);gap:0 30px;align-items:baseline;
+  padding:30px 0 13px;border-bottom:1px solid var(--rule);
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.idx-lbl b{color:var(--mango);font-weight:500}
+.idx-lbl em{font-style:normal;margin-left:16px;color:var(--muted)}
+.idx .idx-lbl:first-child{padding-top:0}
+@media(max-width:820px){.idx-lbl{grid-template-columns:38px minmax(0,1fr);gap:0 16px}}
+
 /* ===== dark ===== */
 .dark{background:var(--forest);color:var(--dark-ink);border-bottom:0}
 .dark h2,.dark h3{color:var(--dark-ink)}
@@ -440,7 +448,9 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
 <section class="sec" id="index">
   <div class="wrap">
     <div class="sec-head"><span class="mono num">§ 01</span><h2>In production</h2></div>
+    <p class="sec-note" style="margin:-34px 0 34px">Everything on this page in one list. The systems run every day; the design work is the other half of the same job. Any row jumps to the full write-up.</p>
     <div class="idx">
+      <div class="idx-lbl"><span></span><span><b>Operations systems</b><em>001 to 005</em></span></div>
       <a class="ent up" href="#jd">
         <span class="n">001</span>
         <div><h3>JD Package Engine</h3><p>One intake call becomes six publication-ready documents, with client names firewalled out of everything that goes out before a candidate is qualified.</p></div>
@@ -465,6 +475,27 @@ table.q{border-collapse:collapse;width:100%;margin-top:8px}
         <span class="n">005</span>
         <div><h3>Payroll &amp; Onboarding Runbooks</h3><p>Multi-country payroll, contractor records and new-hire ramp, written down as procedures anyone on the team can execute without me.</p></div>
         <span class="meta">2 regions<br><em>Ramp time &minus;50%</em></span>
+      </a>
+      <div class="idx-lbl"><span></span><span><b>Design and marketing</b><em>006 to 009</em></span></div>
+      <a class="ent up" href="#d-card">
+        <span class="n">006</span>
+        <div><h3>Business card</h3><p>A card template that has to survive eighty-five different names, with the type set live and a warning the moment a name crosses the safe margin.</p></div>
+        <span class="meta">3.5 &times; 2 in<br><em>Sliders print the Canva numbers</em></span>
+      </a>
+      <a class="ent up" href="#d-sign">
+        <span class="n">007</span>
+        <div><h3>Lawn sign and rider</h3><p>Signage sized by reading distance instead of taste, with a step-back control that shrinks the sign the way walking away from it does.</p></div>
+        <span class="meta">24 &times; 18 in<br><em>1 in of cap per 10 ft</em></span>
+      </a>
+      <a class="ent up" href="#d-social">
+        <span class="n">008</span>
+        <div><h3>Instagram set</h3><p>New listing, open house, sold. Three posts that read as a series months apart, over bright, mid and dark photos that all share one scrim value.</p></div>
+        <span class="meta">1080 square<br><em>3 states, 1 template</em></span>
+      </a>
+      <a class="ent up" href="#d-doc">
+        <span class="n">009</span>
+        <div><h3>Recruiting document template</h3><p>Three levels of hierarchy that survive a plain-text paste into LinkedIn, Notion or a client email, filled in daily by people who are not designers.</p></div>
+        <span class="meta">Letter<br><em>Adopted org-wide</em></span>
       </a>
     </div>
   </div>
