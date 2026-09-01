@@ -52,11 +52,11 @@ summary::-webkit-details-marker{display:none}
 summary::marker{content:""}
 ::selection{background:rgba(198,113,57,0.3)}
 :focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
-.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
+.page{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
 .disp{font-family:var(--disp);font-weight:400}
 
 /* ===== nav ===== */
-.nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--gut);background:linear-gradient(var(--cream) 72%,rgba(245,234,216,0));backdrop-filter:blur(6px);flex-wrap:wrap}
+.nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;background:linear-gradient(var(--cream) 72%,rgba(245,234,216,0));backdrop-filter:blur(6px);flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
 .brand:hover{text-decoration:none}
 .brand img{width:34px;height:34px;border-radius:999px;object-fit:cover;filter:saturate(0.6) contrast(0.85) brightness(1.1)}
@@ -70,7 +70,7 @@ summary::marker{content:""}
 .nav-cta:hover{background:var(--terracotta-dark);color:#fff;text-decoration:none}
 
 /* ===== hero ===== */
-.hero{padding:clamp(28px,6vw,72px) var(--gut) clamp(40px,7vw,88px)}
+.hero{padding:clamp(28px,6vw,72px) 0 clamp(40px,7vw,88px)}
 .hero-status{display:flex;align-items:center;gap:10px;margin-bottom:clamp(20px,3vw,34px)}
 .hero-dot{width:9px;height:9px;border-radius:999px;background:var(--sage);box-shadow:0 0 0 5px rgba(122,138,94,0.18)}
 .hero-status span{font-size:12.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-dark)}
@@ -89,7 +89,7 @@ h1 em{font-style:normal;color:var(--terracotta)}
 .hero-open:hover{background:var(--terracotta-dark);color:#fff;text-decoration:none}
 
 /* ===== section shell ===== */
-.sec{padding:clamp(40px,6vw,88px) var(--gut)}
+.sec{padding:clamp(40px,6vw,88px) 0}
 .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(22px,3vw,38px);flex-wrap:wrap}
 .sec-head.tight{margin-bottom:14px}
 .num{font-size:12px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--terracotta)}
@@ -388,7 +388,7 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 .open-link.primary:hover{background:var(--terracotta-light);color:var(--ink);text-decoration:none}
 .open-link.ghost{border:1px solid var(--muted);color:#eee7db;font-weight:600}
 .open-link.ghost:hover{border-color:var(--terracotta-mid);color:#fff;text-decoration:none}
-.site-footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px var(--gut) 44px;font-size:12.5px;color:var(--muted2)}
+.site-footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px 0 44px;font-size:12.5px;color:var(--muted2)}
 
 @media(max-width:940px){
   .about-copy{grid-column:auto}
@@ -397,6 +397,8 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 </style>
 </head>
 <body>
+
+<div class="page">
 
 <nav class="nav">
   <a href="#top" class="brand">
@@ -1280,6 +1282,8 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
   <span>Lucía Fadul · Colombia</span>
   <span>Designed, written and built by me</span>
 </footer>
+
+</div>
 
 <script>
 (function(){
