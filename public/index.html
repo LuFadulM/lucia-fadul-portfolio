@@ -5,1342 +5,1603 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lucía Fadul · Operations</title>
 <meta name="description" content="Operations for early-stage startups. An index of systems currently in production.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23DA8B00'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%230B1512'%3ELF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23C67139'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23F9F4ED'%3ELF%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Instrument+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#F2ECE1;
-  --tint:#E7DECE;
-  --rule:#D3C7B3;
-  --ink:#15110C;
-  --muted:#6B6152;
-  --forest:#0B1512;
-  --forest-2:#132420;
-  --dark-ink:#EDE6D9;
-  --dark-muted:#8B998F;
-  --sea:#0A5B4F;
-  --mango:#DA8B00;
-  --disp:"Fraunces",Georgia,serif;
-  --body:"Instrument Sans",system-ui,sans-serif;
-  --mono:"Martian Mono",ui-monospace,monospace;
-  --gut:clamp(18px,4.5vw,60px);
-  --rail:64px;
+  --cream:#f5ead8;
+  --tan:#ebddc5;
+  --tan2:#eee7db;
+  --ink:#201e1d;
+  --muted:#645c50;
+  --muted2:#82796a;
+  --muted3:#474238;
+  --rule:rgba(32,30,29,0.1);
+  --rule2:rgba(32,30,29,0.16);
+  --terracotta:#c67139;
+  --terracotta-dark:#b2622d;
+  --terracotta-deep:#8c491a;
+  --terracotta-mid:#d67f48;
+  --terracotta-light:#f6a06b;
+  --terracotta-bg:#ffe1d0;
+  --terracotta-bg2:#fff2eb;
+  --sage:#7a8a5e;
+  --sage-dark:#56633f;
+  --sage-deep:#3d472b;
+  --sage-bg:#e1eecc;
+  --sage-bg2:#f0fae1;
+  --dark:#2e2b25;
+  --dark2:#474238;
+  --card:#f9f4ed;
+  --card2:#fdfcfa;
+  --dark-text:#f9f4ed;
+  --dark-muted:#c0b6a5;
+  --dark-muted2:#a19786;
+  --disp:"Caprasimo",Georgia,serif;
+  --body:"Figtree",system-ui,sans-serif;
+  --gut:clamp(18px,4vw,56px);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
-.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gut)}
-.mono{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
-.disp{font-family:var(--disp);font-variation-settings:"SOFT" 40,"WONK" 1}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--terracotta-deep);text-decoration:none;text-underline-offset:3px}
+a:hover{color:var(--terracotta);text-decoration:underline}
+summary::-webkit-details-marker{display:none}
+summary::marker{content:""}
+::selection{background:rgba(198,113,57,0.3)}
+:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
+.disp{font-family:var(--disp);font-weight:400}
 
-/* ===== rail ===== */
-.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:60;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
-  border-right:1px solid var(--rule);background:var(--paper)}
-.rail a{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--muted);
-  text-decoration:none;writing-mode:vertical-rl;padding:3px 0;transition:color .2s}
-.rail a.on{color:var(--ink)}
-.rail a.on::after{content:"";display:block;width:5px;height:5px;border-radius:50%;
-  background:var(--mango);margin:7px auto 0}
-.clock{position:fixed;left:0;bottom:0;width:var(--rail);padding:14px 0;text-align:center;
-  border-right:1px solid var(--rule);border-top:1px solid var(--rule);background:var(--paper);z-index:61}
-.clock b{display:block;font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.04em}
-.clock span{display:block;font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;color:var(--muted);margin-top:3px}
-main{margin-left:var(--rail)}
-@media(max-width:1080px){
-  .rail,.clock{display:none}
-  main{margin-left:0}
-  :root{--rail:0px}
-}
+/* ===== nav ===== */
+.nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px var(--gut);background:linear-gradient(var(--cream) 72%,rgba(245,234,216,0));backdrop-filter:blur(6px);flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand img{width:34px;height:34px;border-radius:999px;object-fit:cover;filter:saturate(0.6) contrast(0.85) brightness(1.1)}
+.brand span{font-family:var(--disp);font-size:17px;letter-spacing:-0.01em}
+.nav-links{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:12.5px;font-weight:600;letter-spacing:0.01em}
+.nav-link{padding:7px 12px;border-radius:999px;color:var(--muted)}
+.nav-link:hover{background:var(--tan);color:var(--ink);text-decoration:none}
+.nav-link.is-live{color:var(--terracotta-deep);background:var(--terracotta-bg)}
+.nav-link.is-live:hover{background:#ffc6a5}
+.nav-cta{margin-left:6px;padding:8px 16px;border-radius:999px;background:var(--terracotta);color:#f9f4ed;font-weight:700}
+.nav-cta:hover{background:var(--terracotta-dark);color:#fff;text-decoration:none}
 
-/* ===== masthead ===== */
-.mast{border-bottom:1px solid var(--rule)}
-.mast .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;padding-top:16px;padding-bottom:16px}
-.mast span{color:var(--muted)}
-.hero{padding:clamp(52px,10vw,132px) 0 clamp(40px,6vw,72px);border-bottom:1px solid var(--rule)}
-h1{margin:0;font-family:var(--disp);font-weight:900;font-variation-settings:"SOFT" 30,"WONK" 1;
-  font-size:clamp(46px,10.4vw,146px);line-height:.85;letter-spacing:-.045em}
-h1 i{font-style:normal;color:var(--sea)}
-.hero-foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:22px 40px;margin-top:clamp(34px,5vw,62px);padding-top:26px;border-top:1px solid var(--rule)}
-.hero-foot p{margin:0;font-size:16.5px;max-width:44ch}
-.hero-foot p.big{font-size:clamp(17px,1.9vw,21px);line-height:1.5}
-.up{opacity:0;transform:translateY(16px)}
-.up.in{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.2,.7,.25,1),transform .8s cubic-bezier(.2,.7,.25,1)}
+/* ===== hero ===== */
+.hero{padding:clamp(28px,6vw,72px) var(--gut) clamp(40px,7vw,88px)}
+.hero-status{display:flex;align-items:center;gap:10px;margin-bottom:clamp(20px,3vw,34px)}
+.hero-dot{width:9px;height:9px;border-radius:999px;background:var(--sage);box-shadow:0 0 0 5px rgba(122,138,94,0.18)}
+.hero-status span{font-size:12.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage-dark)}
+h1{font-family:var(--disp);font-weight:400;font-size:clamp(46px,9.4vw,132px);line-height:0.94;letter-spacing:-0.03em;margin:0;max-width:16ch;text-wrap:balance}
+h1 em{font-style:normal;color:var(--terracotta)}
+.hero-foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,3vw,44px);margin-top:clamp(34px,5vw,64px);max-width:1120px}
+.hero-col{border-top:2px solid var(--ink);padding-top:14px}
+.hero-col.mid{border-top:1px solid var(--rule2)}
+.hero-col.tag{border-top:1px solid rgba(198,113,57,0.5)}
+.hero-col .kicker{font-size:11.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted2);margin-bottom:8px}
+.hero-col.tag .kicker{color:var(--terracotta-dark)}
+.hero-col p{margin:0;font-size:clamp(15.5px,1.35vw,18px);line-height:1.5}
+.hero-col.mid p{color:var(--muted3)}
+.hero-col.tag p{margin:0 0 14px;color:var(--muted3)}
+.hero-open{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--terracotta);color:#f9f4ed;font-weight:700;font-size:14px}
+.hero-open:hover{background:var(--terracotta-dark);color:#fff;text-decoration:none}
 
-/* ===== section heads ===== */
-.sec{padding:clamp(56px,8vw,110px) 0;border-bottom:1px solid var(--rule)}
-.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 26px;margin-bottom:clamp(30px,4vw,52px)}
-.sec-head .num{color:var(--mango)}
-h2{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 40,"WONK" 1;
-  font-size:clamp(27px,4.4vw,48px);line-height:1.02;letter-spacing:-.03em;max-width:20ch}
-.sec-note{max-width:56ch;color:var(--muted);margin:14px 0 0;font-size:16px}
+/* ===== section shell ===== */
+.sec{padding:clamp(40px,6vw,88px) var(--gut)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(22px,3vw,38px);flex-wrap:wrap}
+.sec-head.tight{margin-bottom:14px}
+.num{font-size:12px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--terracotta)}
+h2{font-family:var(--disp);font-weight:400;font-size:clamp(34px,5.2vw,64px);line-height:1.02;letter-spacing:-0.025em;margin:0}
+.sec-note{max-width:60ch;font-size:clamp(15.5px,1.3vw,18px);line-height:1.55;color:var(--muted3);margin:0 0 clamp(22px,3vw,36px)}
+.sec-note.wide{max-width:72ch}
 
-/* ===== index ===== */
-.idx{border-top:1px solid var(--rule)}
-.ent{display:grid;grid-template-columns:58px minmax(0,1fr) minmax(0,300px);gap:8px 30px;
-  align-items:start;padding:clamp(22px,3vw,34px) 0;border-bottom:1px solid var(--rule);
-  text-decoration:none;transition:background .25s ease}
-.ent:hover,.ent:focus-visible{background:var(--tint)}
-.ent .n{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--mango);padding-top:.9em}
-.ent h3{margin:0 0 8px;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:clamp(25px,4.6vw,54px);line-height:.98;letter-spacing:-.032em}
-.ent p{margin:0;color:var(--muted);font-size:15.5px;max-width:52ch}
-.ent .meta{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;line-height:1.9;
-  color:var(--ink);padding-top:.7em;text-transform:uppercase}
-.ent .meta em{font-style:normal;color:var(--muted)}
-@media(max-width:820px){
-  .ent{grid-template-columns:38px minmax(0,1fr);gap:6px 16px}
-  .ent .meta{grid-column:2;padding-top:12px}
-}
+/* ===== §01 index ===== */
+.idx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(14px,1.6vw,20px)}
+.idx-card{min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:22px;border-radius:28px;padding:clamp(22px,2.4vw,30px);min-height:230px;color:var(--ink)}
+.idx-card:hover{text-decoration:none}
+.idx-card.wide{grid-column:span 2;gap:26px;background:var(--dark);padding:clamp(24px,3vw,38px);color:var(--dark-text)}
+.idx-card.wide:hover{background:var(--dark2)}
+.idx-card.light{background:var(--card);border:1px solid var(--rule)}
+.idx-card.light:hover{border-color:var(--terracotta);background:var(--terracotta-bg2)}
+.idx-card.tint{background:var(--sage-bg);border:1px solid rgba(86,99,63,0.18)}
+.idx-card.tint:hover{border-color:var(--sage);background:#f0fae1}
+.idx-no{font-size:11.5px;font-weight:800;letter-spacing:0.16em;color:var(--terracotta-dark);margin-bottom:12px}
+.idx-card.wide .idx-no{color:var(--terracotta-light);margin-bottom:14px}
+.idx-card.tint .idx-no{color:var(--sage-dark)}
+.idx-card h3{font-family:var(--disp);font-weight:400;font-size:clamp(22px,2vw,28px);line-height:1.08;margin:0 0 12px}
+.idx-card.wide h3{font-size:clamp(26px,3vw,40px);line-height:1.06;margin:0 0 14px;color:var(--dark-text)}
+.idx-card p{margin:0;font-size:15px;line-height:1.55;color:var(--muted3)}
+.idx-card.wide p{max-width:56ch;font-size:16px;line-height:1.55;color:var(--dark-muted)}
+.idx-card.tint p{color:#3d472b}
+.idx-tags{display:flex;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:700}
+.idx-card.wide .idx-tags{gap:10px;font-size:12.5px}
+.idx-tag{padding:5px 12px;border-radius:999px;background:var(--terracotta-bg);color:var(--terracotta-deep)}
+.idx-tag.neutral{background:var(--tan2);color:var(--muted)}
+.idx-tag.on-dark{background:rgba(246,160,107,0.16);color:var(--terracotta-light);padding:6px 13px}
+.idx-tag.on-dark.neutral{background:rgba(249,244,237,0.09);color:var(--dark-muted)}
+.idx-tag.on-tint{background:rgba(255,255,255,0.6);color:var(--sage-dark)}
 
-/* ===== dark ===== */
-.dark{background:var(--forest);color:var(--dark-ink);border-bottom:0}
-.dark h2,.dark h3{color:var(--dark-ink)}
-.dark .sec-note{color:var(--dark-muted)}
-.dark .sec-head .num{color:var(--mango)}
-.case{border-top:1px solid #24352F;padding:clamp(30px,4vw,46px) 0}
-.case-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:26px}
-.case h3{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:clamp(22px,3.4vw,34px);letter-spacing:-.028em;line-height:1.04}
-.tag{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--mango);border:1px solid #3A4B44;border-radius:100px;padding:5px 12px}
-.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px 34px}
-.fld .mono{color:var(--dark-muted);display:block;margin-bottom:10px}
-.fld p{margin:0;font-size:15px;line-height:1.58;color:#C9D3CC}
-.fld ul{margin:0;padding-left:16px;font-size:15px;line-height:1.55;color:#C9D3CC}
-.fld li{margin-bottom:6px}
-.fld li::marker{color:var(--mango)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.chip{font-family:var(--mono);font-size:9px;letter-spacing:.08em;background:var(--forest-2);
-  border-radius:3px;padding:5px 9px;color:#9FB0A7;text-transform:uppercase}
+/* ===== §02 opened up ===== */
+.acc{display:flex;flex-direction:column;gap:12px}
+.acc-item{background:var(--card);border:1px solid var(--rule);border-radius:28px;padding:clamp(20px,2.4vw,32px)}
+.acc-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.acc-title-row{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.acc-title{font-family:var(--disp);font-weight:400;font-size:clamp(23px,2.6vw,34px);line-height:1.1}
+.acc-tag{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted2)}
+.chev{flex:none;width:11px;height:11px;border-right:2.75px solid var(--terracotta);border-bottom:2.75px solid var(--terracotta);transform:rotate(45deg);transition:transform .18s ease}
+details[open] .chev{transform:rotate(-135deg)}
+.acc-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,2.6vw,40px);margin-top:clamp(22px,2.6vw,34px)}
+.fld-label{font-size:11.5px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px}
+.fld-label.a{color:var(--terracotta-dark)}
+.fld-label.b{color:var(--muted2)}
+.fld-label.c{color:var(--sage-dark)}
+.fld p{margin:0 0 26px;font-size:15.5px;line-height:1.6;color:var(--muted3)}
+.fld p:last-child{margin-bottom:18px}
+.rule-list,.dot-list,.banned-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.rule-list{gap:12px}
+.rule-list li,.dot-list li,.banned-list li{display:flex;gap:11px;font-size:15px;line-height:1.5}
+.rule-list li{font-size:14.5px;line-height:1.5;color:#2e2b25;gap:12px}
+.rule-num{flex:none;width:20px;height:20px;border-radius:999px;background:var(--sage);color:#f9f4ed;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.dot{flex:none;margin-top:8px;width:6px;height:6px;border-radius:999px;background:var(--terracotta)}
+.dot.sage{background:var(--sage)}
+.dot-list.small li,.dot-list.small{font-size:14.5px}
+.dot-list.small .dot{width:5px;height:5px;background:var(--dark-muted2)}
+.banned-list li{font-size:14.5px;line-height:1.5}
+.banned-x{flex:none;margin-top:2px;color:var(--terracotta-dark);font-weight:800}
+.box-tan{background:var(--tan);border-radius:20px;padding:22px;margin-bottom:20px}
+.box-tan.self-start{align-self:start;margin-bottom:0}
+.box-cream{background:var(--card);border-radius:20px;padding:22px}
+.box-mango{background:var(--terracotta-bg2);border:1px solid rgba(198,113,57,0.3);border-radius:20px;padding:22px}
+.chips{display:flex;gap:7px;flex-wrap:wrap;font-size:12px;font-weight:600;color:var(--muted)}
+.chip{padding:5px 12px;border-radius:999px;border:1px solid var(--rule2)}
+.touchpoint-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.touchpoint-list li{display:flex;justify-content:space-between;gap:14px;font-size:14.5px;line-height:1.4;padding-bottom:10px;border-bottom:1px solid rgba(32,30,29,0.14)}
+.touchpoint-list li:last-child{border-bottom:0;padding-bottom:0}
+.touchpoint-list span:last-child{color:var(--muted);text-align:right}
+.draft-box{background:var(--dark);border-radius:20px;padding:22px;color:var(--dark-muted)}
+.draft-box .fld-label{color:var(--terracotta-light);margin-bottom:14px;font-size:11px}
+.draft-box p{margin:0 0 12px;font-size:14.5px;line-height:1.6;color:var(--dark-muted)}
+.draft-box p:last-child{margin-bottom:0}
 
-/* ===== demo ===== */
-.demo{margin-top:30px;background:var(--forest-2);border:1px solid #24352F;border-radius:4px;overflow:hidden}
-.demo-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
-  padding:13px 17px;border-bottom:1px solid #24352F}
-.demo-bar .mono{color:var(--dark-muted)}
-.btn{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
-  background:var(--mango);color:#1A1200;border:0;border-radius:3px;padding:10px 15px;cursor:pointer;
-  font-weight:500;transition:filter .16s}
-.btn:hover{filter:brightness(1.12)}
-.btn[disabled]{background:#2C3D37;color:#7E8C84;cursor:default}
-.demo-body{padding:4px 17px 18px}
-.mail{display:grid;grid-template-columns:118px minmax(0,1fr) auto;gap:14px;align-items:baseline;
-  padding:11px 0;border-bottom:1px solid #1B2A25;font-size:14px}
-.mail-from{font-family:var(--mono);font-size:9.5px;color:var(--dark-muted);overflow:hidden;text-overflow:ellipsis}
-.mail-sub{color:#C9D3CC;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.badge{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
-  padding:4px 8px;border-radius:3px;white-space:nowrap;opacity:0;transition:opacity .3s}
-.badge.on{opacity:1}
-.b-reply{background:var(--sea);color:#DFF3ED}
-.b-followup{background:var(--mango);color:#1A1200}
-.b-sent,.b-internal,.b-auto{background:#26362F;color:#8B998F}
-@media(max-width:640px){.mail{grid-template-columns:1fr auto;gap:4px 10px}.mail-from{grid-column:1/-1}}
-.demo-out{margin-top:16px;border-top:1px solid #24352F;padding-top:16px;display:none}
-.demo-out.on{display:block}
-.tally{display:flex;flex-wrap:wrap;gap:9px 22px;margin-bottom:16px}
-.tally div{font-family:var(--mono);font-size:10px;color:var(--dark-muted);letter-spacing:.03em}
-.tally b{color:var(--dark-ink);font-weight:500}
-.draft{background:#0E1B17;border-left:2px solid var(--mango);padding:14px 16px}
-.draft .mono{color:var(--dark-muted);display:block;margin-bottom:9px}
-.draft p{margin:0 0 9px;font-size:14px;line-height:1.6;color:#C9D3CC}
-.draft p:last-child{margin-bottom:0}
+/* ===== §03 tools ===== */
+.composer{background:var(--dark);border-radius:32px;padding:clamp(20px,2.6vw,38px);color:var(--dark-text);margin-bottom:16px}
+.composer-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.composer-head h3{font-family:var(--disp);font-weight:400;font-size:clamp(22px,2.4vw,32px);margin:0;color:var(--dark-text)}
+.composer-head .flag{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--terracotta-light)}
+.composer-note{max-width:70ch;font-size:15px;line-height:1.6;color:var(--dark-muted);margin:0 0 26px}
+.composer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(18px,2.4vw,32px)}
+.composer-form{display:flex;flex-direction:column;gap:18px}
+.field-block .fld-label{font-size:11px;color:var(--dark-muted2);margin-bottom:10px}
+.pill-row{display:flex;flex-wrap:wrap;gap:7px}
+.pill{cursor:pointer;font-family:var(--body);font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;border:1px solid var(--dark2);background:transparent;color:var(--dark-muted)}
+.pill.active{background:var(--terracotta-mid);border-color:var(--terracotta-mid);color:var(--ink)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.stack{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:600;color:var(--dark-muted2)}
+label.stack.warn-label{color:var(--terracotta-light)}
+.dark-input{font-family:var(--body);font-size:14px;padding:11px 14px;border-radius:999px;border:1px solid var(--dark2);background:var(--dark-ink,#201e1d);background-color:#201e1d;color:var(--dark-text)}
+.dark-input.warn{border-color:var(--terracotta-deep)}
+textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:vertical;font-family:var(--body)}
+.gen-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.gen-btn{cursor:pointer;font-family:var(--disp);font-size:15px;padding:13px 26px;border-radius:999px;border:0;background:var(--terracotta-mid);color:var(--ink)}
+.gen-btn:hover{background:var(--terracotta-light)}
+.gen-hint{font-size:12px;color:var(--muted2)}
+.out-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.flag-box{background:var(--terracotta-deep);border-radius:18px;padding:16px 18px;font-size:13.5px;line-height:1.5;color:var(--terracotta-bg)}
+.flag-box strong{display:block;margin-bottom:4px}
+.out-card{background:#201e1d;border:1px solid var(--dark2);border-radius:22px;padding:20px}
+.out-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.out-card-head .lbl{font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--terracotta-light)}
+.out-card-head .meta{display:flex;align-items:center;gap:12px}
+.out-card-head .words{font-size:11.5px;color:var(--muted2)}
+.copy-btn{cursor:pointer;font-family:var(--body);font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px;border:1px solid var(--dark2);background:transparent;color:var(--dark-muted)}
+.copy-btn:hover{border-color:var(--terracotta-mid);color:var(--dark-text)}
+.out-card p{margin:0;font-size:14.5px;line-height:1.65;color:#eee7db;white-space:pre-wrap}
+.out-empty{border:1px dashed var(--dark2);border-radius:22px;padding:38px 22px;text-align:center;font-size:14px;color:var(--muted2)}
 
-/* ===== tools ===== */
-.tool{border:1px solid #24352F;border-radius:4px;background:var(--forest-2);overflow:hidden;margin-bottom:26px}
-.tool-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 14px;
-  padding:14px 17px;border-bottom:1px solid #24352F}
-.tool-h h3{margin:0;font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.02em}
-.tool-h .mono{color:var(--mango)}
-.tool-b{padding:18px 17px 20px}
-.tool-note{margin:0 0 18px;font-size:14.5px;color:#B4C0B8;max-width:64ch}
-.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.fg>label{display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
-@media(max-width:900px){.fg{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.fg{grid-template-columns:1fr}}
-.lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--dark-muted);display:block;margin-bottom:6px}
-.tool input,.tool textarea{width:100%;font-family:var(--body);font-size:14px;line-height:1.45;
-  padding:9px 11px;border:1px solid #2E4038;border-radius:3px;background:#0C1815;color:var(--dark-ink)}
-.tool textarea{resize:vertical;min-height:60px}
-.tool input:focus,.tool textarea:focus{border-color:var(--mango);outline:none}
-.acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
-.btn-l{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
-  background:none;color:var(--dark-ink);border:1px solid #3A4B44;border-radius:3px;padding:10px 15px;cursor:pointer}
-.btn-l:hover{border-color:var(--mango);color:var(--mango)}
-.hint{font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;color:var(--dark-muted)}
-.out{margin-top:20px;border-top:1px solid #24352F;padding-top:18px;display:none}
-.out.on{display:block}
-.guard{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;padding:12px 14px;border-radius:3px;margin-bottom:16px;line-height:1.7}
-.guard.pass{background:#0C2A25;color:#7FD8C4}
-.guard.fail{background:#33240A;color:#F0BE63}
-.msg{background:#0C1815;border:1px solid #24352F;border-radius:3px;padding:14px 15px;margin-bottom:13px}
-.msg-h{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-bottom:11px}
-.msg-h .mono{color:var(--dark-muted)}
-.count{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em}
-.count.ok{color:#7FD8C4}
-.count.over{color:var(--mango)}
-.msg pre{margin:0;font-family:var(--body);font-size:14px;line-height:1.62;white-space:pre-wrap;word-break:break-word;color:#C9D3CC}
-.copy{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;background:none;
-  border:1px solid #3A4B44;border-radius:3px;padding:5px 9px;cursor:pointer;color:var(--dark-muted)}
-.copy:hover{border-color:var(--mango);color:var(--mango)}
-.tzw{overflow-x:auto}
-table.tz{border-collapse:collapse;min-width:700px;width:100%}
-.tz th,.tz td{font-family:var(--mono);font-size:9px;padding:8px 3px;text-align:center;
-  border:1px solid #24352F;background:#0C1815;white-space:nowrap;color:#A9B7AE}
-.tz th:first-child,.tz td:first-child{text-align:left;padding:8px 11px;min-width:120px;color:var(--dark-ink)}
-.tz td.work{background:#14332C;color:#BFE0D6}
-.tz td.all,.tz th.all{background:var(--mango);color:#1A1200}
-.tz thead th{cursor:pointer}
-.lg{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:13px}
-.lg span{font-family:var(--mono);font-size:8.5px;color:var(--dark-muted);display:flex;align-items:center;gap:7px;letter-spacing:.06em}
-.sw{width:10px;height:10px;border-radius:2px;border:1px solid #24352F}
-table.q{border-collapse:collapse;width:100%;margin-top:8px}
-.q th{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dark-muted);
-  text-align:left;padding:0 10px 9px 0;border-bottom:1px solid #24352F;font-weight:500}
-.q td{padding:11px 10px 11px 0;border-bottom:1px solid #1B2A25;font-size:14px;color:#C9D3CC}
-.q td:last-child,.q th:last-child{padding-right:0;text-align:right}
-.pill{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:100px}
-.p-wait{background:#26362F;color:#8B998F}
-.p-due{background:var(--mango);color:#1A1200}
-.p-over{background:var(--sea);color:#DFF3ED}
-@media(max-width:600px){.q th:nth-child(2),.q td:nth-child(2){display:none}}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:16px}
+.tool-card{background:var(--card);border:1px solid var(--rule);border-radius:32px;padding:clamp(20px,2.4vw,32px);min-width:0}
+.tool-card-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.tool-card-head h3{font-family:var(--disp);font-weight:400;font-size:clamp(22px,2.4vw,30px);margin:0}
+.tool-card-head .flag{font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--sage-dark)}
+.tool-note{font-size:15px;line-height:1.6;color:var(--muted3);margin:0 0 20px}
+.tz-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;font-weight:600;margin-bottom:16px}
+.tz-legend span{display:flex;align-items:center;gap:7px}
+.sw{width:13px;height:13px;border-radius:4px}
+.tz-scroll{overflow-x:auto;padding-bottom:6px}
+.tz-inner{min-width:640px}
+.tz-head{display:grid;grid-template-columns:104px repeat(24,1fr);gap:3px;margin-bottom:6px}
+.tz-head-label{font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);align-self:end;padding-bottom:4px}
+.tz-head button{cursor:pointer;font-family:var(--body);font-size:10px;font-weight:700;padding:5px 0;border:0;border-radius:6px}
+.tz-row{display:grid;grid-template-columns:104px repeat(24,1fr);gap:3px;margin-bottom:3px;align-items:center}
+.tz-city{font-size:12.5px;font-weight:600;padding-right:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tz-cell{height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.tz-hint{margin:14px 0 0;font-size:12.5px;color:var(--muted2)}
 
-/* ===== about ===== */
-.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(28px,4vw,64px)}
-.about p{margin:0 0 18px;font-size:clamp(16.5px,1.7vw,18.5px);line-height:1.62;max-width:52ch}
-.about p:last-child{margin-bottom:0}
-.about b{font-weight:600}
-.pull{font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 50,"WONK" 1;
-  font-size:clamp(24px,3.4vw,38px);line-height:1.12;letter-spacing:-.028em;margin:0;color:var(--sea)}
+.queue-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px;align-items:end;margin-bottom:18px}
+.queue-form label{display:flex;flex-direction:column;gap:6px;font-size:11.5px;font-weight:700;color:var(--muted2);min-width:0}
+.light-input{font-family:var(--body);font-size:14px;padding:10px 14px;border-radius:999px;border:1px solid var(--rule2);background:#fff;color:var(--ink);min-width:0}
+.add-btn{cursor:pointer;font-family:var(--disp);font-size:14px;padding:12px 22px;border-radius:999px;border:0;background:var(--terracotta);color:#f9f4ed;white-space:nowrap}
+.add-btn:hover{background:var(--terracotta-dark)}
+.queue-table{border-radius:20px;overflow:hidden;border:1px solid var(--rule2)}
+.q-head{display:grid;grid-template-columns:1.2fr 1.4fr 0.7fr 1fr;gap:8px;padding:11px 16px;background:var(--tan);font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.q-row{display:grid;grid-template-columns:1.2fr 1.4fr 0.7fr 1fr;gap:8px;padding:12px 16px;border-top:1px solid rgba(32,30,29,0.08);font-size:13.5px;align-items:center;background:#fff}
+.q-row.over{background:var(--terracotta-bg2)}
+.q-name{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.q-subject{color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis}
+.q-days{font-weight:700}
+.q-days.over{color:var(--terracotta-deep)}
+.q-status-row{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.q-pill{font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px}
+.q-pill.wait{background:var(--sage-bg);color:var(--sage-dark)}
+.q-pill.due{background:var(--terracotta-bg);color:var(--terracotta-deep)}
+.q-remove{cursor:pointer;border:0;background:transparent;color:var(--muted2);font-size:15px;line-height:1;padding:2px 4px}
+.q-remove:hover{color:var(--terracotta-deep)}
+.q-empty{padding:28px 16px;text-align:center;font-size:13.5px;color:var(--muted2);background:#fff}
+.queue-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.draft-all-btn{cursor:pointer;font-family:var(--body);font-size:13.5px;font-weight:700;padding:10px 20px;border-radius:999px;border:1px solid var(--terracotta);background:transparent;color:var(--terracotta-deep)}
+.draft-all-btn:hover{background:var(--terracotta-bg)}
+.queue-hint{font-size:12.5px;color:var(--muted2)}
+.q-draft{margin-top:12px;background:var(--tan);border-radius:20px;padding:18px}
+.q-draft .fld-label{color:var(--sage-dark);margin-bottom:10px;font-size:11px}
+.q-draft p{margin:0;font-size:14px;line-height:1.6;color:#2e2b25;white-space:pre-wrap}
 
-/* ===== track ===== */
-.tl{border-top:1px solid var(--rule)}
-.tli{display:grid;grid-template-columns:58px minmax(0,190px) minmax(0,1fr);gap:6px 30px;
-  padding:22px 0;border-bottom:1px solid var(--rule)}
-.tli .n{font-family:var(--mono);font-size:9.5px;color:var(--mango);padding-top:.5em}
-.tli .when{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;color:var(--muted);padding-top:.5em;text-transform:uppercase}
-.tli h4{margin:0 0 3px;font-family:var(--disp);font-weight:600;font-size:20px;letter-spacing:-.022em}
-.tli .org{color:var(--muted);font-size:14.5px;margin:0 0 8px}
-.tli p.d{margin:0;font-size:15.5px;max-width:62ch}
-@media(max-width:820px){.tli{grid-template-columns:38px minmax(0,1fr)}.tli .when{grid-column:2;padding-top:0;margin-bottom:6px}}
+/* ===== §04 builds ===== */
+.bp-list{display:flex;flex-direction:column;gap:10px}
+.bp{background:var(--card);border:1px solid var(--rule);border-radius:24px;padding:clamp(18px,2vw,26px)}
+.bp summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
+.bp-code{font-size:12px;font-weight:800;letter-spacing:0.1em;color:var(--terracotta)}
+.bp-text{min-width:0}
+.bp-title{display:block;font-size:clamp(17px,1.7vw,21px);font-weight:700;line-height:1.25}
+.bp-desc{display:block;font-size:14.5px;color:var(--muted);line-height:1.45;margin-top:3px}
+.bp-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.bp-platform{font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px;background:var(--tan2);color:var(--muted)}
+.bp-time{font-size:12.5px;font-weight:700;color:var(--sage-dark);white-space:nowrap}
+.bp-chev{width:10px;height:10px}
+.bp-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:24px;padding-top:22px;border-top:1px solid var(--rule2)}
+.bp-flow div div.fld-label{font-size:11px;margin-bottom:8px}
+.bp-flow p{margin:0;font-size:14.5px;line-height:1.55;color:var(--muted3)}
 
-/* ===== stack ===== */
-.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px 34px}
-.st h4{margin:0 0 11px;font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--mango);padding-bottom:9px;border-bottom:1px solid var(--rule);font-weight:500}
-.st ul{list-style:none;margin:0;padding:0}
-.st li{font-size:15px;padding:3px 0;color:var(--ink)}
-
-/* ===== contact ===== */
-.end{background:var(--sea);color:#EAF6F2;padding:clamp(56px,8vw,104px) 0}
-.end h2{color:#fff;max-width:16ch;font-weight:900;font-size:clamp(32px,6vw,68px);letter-spacing:-.038em;line-height:.98}
-.end .mono{color:#8FC9BB}
-.end p{max-width:52ch;color:#C4E3DA;font-size:17px;margin:18px 0 0}
-.links{display:flex;flex-wrap:wrap;gap:11px;margin-top:32px}
-.links a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
-  border:1px solid #3E8477;border-radius:3px;padding:13px 19px;transition:background .16s,border-color .16s}
-.links a:hover{background:#0D6C5E;border-color:#EAF6F2}
-.links a.pri{background:var(--mango);border-color:var(--mango);color:#1A1200;font-weight:500}
-.links a.pri:hover{filter:brightness(1.1)}
-.colo{display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:space-between;
-  margin-top:clamp(38px,5vw,62px);padding-top:20px;border-top:1px solid #3E8477;color:#8FC9BB}
-
-.me{display:inline-flex;align-items:center;gap:9px}
-.av{width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;
-  filter:saturate(0);border:1px solid var(--rule)}
-.about{grid-template-columns:minmax(230px,330px) minmax(250px,1fr) minmax(250px,1fr)}
-.pf{margin:0}
-.pf img{width:100%;height:auto;display:block;border:1px solid var(--rule)}
-.pf figcaption{margin-top:11px;color:var(--muted);line-height:1.8}
-@media(max-width:940px){.about{grid-template-columns:1fr}.pf img{max-width:340px}}
-
-.tool select{width:100%;font-family:var(--body);font-size:14px;line-height:1.45;padding:9px 34px 9px 11px;
-  border:1px solid #2E4038;border-radius:3px;color:var(--dark-ink);cursor:pointer;
-  -webkit-appearance:none;appearance:none;
-  background:#0C1815 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238B998F' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 12px center}
-.tool select:focus{border-color:var(--mango);outline:none}
-.bps{border-top:1px solid var(--rule)}
-.bp{border-bottom:1px solid var(--rule)}
-.bp-h{display:grid;grid-template-columns:58px minmax(0,1fr) minmax(0,190px);gap:8px 30px;
-  width:100%;text-align:left;background:none;border:0;font:inherit;color:inherit;
-  padding:24px 0;cursor:pointer;align-items:start;transition:background .2s}
-.bp-h:hover{background:var(--tint)}
-.bp-h .n{font-family:var(--mono);font-size:10px;color:var(--mango);padding-top:.5em}
-.bp-t b{display:block;font-family:var(--disp);font-weight:600;font-size:clamp(19px,2.5vw,26px);
-  letter-spacing:-.024em;line-height:1.12;margin-bottom:6px}
-.bp-t em{font-style:normal;color:var(--muted);font-size:15px;display:block;max-width:54ch}
-.bp-m{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--muted);padding-top:.6em;line-height:2.2}
-.plat{display:block;font-style:normal;color:var(--sea);font-weight:700;letter-spacing:.12em}
-.bp-f{display:none;padding:0 0 30px}
-.bp.open .bp-f{display:block}
-.bp.open .bp-h{background:var(--tint)}
-.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(172px,1fr));gap:9px}
-.node{background:var(--tint);border-top:2px solid var(--rule);padding:13px 14px 15px;
-  opacity:0;transform:translateY(8px)}
-.bp.open .node{opacity:1;transform:none;transition:opacity .45s ease,transform .45s ease}
-.node.t{border-top-color:var(--mango)}
-.node.o{border-top-color:var(--sea);background:#E2EBE5}
-.node .mono{display:block;color:var(--muted);margin-bottom:7px}
-.node.t .mono{color:#9A6100}
-.node.o .mono{color:var(--sea)}
-.node p{margin:0;font-size:14px;line-height:1.5}
-@media(max-width:820px){
-  .bp-h{grid-template-columns:38px minmax(0,1fr);gap:6px 16px}
-  .bp-m{grid-column:2;padding-top:10px;line-height:1.9}
-  .plat{display:inline;margin-right:10px}
-}
-/* ===== design pieces ===== */
-.dp{border-top:1px solid #24352F;padding:clamp(32px,4.5vw,52px) 0}
-.dp-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:7px}
-.dp h3{margin:0;font-family:var(--disp);font-weight:600;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:clamp(22px,3.4vw,34px);letter-spacing:-.028em;line-height:1.04}
-.dp-spec{font-family:var(--mono);font-size:9px;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--dark-muted);margin:0 0 26px}
-.dp-grid{display:grid;gap:28px 36px}
-@media(min-width:920px){.dp-grid{grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);align-items:start}}
-.dp--wide .dp-grid{grid-template-columns:1fr}
-.dp--wide .dp-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px 34px;margin-top:6px}
-.dp-body .fld{margin-bottom:20px}
-.dp-body .fld:last-child{margin-bottom:0}
-.flag{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;
-  color:var(--mango);border:1px solid #3A4B44;border-radius:100px;padding:5px 11px;margin-bottom:14px}
-
-/* specimen frames */
-.art{box-shadow:0 2px 10px rgba(0,0,0,.34);margin-bottom:12px;border-radius:2px;overflow:hidden}
-.art-cap{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--dark-muted);margin:0 0 18px}
+/* ===== §05 design ===== */
+.name-tester{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px;background:var(--tan);border-radius:999px;padding:10px 16px}
+.name-tester .lbl{font-size:11.5px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.name-btn{cursor:pointer;font-family:var(--body);font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:999px;border:1px solid var(--rule2);background:transparent;color:var(--muted)}
+.name-btn.active{background:var(--terracotta);border-color:var(--terracotta);color:#f9f4ed}
+.design-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:16px;align-items:stretch}
+.specimen{background:var(--card);border:1px solid var(--rule);border-radius:32px;padding:clamp(20px,2.4vw,32px);min-width:0}
+.specimen.dark{background:var(--dark);color:var(--dark-text)}
+.specimen-no{font-size:11.5px;font-weight:800;letter-spacing:0.16em;color:var(--terracotta);margin-bottom:10px}
+.specimen.dark .specimen-no{color:var(--terracotta-light)}
+.specimen-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.specimen-head h3{font-family:var(--disp);font-weight:400;font-size:clamp(22px,2.4vw,30px);margin:0}
+.specimen.dark .specimen-head h3{color:var(--dark-text)}
+.specimen-head .flag{font-size:11.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted2)}
+.specimen.dark .specimen-head .flag{color:var(--terracotta-light)}
+.specimen-spec{font-size:13px;color:var(--muted2);margin:6px 0 20px}
+.specimen.dark .specimen-spec{color:var(--dark-muted2)}
+.stage{border-radius:20px;padding:clamp(16px,2.4vw,30px);display:flex;justify-content:center}
+.stage.bc-stage{background:var(--tan2)}
+.stage.sign-stage{background:var(--sage-bg);flex-direction:column;align-items:center;gap:10px;overflow:hidden}
+.art-cap{font-size:12px;color:var(--muted2);margin:10px 0 20px}
+.control-stack{display:flex;flex-direction:column;gap:14px}
+.control-row .control-top{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.control-row .control-val{color:var(--terracotta-deep)}
+.control-row label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}
+.control-group-label{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:7px}
+.spec-readout{margin-top:18px;background:var(--tan);border-radius:16px;padding:14px 16px;font-size:13px;line-height:1.55;color:#2e2b25}
+.spec-warn{margin-top:10px;background:var(--terracotta-bg2);border:1px solid rgba(198,113,57,0.45);border-radius:16px;padding:14px 16px;font-size:13px;line-height:1.55;color:var(--terracotta-deep);display:none}
+.spec-warn.on{display:block}
+.brief-block{margin-top:22px;padding-top:20px;border-top:1px solid var(--rule2)}
+.specimen.dark .brief-block{border-top:1px solid var(--dark2)}
 
 /* business card */
-.bc{container-type:inline-size;aspect-ratio:1.75/1;background:var(--paper);color:var(--ink);position:relative}
-.bc-in{position:absolute;inset:0;padding:7.14cqw;display:flex;flex-direction:column;font-family:var(--body)}
-.bc-mark{font-family:var(--mono);font-weight:500;font-size:2.9cqw;letter-spacing:.17em;color:var(--mango)}
-.bc-name{font-weight:600;line-height:1;margin-top:auto;color:var(--ink);
-  font-size:var(--bcName,9.1cqw);letter-spacing:var(--bcTrack,-.03em);white-space:nowrap;overflow:hidden}
-.bc-title{font-weight:400;font-size:3.5cqw;margin-top:1.6cqw;color:var(--muted)}
-.bc-rule{height:1px;background:var(--rule);margin:5.4cqw 0 4.2cqw}
-.bc-meta{display:flex;gap:7cqw;font-size:3.1cqw;line-height:1.45;color:var(--muted)}
-.bc-meta.stacked{flex-direction:column;gap:0}
+.bc-card{container-type:inline-size;width:100%;max-width:420px;aspect-ratio:3.5/2;background:var(--card2);border-radius:6px;box-shadow:0 12px 32px rgba(46,43,37,0.22);padding:7.14% 8.5%;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.bc-mark{letter-spacing:0.18em;font-weight:700;font-size:2.6cqw;color:#8f8578;text-transform:uppercase}
+.bc-name{font-weight:600;color:var(--ink);line-height:1.05;white-space:nowrap}
+.bc-title{font-size:2.9cqw;color:var(--muted);margin-top:0.9cqw}
+.bc-rule{height:1px;background:rgba(32,30,29,0.25);margin-bottom:2.2cqw}
+.bc-meta{display:grid;gap:0.5cqw 4.5cqw;font-size:2.6cqw;line-height:1.45;color:var(--muted3)}
+.bc-meta span:first-child{font-weight:700}
 
-/* lawn sign and rider */
-.signwrap{transform-origin:top left;transition:transform .3s cubic-bezier(.2,.7,.3,1)}
-.lawn{container-type:inline-size;aspect-ratio:4/3;background:var(--sea);color:#EAF6F2;position:relative}
-.lawn-in{position:absolute;inset:0;padding:8.33cqw;display:flex;flex-direction:column;justify-content:space-between;
-  font-family:var(--body);font-weight:600;line-height:.94}
-.lawn-mark{font-size:var(--lwMark,10cqw);letter-spacing:.01em;white-space:nowrap;overflow:hidden}
-.lawn-name{font-size:var(--lwName,9.2cqw);letter-spacing:-.028em;white-space:nowrap;overflow:hidden}
-.lawn-phone{font-size:var(--lwPhone,10.4cqw);letter-spacing:-.02em;margin-top:.6cqw;white-space:nowrap;overflow:hidden}
-.rider{container-type:inline-size;aspect-ratio:4/1;background:var(--sea);color:#EAF6F2;position:relative}
-.rider-in{position:absolute;inset:0;padding:0 8.33cqw;display:flex;align-items:center;
-  font-family:var(--body);font-weight:600;font-size:var(--rdSize,8.7cqw);letter-spacing:-.015em;white-space:nowrap;overflow:hidden}
+/* lawn sign + rider */
+.sign-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;transform-origin:center;transition:transform .18s ease}
+.sign-card{container-type:inline-size;width:min(320px,72vw);aspect-ratio:24/18;background:var(--card2);border-radius:6px;box-shadow:0 10px 26px rgba(46,43,37,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5%;padding:8%}
+.sign-mark{font-weight:800;letter-spacing:0.02em;color:var(--ink);line-height:1;text-align:center}
+.sign-rule{width:34%;height:2px;background:var(--terracotta)}
+.sign-name{font-weight:600;color:var(--muted3);line-height:1.1;text-align:center}
+.sign-phone{font-weight:800;color:var(--ink);line-height:1.1}
+.rider-card{container-type:inline-size;width:min(320px,72vw);aspect-ratio:24/6;background:var(--terracotta);border-radius:4px;display:flex;align-items:center;justify-content:center}
+.rider-text{font-weight:800;letter-spacing:0.04em;color:var(--card2);line-height:1;white-space:nowrap}
 
-/* instagram set */
-.igset{display:grid;gap:9px;grid-template-columns:repeat(3,1fr)}
-.ig{container-type:inline-size;aspect-ratio:1/1;position:relative;overflow:hidden;border-radius:2px}
-.ig-ph{position:absolute;inset:0}
-.ig-1 .ig-ph{background:linear-gradient(158deg,#DCD9CE,#B4B2A4 46%,#8E9184)}
-.ig-2 .ig-ph{background:linear-gradient(200deg,#9FAAA2,#6E7C74 52%,#4A5852)}
-.ig-3 .ig-ph{background:linear-gradient(140deg,#4C5A55,#26332E 55%,#111A17)}
-.ig-scrim{position:absolute;left:0;right:0;bottom:0;height:var(--igScrimH,58%);
-  background:linear-gradient(to top,rgba(9,16,13,var(--igScrimO,.86)),rgba(9,16,13,0))}
-.ig-in{position:absolute;left:var(--igPad,6cqw);right:var(--igPad,6cqw);bottom:var(--igPad,6cqw);
-  color:#F4F1E9;font-family:var(--body)}
-.ig-label{font-family:var(--mono);font-weight:500;font-size:var(--igLabel,2.6cqw);letter-spacing:.13em;color:var(--mango)}
-.ig-addr{font-weight:600;font-size:var(--igAddr,5.7cqw);letter-spacing:-.028em;line-height:1.08;margin-top:2.6cqw}
-.ig-agent{font-weight:400;font-size:2.3cqw;margin-top:3cqw;color:rgba(244,241,233,.78)}
-@media(max-width:560px){.igset{grid-template-columns:1fr}}
+/* instagram */
+.ig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:8px}
+.ig-tile{container-type:inline-size;position:relative;aspect-ratio:1/1;border-radius:10px;overflow:hidden}
+.ig-tile.t1{background:linear-gradient(150deg,#e8e2d6,#cbbfa8)}
+.ig-tile.t2{background:linear-gradient(150deg,#9d9384,#6d6558)}
+.ig-tile.t3{background:linear-gradient(150deg,#4a463f,#211f1c)}
+.ig-scrim{position:absolute;left:0;right:0;bottom:0;height:var(--igScrimH,58%);background:linear-gradient(to top,var(--igScrim,rgba(9,16,13,0.86)),transparent)}
+.ig-content{position:absolute;left:var(--igPad,5.93cqw);right:var(--igPad,5.93cqw);bottom:var(--igPad,5.93cqw);display:flex;flex-direction:column;gap:4px}
+.ig-label{font-weight:800;color:var(--card2);letter-spacing:0.13em;font-size:2.59cqw;line-height:1}
+.ig-addr{font-weight:600;color:var(--card2);letter-spacing:-0.02em;font-size:var(--igAddr,5.74cqw);line-height:1.1}
+.ig-agent{font-weight:500;color:rgba(253,252,250,0.8);font-size:2.22cqw;line-height:1.2}
 
-/* letter page specimen */
-.doc{aspect-ratio:8.5/11;background:var(--paper);color:var(--ink);container-type:inline-size;position:relative}
-.doc-in{position:absolute;inset:0;padding:9cqw 9.5cqw;font-family:var(--body)}
-.doc-kicker{font-family:var(--mono);font-size:2.1cqw;letter-spacing:.15em;text-transform:uppercase;color:var(--mango)}
-.doc-h1{font-weight:600;font-size:6.6cqw;line-height:1.04;letter-spacing:-.03em;margin:2.6cqw 0 1.4cqw}
-.doc-sub{font-size:2.7cqw;color:var(--muted)}
-.doc-rule{height:1px;background:var(--rule);margin:5cqw 0}
-.doc-h2{font-weight:600;font-size:2.5cqw;letter-spacing:.02em;margin:0 0 1.6cqw}
-.doc-p{font-size:2.4cqw;line-height:1.55;color:var(--muted);margin:0 0 4.4cqw;max-width:46ch}
-.doc-li{font-size:2.4cqw;line-height:1.55;color:var(--muted);margin:0 0 1.2cqw;padding-left:2.6cqw;position:relative}
-.doc-li::before{content:"";position:absolute;left:0;top:.62em;width:1.1cqw;height:1px;background:var(--mango)}
+/* recruiting doc specimen */
+.doc-preview{background:var(--card2);border-radius:16px;padding:clamp(20px,2.6vw,32px);color:var(--ink)}
+.doc-kicker{font-size:10px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted2);margin-bottom:10px}
+.doc-h1{font-size:clamp(24px,2.6vw,34px);font-weight:700;letter-spacing:-0.02em;line-height:1.1;margin-bottom:6px}
+.doc-sub{font-size:13.5px;color:var(--muted);padding-bottom:16px;border-bottom:2px solid var(--ink);margin-bottom:20px}
+.doc-h2{font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:7px}
+.doc-p{margin:0 0 20px;font-size:14.5px;line-height:1.6;max-width:62ch;color:var(--muted3)}
+.doc-list{margin:0 0 20px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.doc-list li{display:flex;gap:10px;font-size:14.5px;line-height:1.55;color:var(--muted3)}
+.doc-list .dot{background:var(--ink)}
+.specimen.dark .fld-label.dark-a{color:var(--terracotta-light)}
+.specimen.dark .fld-label.dark-b{color:var(--dark-muted2)}
+.specimen.dark .fld-label.dark-c{color:#aebf92}
+.specimen.dark .fld p,.specimen.dark .dot-list li{color:var(--dark-muted)}
+.specimen.dark .dot-list .dot{background:var(--muted3)}
+.specimen.dark .chip{border-color:var(--dark2);color:var(--dark-muted2)}
 
-/* controls under a specimen */
-.dc{border-top:1px solid #24352F;margin-top:22px;padding-top:18px}
-.dc-row{margin-bottom:15px}
-.dc-row:last-of-type{margin-bottom:0}
-.dc-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px}
-.dc-top span:first-child{font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--dark-muted)}
-.dc-val{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--mango)}
-.dc input[type=range]{width:100%;accent-color:var(--mango);background:none;border:0;padding:0;margin:0;display:block}
-.dc-read{margin-top:18px;padding-top:14px;border-top:1px solid #24352F;
-  font-family:var(--mono);font-size:9px;letter-spacing:.05em;line-height:2;color:var(--dark-muted)}
-.dc-read b{color:var(--dark-ink);font-weight:500}
-.dc-warn{color:#F0BE63;margin-top:9px;display:none}
-.dc-warn.on{display:block}
-.names{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-bottom:16px}
-.names span{font-family:var(--mono);font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dark-muted)}
-.names button{font-family:var(--body);font-size:13px;cursor:pointer;background:none;color:#C9D3CC;
-  border:1px solid #3A4B44;border-radius:3px;padding:5px 11px}
-.names button:hover{border-color:var(--mango);color:var(--mango)}
-.names button.on{background:var(--mango);border-color:var(--mango);color:#1A1200}
-.dsum{border:1px solid #24352F;border-radius:4px;background:var(--forest-2);padding:20px 22px;margin-top:34px}
-.dsum h4{margin:0 0 14px;font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.02em;color:var(--dark-ink)}
-.dsum pre{margin:0;font-family:var(--mono);font-size:10px;line-height:2;white-space:pre-wrap;
-  word-break:break-word;color:#B4C0B8;letter-spacing:.02em}
+.numbers-band{margin-top:16px;background:var(--sage-bg);border-radius:28px;padding:clamp(20px,2.4vw,30px);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.numbers-band h3{font-family:var(--disp);font-size:clamp(20px,2.2vw,26px);margin:0 0 4px}
+.numbers-band p{margin:0;font-size:14.5px;line-height:1.55;color:#3d472b}
+.numbers-btn{cursor:pointer;font-family:var(--disp);font-size:15px;padding:13px 26px;border-radius:999px;border:0;background:var(--sage-dark);color:var(--sage-bg2)}
+.numbers-btn:hover{background:var(--sage-deep)}
 
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .up,.up.in{opacity:1;transform:none;transition:none}
+/* ===== §06 about ===== */
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3.4vw,56px);align-items:start}
+.portrait-fig{margin:0;position:sticky;top:96px}
+.portrait-fig img{width:100%;border-radius:28px;filter:saturate(0.6) contrast(0.85) brightness(1.1) opacity(0.94);display:block}
+.portrait-fig figcaption{margin-top:12px;font-size:12.5px;color:var(--muted2);line-height:1.5}
+.about-copy{grid-column:span 2;min-width:0}
+.about-copy p{margin:0 0 20px;font-size:16.5px;line-height:1.65;color:var(--muted3);max-width:66ch}
+.about-copy p.lede{font-size:clamp(17px,1.6vw,21px);line-height:1.6;color:var(--ink);max-width:62ch}
+.about-copy p.pull{font-family:var(--disp);font-size:clamp(22px,2.6vw,34px);line-height:1.2;letter-spacing:-0.02em;max-width:24ch;color:var(--terracotta-deep);margin-bottom:26px}
+
+/* ===== §07 record ===== */
+.timeline{display:flex;flex-direction:column}
+.t-row{display:grid;grid-template-columns:44px minmax(160px,0.9fr) 2fr;gap:clamp(14px,2vw,32px);padding:clamp(18px,2vw,26px) 0;border-top:1px solid var(--rule2)}
+.timeline .t-row:last-child{border-bottom:1px solid var(--rule2)}
+.t-no{font-size:12px;font-weight:800;color:var(--terracotta);padding-top:5px}
+.t-date{font-size:12.5px;font-weight:700;color:var(--muted2);margin-bottom:6px}
+.t-role{font-family:var(--disp);font-weight:400;font-size:clamp(19px,1.9vw,24px);line-height:1.15;margin-bottom:4px}
+.t-org{font-size:13.5px;color:var(--muted)}
+.t-desc{margin:0;font-size:15.5px;line-height:1.6;color:var(--muted3);align-self:center}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:clamp(24px,3vw,40px)}
+.skill-card{background:var(--card);border:1px solid var(--rule);border-radius:24px;padding:22px}
+.skill-card h4{font-family:var(--disp);font-weight:400;font-size:18px;margin:0 0 14px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:7px;font-size:12.5px;font-weight:600}
+.skill-tag{padding:5px 12px;border-radius:999px}
+.skill-tag.orange{background:var(--terracotta-bg);color:var(--terracotta-deep)}
+.skill-tag.neutral{background:var(--tan2);color:var(--muted)}
+.skill-tag.green{background:var(--sage-bg);color:var(--sage-dark)}
+
+/* ===== §08 open / footer ===== */
+.open-box{background:var(--dark);border-radius:40px;padding:clamp(30px,5vw,72px);color:var(--dark-text)}
+.open-box .num{color:var(--terracotta-light);margin-bottom:18px;display:block}
+.open-box h2{color:var(--dark-text);max-width:18ch;margin:0 0 22px;font-size:clamp(30px,5vw,66px);line-height:1.05}
+.open-box p{margin:0 0 32px;font-size:clamp(16px,1.5vw,20px);line-height:1.6;max-width:60ch;color:var(--dark-muted)}
+.open-links{display:flex;gap:12px;flex-wrap:wrap}
+.open-link{padding:14px 26px;border-radius:999px;font-size:15px}
+.open-link.primary{background:var(--terracotta-mid);color:var(--ink);font-family:var(--disp);font-size:16px}
+.open-link.primary:hover{background:var(--terracotta-light);color:var(--ink);text-decoration:none}
+.open-link.ghost{border:1px solid var(--muted);color:#eee7db;font-weight:600}
+.open-link.ghost:hover{border-color:var(--terracotta-mid);color:#fff;text-decoration:none}
+.site-footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px var(--gut) 44px;font-size:12.5px;color:var(--muted2)}
+
+@media(max-width:940px){
+  .about-copy{grid-column:auto}
+  .portrait-fig{position:static}
 }
 </style>
 </head>
 <body>
 
-<div class="rail" aria-hidden="true">
-  <a href="#index" data-r="index">01 &nbsp;Index</a>
-  <a href="#systems" data-r="systems">02 &nbsp;Systems</a>
-  <a href="#tools" data-r="tools">03 &nbsp;Tools</a>
-  <a href="#builds" data-r="builds">04 &nbsp;Builds</a>
-  <a href="#design" data-r="design">05 &nbsp;Design</a>
-  <a href="#about" data-r="about">06 &nbsp;About</a>
-  <a href="#record" data-r="record">07 &nbsp;Record</a>
-</div>
-<div class="clock" aria-hidden="true"><b id="clk">…</b><span>Colombia</span></div>
-
-<main>
-
-<div class="mast">
-  <div class="wrap mono">
-    <span class="me"><img class="av" src="/images/avatar.jpg" alt="">Lucía Fadul</span>
-    <span>Operations &amp; executive support</span>
-    <span>Colombia · US hours</span>
-    <span>EN / ES</span>
+<nav class="nav">
+  <a href="#top" class="brand">
+    <img src="/images/avatar.jpg" alt="">
+    <span class="disp">Lucía Fadul</span>
+  </a>
+  <div class="nav-links">
+    <a href="#index" class="nav-link">01 Index</a>
+    <a href="#systems" class="nav-link">02 Systems</a>
+    <a href="#tools" class="nav-link is-live">03 Tools · live</a>
+    <a href="#builds" class="nav-link">04 Builds</a>
+    <a href="#design" class="nav-link">05 Design</a>
+    <a href="#about" class="nav-link">06 About</a>
+    <a href="#record" class="nav-link">07 Record</a>
+    <a href="#open" class="nav-cta">Hire me</a>
   </div>
-</div>
+</nav>
 
-<header class="hero">
-  <div class="wrap">
-    <h1 class="up">Most of my job is <i>deleting</i> my job.</h1>
-    <div class="hero-foot">
-      <div class="up"><span class="mono" style="color:var(--muted)">Position</span>
-        <p class="big" style="margin-top:9px">I run operations for early-stage US startups and keep turning the repetitive parts into systems that run without me.</p></div>
-      <div class="up"><span class="mono" style="color:var(--muted)">What follows</span>
-        <p style="margin-top:9px">An index of what's currently in production. The problem, what I built, the rules that keep it honest, and what it costs to run.</p></div>
-      <div class="up"><span class="mono" style="color:var(--muted)">Three of them</span>
-        <p style="margin-top:9px">are sitting further down as working tools. Use them. They run in your browser and send nothing anywhere.</p></div>
+<header id="top" class="hero">
+  <div class="hero-status">
+    <span class="hero-dot"></span>
+    <span>Open to work · Colombia · US hours · EN / ES</span>
+  </div>
+
+  <h1>Most of my job is <em>deleting</em> my job.</h1>
+
+  <div class="hero-foot">
+    <div class="hero-col">
+      <div class="kicker">Position</div>
+      <p>I run operations for early-stage US startups and keep turning the repetitive parts into systems that run without me.</p>
+    </div>
+    <div class="hero-col mid">
+      <div class="kicker">What follows</div>
+      <p>An index of what's currently in production. The problem, what I built, the rules that keep it honest, and what it costs to run.</p>
+    </div>
+    <div class="hero-col tag">
+      <div class="kicker">Three of them</div>
+      <p>are sitting further down as working tools. Use them. They run in your browser and send nothing anywhere.</p>
+      <a href="#tools" class="hero-open">Open the tools →</a>
     </div>
   </div>
 </header>
 
-<section class="sec" id="index">
-  <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 01</span><h2>In production</h2></div>
-    <div class="idx">
-      <a class="ent up" href="#jd">
-        <span class="n">001</span>
-        <div><h3>JD Package Engine</h3><p>One intake call becomes six publication-ready documents, with client names firewalled out of everything that goes out before a candidate is qualified.</p></div>
-        <span class="meta">~200 JDs<br><em>6 artifacts per intake</em></span>
-      </a>
-      <a class="ent up" href="#inbox">
-        <span class="n">002</span>
-        <div><h3>Inbox Tracker</h3><p>Scans the full inbox daily, sorts every thread into five categories, and drafts the follow-up the moment someone goes quiet.</p></div>
-        <span class="meta">5 thread types<br><em>3-day trigger</em></span>
-      </a>
-      <a class="ent up" href="#brief">
-        <span class="n">003</span>
-        <div><h3>Daily Call Brief</h3><p>Calendar, Slack and pipeline data consolidated into one prioritized brief before leadership walks into back-to-back client calls.</p></div>
-        <span class="meta">50+ accounts<br><em>Lands before call one</em></span>
-      </a>
-      <a class="ent up" href="#outreach">
-        <span class="n">004</span>
-        <div><h3>Outreach Kit</h3><p>Recruiter messages, connection requests, intro emails and follow-ups, each written to a fixed word budget and a fixed set of beats.</p></div>
-        <span class="meta">4 touchpoints<br><em>120-word cap</em></span>
-      </a>
-      <a class="ent up" href="#backoffice">
-        <span class="n">005</span>
-        <div><h3>Payroll &amp; Onboarding Runbooks</h3><p>Multi-country payroll, contractor records and new-hire ramp, written down as procedures anyone on the team can execute without me.</p></div>
-        <span class="meta">2 regions<br><em>Ramp time &minus;50%</em></span>
-      </a>
-    </div>
+<section id="index" class="sec">
+  <div class="sec-head">
+    <span class="num">§ 01</span>
+    <h2>In production</h2>
+  </div>
+
+  <div class="idx-grid">
+    <a href="#jd" class="idx-card wide">
+      <div>
+        <div class="idx-no">001</div>
+        <h3>JD Package Engine</h3>
+        <p>One intake call becomes six publication-ready documents, with client names firewalled out of everything that goes out before a candidate is qualified.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag on-dark">~200 JDs</span>
+        <span class="idx-tag on-dark neutral">6 artifacts per intake</span>
+      </div>
+    </a>
+
+    <a href="#inbox" class="idx-card light">
+      <div>
+        <div class="idx-no">002</div>
+        <h3>Inbox Tracker</h3>
+        <p>Scans the full inbox daily, sorts every thread into five categories, and drafts the follow-up the moment someone goes quiet.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag">5 thread types</span>
+        <span class="idx-tag neutral">3-day trigger</span>
+      </div>
+    </a>
+
+    <a href="#brief" class="idx-card light">
+      <div>
+        <div class="idx-no">003</div>
+        <h3>Daily Call Brief</h3>
+        <p>Calendar, Slack and pipeline data consolidated into one prioritized brief before leadership walks into back-to-back client calls.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag">50+ accounts</span>
+        <span class="idx-tag neutral">Lands before call one</span>
+      </div>
+    </a>
+
+    <a href="#outreach" class="idx-card tint">
+      <div>
+        <div class="idx-no">004</div>
+        <h3>Outreach Kit</h3>
+        <p>Recruiter messages, connection requests, intro emails and follow-ups, each written to a fixed word budget and a fixed set of beats.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag on-tint">4 touchpoints</span>
+        <span class="idx-tag on-tint">120-word cap</span>
+      </div>
+    </a>
+
+    <a href="#backoffice" class="idx-card light">
+      <div>
+        <div class="idx-no">005</div>
+        <h3>Payroll &amp; Onboarding Runbooks</h3>
+        <p>Multi-country payroll, contractor records and new-hire ramp, written down as procedures anyone on the team can execute without me.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag">2 regions</span>
+        <span class="idx-tag neutral">Ramp time −50%</span>
+      </div>
+    </a>
   </div>
 </section>
 
-<section class="sec dark" id="systems">
-  <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 02</span><h2>Opened up</h2></div>
-    <p class="sec-note" style="margin-top:-30px;margin-bottom:40px">Client names and confidential terms are missing on purpose. That firewall is part of the design, not an omission.</p>
+<section id="systems" class="sec">
+  <div class="sec-head tight">
+    <span class="num">§ 02</span>
+    <h2>Opened up</h2>
+  </div>
+  <p class="sec-note">Client names and confidential terms are missing on purpose. That firewall is part of the design, not an omission.</p>
 
-    <article class="case up" id="jd">
-      <div class="case-h"><h3>JD Package Engine</h3><span class="tag">Recruiting ops</span></div>
-      <div class="g4">
-        <div class="fld"><span class="mono">Problem</span><p>Every search started from a blank page. Intake calls produced an hour of messy transcript, and the resulting job descriptions drifted in voice and structure depending on who wrote them. Sensitive client detail leaked into candidate-facing copy.</p></div>
-        <div class="fld"><span class="mono">Built</span><p>A pipeline that turns one transcript into a full package:</p>
-          <ul><li>Published JD, third person, website-ready</li><li>Internal brief with verbatim calibration quotes</li><li>Outreach #1 and #2, to a strict word budget</li><li>Intro email, booking link front-loaded</li><li>Platform fields and screening questions</li><li>Green-flag / red-flag criteria per role</li></ul></div>
-        <div class="fld"><span class="mono">Rules that hold it</span>
-          <ul><li>No client name or URL before the intro-email stage. Outreach uses stage, backer, category and traction signal instead</li><li>Off-record intel and restricted commercial terms live only in the internal brief, with distribution flagged</li><li>Anything demographic gets marked non-actionable and never shapes sourcing</li><li>Conflicting sources get reconciled and flagged, never silently resolved</li></ul></div>
-        <div class="fld"><span class="mono">Result</span><p>Around 200 job descriptions on this template, adopted org-wide. Turnaround dropped from a from-scratch write to an edit pass. Nothing confidential has to be caught by a reviewer, because it never enters the published doc at all.</p>
-          <div class="chips"><span class="chip">Notion</span><span class="chip">Slack</span><span class="chip">Claude</span><span class="chip">Docs</span></div></div>
-      </div>
-    </article>
-
-    <article class="case up" id="inbox">
-      <div class="case-h"><h3>Inbox Tracker</h3><span class="tag">Pipeline hygiene</span></div>
-      <div class="g4">
-        <div class="fld"><span class="mono">Problem</span><p>Intro emails go out from a shared team address; replies land in mine. Across dozens of concurrent searches, someone who replies on day four and hears nothing is a lost placement. Manual scanning missed people and ate the first hour of every morning.</p></div>
-        <div class="fld"><span class="mono">Built</span><p>A daily scan with defined queries and a fixed classification model. Every thread lands in exactly one bucket, and anyone past the three-day threshold gets a follow-up draft written automatically.</p></div>
-        <div class="fld"><span class="mono">How it runs</span>
-          <ul><li>Three queries cover the window: today's inbox, sent intros, threads I'm on</li><li>A reply only counts from a non-team address that isn't an auto-reply</li><li>Day three with no answer flips a thread into the queue</li><li>Drafts are created, never sent. I review before anything goes</li></ul></div>
-        <div class="fld"><span class="mono">Result</span><p>Triage went from an open-ended morning task to a report with a defined output. Nobody sits unanswered, and the follow-up decision is a rule rather than a judgment call I re-make every day.</p>
-          <div class="chips"><span class="chip">Gmail</span><span class="chip">Claude</span><span class="chip">Slack</span></div></div>
-      </div>
-      <div class="demo">
-        <div class="demo-bar"><span class="mono">Sample inbox · same classification rules</span><button class="btn" id="run">Run triage</button></div>
-        <div class="demo-body">
-          <div id="mailbox"></div>
-          <div class="demo-out" id="out">
-            <div class="tally" id="tally"></div>
-            <div class="draft"><span class="mono">Draft generated · day 4, no reply</span>
-              <p>Hi Priya, following up on my note about the founding engineer role. I wanted to make sure it didn't get buried.</p>
-              <p>Short version: Series A, ex-payments team, moving fast on this one. Comp and scope are in the thread below.</p>
-              <p>If the timing is off, say so and I'll close the loop. If not, grab a time here: [booking link]</p></div>
+  <div class="acc">
+    <details id="jd" open class="acc-item">
+      <summary>
+        <span class="acc-title-row"><span class="acc-title disp">JD Package Engine</span><span class="acc-tag">Recruiting ops</span></span>
+        <span class="chev"></span>
+      </summary>
+      <div class="acc-body">
+        <div class="fld">
+          <div class="fld-label a">Problem</div>
+          <p>Every search started from a blank page. Intake calls produced an hour of messy transcript, and the resulting job descriptions drifted in voice and structure depending on who wrote them. Sensitive client detail leaked into candidate-facing copy.</p>
+          <div class="fld-label a">Built</div>
+          <p style="margin-bottom:12px">A pipeline that turns one transcript into a full package:</p>
+          <ul class="dot-list">
+            <li><span class="dot"></span>Published JD, third person, website-ready</li>
+            <li><span class="dot"></span>Internal brief with verbatim calibration quotes</li>
+            <li><span class="dot"></span>Outreach #1 and #2, to a strict word budget</li>
+            <li><span class="dot"></span>Intro email, booking link front-loaded</li>
+            <li><span class="dot"></span>Platform fields and screening questions</li>
+            <li><span class="dot"></span>Green-flag / red-flag criteria per role</li>
+          </ul>
+        </div>
+        <div class="fld">
+          <div class="box-tan">
+            <div class="fld-label c">Rules that hold it</div>
+            <ol class="rule-list">
+              <li><span class="rule-num">1</span>No client name or URL before the intro-email stage. Outreach uses stage, backer, category and traction signal instead</li>
+              <li><span class="rule-num">2</span>Off-record intel and restricted commercial terms live only in the internal brief, with distribution flagged</li>
+              <li><span class="rule-num">3</span>Anything demographic gets marked non-actionable and never shapes sourcing</li>
+              <li><span class="rule-num">4</span>Conflicting sources get reconciled and flagged, never silently resolved</li>
+            </ol>
+          </div>
+          <div class="fld-label a">Result</div>
+          <p>Around 200 job descriptions on this template, adopted org-wide. Turnaround dropped from a from-scratch write to an edit pass. Nothing confidential has to be caught by a reviewer, because it never enters the published doc at all.</p>
+          <div class="chips">
+            <span class="chip">Notion</span><span class="chip">Slack</span><span class="chip">Claude</span><span class="chip">Docs</span>
           </div>
         </div>
       </div>
-    </article>
+    </details>
 
-    <article class="case up" id="brief">
-      <div class="case-h"><h3>Daily Call Brief</h3><span class="tag">Executive support</span></div>
-      <div class="g4">
-        <div class="fld"><span class="mono">Problem</span><p>Leadership walks into back-to-back client calls across 50+ accounts. The context for each one, from where the search stands to what was promised last time and who is waiting on us, was scattered across calendar, Slack and the tracker.</p></div>
-        <div class="fld"><span class="mono">Built</span><p>A brief assembled every morning: today's calls in order, and for each the open roles, pipeline movement since last contact, outstanding commitments, and the one thing that most needs a decision.</p></div>
-        <div class="fld"><span class="mono">How it runs</span>
-          <ul><li>Calendar sets the order and the deadline</li><li>Slack supplies what changed since last contact</li><li>Pipeline data supplies stage counts and stalls</li><li>Anything unresolved is listed as an open item, not omitted</li></ul></div>
-        <div class="fld"><span class="mono">Result</span><p>Calls start with context instead of reconstruction. Questions that used to surface mid-call get answered before it. The format is fixed, so it reads in under two minutes.</p>
-          <div class="chips"><span class="chip">Calendar</span><span class="chip">Slack</span><span class="chip">Notion</span><span class="chip">Pylon</span></div></div>
-      </div>
-    </article>
-
-    <article class="case up" id="outreach">
-      <div class="case-h"><h3>Outreach Kit</h3><span class="tag">Templates</span></div>
-      <div class="g4">
-        <div class="fld"><span class="mono">Constraint</span><p>Outreach fails long. Every message has a word budget and a fixed beat structure, so writing one is assembly rather than composition.</p></div>
-        <div class="fld"><span class="mono">Four touchpoints</span>
-          <ul><li>Outreach #1: three paragraphs, about 120 words</li><li>Outreach #2: one sentence, about 40 words</li><li>Intro email: about 200 words, link in the first two lines</li><li>Follow-up: triggered by the tracker, not by memory</li></ul></div>
-        <div class="fld"><span class="mono">Banned</span>
-          <ul><li>Company background walls and full benefits lists</li><li>Interview process breakdowns before a recruiter call</li><li>Repeated visa and relocation disclaimers</li><li>False personalization: no "saw your profile" unless it's true</li></ul></div>
-        <div class="fld"><span class="mono">Why it's a system</span><p>Because the rules are written down, anyone can produce outreach that reads consistently, and a reviewer checks it against a list instead of a feeling.</p></div>
-      </div>
-    </article>
-
-    <article class="case up" id="backoffice">
-      <div class="case-h"><h3>Payroll &amp; Onboarding Runbooks</h3><span class="tag">Back office</span></div>
-      <div class="g4">
-        <div class="fld"><span class="mono">Problem</span><p>Payroll across Colombia and international contractors meant different compliance rules, currencies and rails on one monthly deadline. Onboarding lived in the head of whoever ran the last one, so every hire cost a senior person a week.</p></div>
-        <div class="fld"><span class="mono">Built</span><p>Written runbooks. The payroll cycle as a dated checklist with verification before each run, and onboarding as a sequence covering contracts, accounts, tooling and first-week training, with every step naming its owner.</p></div>
-        <div class="fld"><span class="mono">Also standardized</span>
-          <ul><li>Client intake, contracts and follow-up sequences</li><li>Insurance eligibility checks before services start</li><li>Referral review with document requests tracked to close</li><li>QA passes on internal tools, bugs routed to engineering</li></ul></div>
-        <div class="fld"><span class="mono">Result</span><p>Payroll runs on schedule and survives a handoff. Documented onboarding halved new-hire ramp time in a prior role. The procedure is the training material.</p>
-          <div class="chips"><span class="chip">Deel</span><span class="chip">QuickBooks</span><span class="chip">Notion</span><span class="chip">Airtable</span></div></div>
-      </div>
-    </article>
-  </div>
-</section>
-<section class="sec dark" id="tools" style="border-top:1px solid #24352F">
-  <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 03</span><h2>Three of them, running</h2></div>
-    <p class="sec-note" style="margin-top:-30px;margin-bottom:40px">Not screenshots. These work. Nothing is sent anywhere. It all runs in your browser.</p>
-
-    <div class="tool up" id="composer">
-      <div class="tool-h"><h3>Message composer</h3><span class="mono">With confidentiality check</span></div>
-      <div class="tool-b">
-        <p class="tool-note">The message an assistant writes forty times a week: chasing something, introducing someone, declining, rescheduling, reaching out cold. Pick the situation, give it the facts, get three lengths. Anything you list as confidential gets scanned for before it goes out.</p>
-        <div class="fg">
-          <label><span class="lbl">Situation</span><select id="c_sc">
-            <option value="cold">Cold outreach</option>
-            <option value="intro">Intro on behalf of an exec</option>
-            <option value="chase">Chasing something overdue</option>
-            <option value="resched">Rescheduling or apologising</option>
-            <option value="decline">Declining politely</option>
-          </select></label>
-          <label><span class="lbl">Tone</span><select id="c_tone">
-            <option value="direct">Direct</option>
-            <option value="warm">Warm</option>
-            <option value="formal">Formal</option>
-          </select></label>
-          <label><span class="lbl">Recipient first name</span><input id="c_name" value="Priya"></label>
-          <label><span class="lbl">On behalf of (optional)</span><input id="c_boss" value="our Head of Engineering"></label>
-          <label><span class="lbl">Key detail: amount, comp, deadline</span><input id="c_detail" value="$180–220K plus equity, San Francisco"></label>
-          <label><span class="lbl">Link (optional)</span><input id="c_link" value="cal.com/lucia/30min"></label>
-          <label style="grid-column:1/-1"><span class="lbl">Context: what this is about</span><textarea id="c_ctx">a Series A company in agentic payments whose revenue tripled in nine months, hiring a founding engineer to own the ledger and settlement engine</textarea></label>
-          <label style="grid-column:1/-1"><span class="lbl">The ask: one line</span><input id="c_ask" value="a 20-minute call this week"></label>
-          <label style="grid-column:1/-1"><span class="lbl">Never mention (comma separated)</span><input id="c_never" value="Northbeam, bounty rate, Q3 layoffs"></label>
+    <details id="inbox" class="acc-item">
+      <summary>
+        <span class="acc-title-row"><span class="acc-title disp">Inbox Tracker</span><span class="acc-tag">Pipeline hygiene</span></span>
+        <span class="chev"></span>
+      </summary>
+      <div class="acc-body">
+        <div class="fld">
+          <div class="fld-label a">Problem</div>
+          <p>Intro emails go out from a shared team address; replies land in mine. Across dozens of concurrent searches, someone who replies on day four and hears nothing is a lost placement. Manual scanning missed people and ate the first hour of every morning.</p>
+          <div class="fld-label a">Built</div>
+          <p>A daily scan with defined queries and a fixed classification model. Every thread lands in exactly one bucket, and anyone past the three-day threshold gets a follow-up draft written automatically.</p>
+          <div class="fld-label a">Result</div>
+          <p>Triage went from an open-ended morning task to a report with a defined output. Nobody sits unanswered, and the follow-up decision is a rule rather than a judgment call I re-make every day.</p>
+          <div class="chips">
+            <span class="chip">Gmail</span><span class="chip">Claude</span><span class="chip">Slack</span>
+          </div>
         </div>
-        <div class="acts"><button class="btn" id="c_go">Generate</button><span class="hint">Nothing leaves your browser</span></div>
-        <div class="out" id="c_out"></div>
-      </div>
-    </div>
-
-    <div class="tool up" id="overlap">
-      <div class="tool-h"><h3>Meeting overlap finder</h3><span class="mono">Live, DST-aware</span></div>
-      <div class="tool-b">
-        <p class="tool-note">One call, six time zones, and nobody wants a 6am. Mango columns work for everyone. Click a column header to copy the line for the invite.</p>
-        <div class="tzw"><table class="tz" id="tztable"></table></div>
-        <div class="lg">
-          <span><i class="sw" style="background:#0C1815"></i>Outside hours</span>
-          <span><i class="sw" style="background:#14332C"></i>Working hours locally</span>
-          <span><i class="sw" style="background:var(--mango);border-color:var(--mango)"></i>Works for everyone</span>
-        </div>
-        <div class="acts"><span class="hint" id="tzcopied">Click a column header to copy</span></div>
-      </div>
-    </div>
-
-    <div class="tool up" id="queue">
-      <div class="tool-h"><h3>Follow-up queue</h3><span class="mono">3-day rule, applied</span></div>
-      <div class="tool-b">
-        <p class="tool-note">Add anyone you're waiting on. The threshold decides who gets chased, so it's a rule instead of something you re-litigate every morning. Drafts are for review, never sent.</p>
-        <div class="fg">
-          <label><span class="lbl">Name</span><input id="q_name" placeholder="Candidate or contact"></label>
-          <label><span class="lbl">Role or subject</span><input id="q_role" placeholder="Head of GTM"></label>
-          <label><span class="lbl">Date sent</span><input id="q_date" type="date"></label>
-        </div>
-        <div class="acts"><button class="btn" id="q_add">Add</button><button class="btn-l" id="q_draft">Draft all overdue</button></div>
-        <table class="q" id="q_table"><thead><tr><th>Name</th><th>Subject</th><th>Waiting</th><th>Status</th></tr></thead><tbody></tbody></table>
-        <div class="out" id="q_out"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="builds">
-  <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 04</span><h2>Automations, specified</h2></div>
-    <p class="sec-note" style="margin-top:-30px;margin-bottom:38px">These aren't past projects dressed up as case studies. They're specifications: trigger, steps, and what happens when something is missing, written out precisely enough to hand me one and have it running this week. Every one of them automates something I've done by hand for long enough to know where it breaks. Open any row.</p>
-    <div class="bps">
-      <article class="bp up">
-        <button class="bp-h" aria-expanded="false">
-          <span class="n">B01</span>
-          <span class="bp-t"><b>Inbox to task, triaged</b><em>Turns a starred email into a dated task with a named owner, and tells the channel it exists.</em></span>
-          <span class="bp-m"><i class="plat">Zapier</i>~3 hrs/week back</span>
-        </button>
-        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>You star an email in Gmail</p></div><div class="node"><span class="mono">Step 01</span><p>Reads the sender, the subject and any date mentioned in the body</p></div><div class="node"><span class="mono">Step 02</span><p>Creates a task in Notion or ClickUp with that due date and the right owner</p></div><div class="node"><span class="mono">Step 03</span><p>Attaches the thread link so nobody has to go searching for context</p></div><div class="node o"><span class="mono">Result</span><p>Posts in the team channel. Your inbox stays a queue instead of a filing cabinet.</p></div></div></div>
-      </article>
-      <article class="bp up">
-        <button class="bp-h" aria-expanded="false">
-          <span class="n">B02</span>
-          <span class="bp-t"><b>Client intake, provisioned in one pass</b><em>One form submission creates the folder, the contract, the CRM record and the welcome email.</em></span>
-          <span class="bp-m"><i class="plat">Make</i>~90 min per client</span>
-        </button>
-        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>A new client submits the intake form</p></div><div class="node"><span class="mono">Step 01</span><p>Creates their Drive folder from the standard template</p></div><div class="node"><span class="mono">Step 02</span><p>Generates the contract with their details merged in</p></div><div class="node"><span class="mono">Step 03</span><p>Creates the CRM record and links the folder to it</p></div><div class="node"><span class="mono">Step 04</span><p>Sends the welcome email with the booking link already in it</p></div><div class="node o"><span class="mono">Result</span><p>Slack notification with everything linked. Onboarding starts the same hour, not the next day.</p></div></div></div>
-      </article>
-      <article class="bp up">
-        <button class="bp-h" aria-expanded="false">
-          <span class="n">B03</span>
-          <span class="bp-t"><b>Invoice chase that escalates itself</b><em>Finds what's overdue, picks the right message for how late it is, and drafts it.</em></span>
-          <span class="bp-m"><i class="plat">n8n</i>~2 hrs/week back</span>
-        </button>
-        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>Runs every weekday at 8am</p></div><div class="node"><span class="mono">Step 01</span><p>Reads the invoice sheet and finds anything unpaid past its due date</p></div><div class="node"><span class="mono">Step 02</span><p>Picks the message by age: a nudge at 7 days, a firmer note at 14, escalation to the account owner at 30</p></div><div class="node"><span class="mono">Step 03</span><p>Creates the draft and stops there. It never sends</p></div><div class="node o"><span class="mono">Result</span><p>A morning list of drafts to approve. Nobody gets chased twice and nobody gets forgotten.</p></div></div></div>
-      </article>
-      <article class="bp up">
-        <button class="bp-h" aria-expanded="false">
-          <span class="n">B04</span>
-          <span class="bp-t"><b>Meeting to action items</b><em>Pulls commitments out of a call transcript and turns them into tasks with real owners.</em></span>
-          <span class="bp-m"><i class="plat">n8n</i>~4 hrs/week back</span>
-        </button>
-        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>A call transcript lands in the folder</p></div><div class="node"><span class="mono">Step 01</span><p>Separates decisions, commitments and open questions, since each needs different handling</p></div><div class="node"><span class="mono">Step 02</span><p>Assigns each action to the person who agreed to it, on the date they said</p></div><div class="node"><span class="mono">Step 03</span><p>Creates the tasks and posts a summary in the channel</p></div><div class="node o"><span class="mono">Result</span><p>Anything without a named owner gets flagged rather than quietly dropped.</p></div></div></div>
-      </article>
-      <article class="bp up">
-        <button class="bp-h" aria-expanded="false">
-          <span class="n">B05</span>
-          <span class="bp-t"><b>Payroll pre-flight check</b><em>Runs the checks three days early, so errors get caught before the run instead of after it.</em></span>
-          <span class="bp-m"><i class="plat">Make</i>Catches the expensive mistake</span>
-        </button>
-        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>Three days before every payroll date</p></div><div class="node"><span class="mono">Step 01</span><p>Pulls the contractor list from Deel and the hours from the tracker</p></div><div class="node"><span class="mono">Step 02</span><p>Compares against last cycle and flags anything moving more than 10%</p></div><div class="node"><span class="mono">Step 03</span><p>Flags missing timesheets, expired contracts and unconfirmed bank details</p></div><div class="node o"><span class="mono">Result</span><p>A review checklist in your inbox with three days of runway to fix whatever it found.</p></div></div></div>
-      </article>
-      <article class="bp up">
-        <button class="bp-h" aria-expanded="false">
-          <span class="n">B06</span>
-          <span class="bp-t"><b>Weekly leadership brief, assembled</b><em>The Friday summary nobody has time to write, written before anyone asks for it.</em></span>
-          <span class="bp-m"><i class="plat">n8n</i>~2 hrs/week back</span>
-        </button>
-        <div class="bp-f"><div class="flow"><div class="node t"><span class="mono">Trigger</span><p>Friday at 3pm</p></div><div class="node"><span class="mono">Step 01</span><p>Pulls the week's calendar, CRM movement and closed tasks</p></div><div class="node"><span class="mono">Step 02</span><p>Compares against last week and surfaces only what actually changed</p></div><div class="node"><span class="mono">Step 03</span><p>Lists open items with names and dates attached to them</p></div><div class="node o"><span class="mono">Result</span><p>One brief in the inbox before the weekend. Monday starts with decisions instead of archaeology.</p></div></div></div>
-      </article>
-    </div>
-  </div>
-</section>
-<section class="sec dark" id="design" style="border-top:1px solid var(--rule)">
-  <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 05</span><h2>The other half: design</h2></div>
-    <p class="sec-note" style="margin-top:-30px;margin-bottom:38px">Operations pays the bills, but a good half of the job has always been making the thing look like it came from one company. Cards, signage, social sets, document templates. The client work sits in accounts I no longer have access to, so these specimens are built fresh on an invented brand. The controls under each one are the real decisions, and they print the numbers you would type into Canva.</p>
-
-    <div class="names" id="nameSet">
-      <span>Stress test the name</span>
-      <button data-name="Jo Ng">Jo Ng</button>
-      <button data-name="Daniela Restrepo" class="on">Daniela Restrepo</button>
-      <button data-name="Christopher Vandenbergh">Christopher Vandenbergh</button>
-      <button data-name="María José Restrepo-Ochoa">María José Restrepo-Ochoa</button>
-    </div>
-
-    <article class="dp up" id="d-card">
-      <div class="dp-h"><h3>Business card</h3><span class="tag">Print</span></div>
-      <p class="dp-spec">3.5 × 2 in · 0.125 in bleed · one typeface</p>
-      <div class="dp-grid">
         <div>
-          <div class="art bc" id="bcArt">
-            <div class="bc-in">
-              <div class="bc-mark">SAMPLE REALTY</div>
-              <div class="bc-name" data-fill="name">Daniela Restrepo</div>
-              <div class="bc-title">Sales Representative</div>
-              <div class="bc-rule"></div>
-              <div class="bc-meta" id="bcMeta">
-                <span><i data-fill="phone" style="font-style:normal">416 000 0000</i><br>daniela@samplerealty.ca</span>
-                <span>samplerealty.ca<br>Toronto, ON</span>
-              </div>
-            </div>
+          <div class="box-tan">
+            <div class="fld-label c">How it runs</div>
+            <ol class="rule-list">
+              <li><span class="rule-num">1</span>Three queries cover the window: today's inbox, sent intros, threads I'm on</li>
+              <li><span class="rule-num">2</span>A reply only counts from a non-team address that isn't an auto-reply</li>
+              <li><span class="rule-num">3</span>Day three with no answer flips a thread into the queue</li>
+              <li><span class="rule-num">4</span>Drafts are created, never sent. I review before anything goes</li>
+            </ol>
           </div>
-          <p class="art-cap">Drawn at trim, not a screenshot. Resize the window and the type scales with the card.</p>
-          <div class="dc">
-            <div class="dc-row">
-              <div class="dc-top"><span>Name size</span><span class="dc-val" id="vBcName">23 pt</span></div>
-              <input type="range" id="bcName" min="12" max="34" step="0.5" value="23">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Name tracking</span><span class="dc-val" id="vBcTrack">−30</span></div>
-              <input type="range" id="bcTrack" min="-80" max="60" step="5" value="-30">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Contact block</span><span class="dc-val" id="vBcMeta">Two columns</span></div>
-              <input type="range" id="bcCols" min="0" max="1" step="1" value="1">
-            </div>
-            <div class="dc-read">
-              Canva: name <b><span id="rBcName">23</span> pt</b> semibold, letter spacing <b><span id="rBcTrack">−30</span></b>. Title 9 pt regular. Rule 0.5 pt. Contact 8 pt, line spacing 1.45.
-              <div class="dc-warn" id="bcWarn">The name is past the safe margin. Size it down, or the long-name agents get a broken card.</div>
-            </div>
+          <div class="draft-box" style="margin-top:20px">
+            <div class="fld-label">Draft generated · day 4, no reply</div>
+            <p>Hi Priya, following up on my note about the founding engineer role. I wanted to make sure it didn't get buried.</p>
+            <p>Short version: Series A, ex-payments team, moving fast on this one. Comp and scope are in the thread below.</p>
+            <p>If the timing is off, say so and I'll close the loop. If not, grab a time here: [booking link]</p>
           </div>
-        </div>
-        <div class="dp-body">
-          <div class="fld"><span class="mono">Brief</span><p>A card layout that has to hold for eighty-five people. One card is not the problem. The template is, and it always breaks on the name.</p></div>
-          <div class="fld"><span class="mono">Constraints</span>
-            <ul><li>No brand guide, so weight and size carry the hierarchy instead of colour</li><li>Six pieces of contact information have to fit without crowding the name</li><li>Nothing within a quarter inch of the trim</li></ul></div>
-          <div class="fld"><span class="mono">What I decided</span>
-            <ul><li>The person's name is the largest element, not the brokerage. A card is handed over by a human.</li><li>Name and title pair tightly, then a rule opens space before the contact block, so the eye reads two groups instead of five lines</li><li>Contact runs in two columns rather than one stack, which stops the lower third going heavy</li><li>Tracking pulled in slightly. At this size the default spacing reads loose against the small text under it.</li></ul></div>
         </div>
       </div>
-    </article>
+    </details>
 
-    <article class="dp up" id="d-sign">
-      <div class="dp-h"><h3>Lawn sign and rider</h3><span class="tag">Large format</span></div>
-      <p class="dp-spec">24 × 18 in and 24 × 6 in · read from a moving car</p>
-      <div class="dp-grid">
-        <div>
-          <div class="signwrap" id="signWrap">
-            <div class="art lawn">
-              <div class="lawn-in">
-                <div class="lawn-mark">SAMPLE REALTY</div>
-                <div>
-                  <div class="lawn-name" data-fill="name">Daniela Restrepo</div>
-                  <div class="lawn-phone" data-fill="phone">416 000 0000</div>
-                </div>
-              </div>
-            </div>
-            <div class="art rider"><div class="rider-in">OPEN HOUSE SUNDAY</div></div>
-          </div>
-          <p class="art-cap" id="distCap">Viewing distance: standing at the sign</p>
-          <div class="dc">
-            <div class="dc-row">
-              <div class="dc-top"><span>Brokerage mark</span><span class="dc-val" id="vLwMark">2.1 in</span></div>
-              <input type="range" id="lwMark" min="1.5" max="5.5" step="0.1" value="2.1">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Agent name</span><span class="dc-val" id="vLwName">1.6 in</span></div>
-              <input type="range" id="lwName" min="1" max="4" step="0.1" value="1.6">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Phone</span><span class="dc-val" id="vLwPhone">2.0 in</span></div>
-              <input type="range" id="lwPhone" min="1" max="4" step="0.1" value="2">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Rider line</span><span class="dc-val" id="vRdSize">1.5 in</span></div>
-              <input type="range" id="rdSize" min="1" max="3.4" step="0.1" value="1.5">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Step back from the sign</span><span class="dc-val" id="vDist">0 ft</span></div>
-              <input type="range" id="lwDist" min="0" max="60" step="5" value="0">
-            </div>
-            <div class="dc-read">
-              Canva: mark <b><span id="rLwMark">2.1</span> in</b>, name <b><span id="rLwName">1.6</span> in</b>, phone <b><span id="rLwPhone">2.0</span> in</b>, rider <b><span id="rRdSize">1.5</span> in</b>. Margins 2 in all round.
-              <div class="dc-warn" id="lwWarn">That is wider than the sign. It will spill past the 2 in margin.</div>
-            </div>
+    <details id="brief" class="acc-item">
+      <summary>
+        <span class="acc-title-row"><span class="acc-title disp">Daily Call Brief</span><span class="acc-tag">Executive support</span></span>
+        <span class="chev"></span>
+      </summary>
+      <div class="acc-body">
+        <div class="fld">
+          <div class="fld-label a">Problem</div>
+          <p>Leadership walks into back-to-back client calls across 50+ accounts. The context for each one, from where the search stands to what was promised last time and who is waiting on us, was scattered across calendar, Slack and the tracker.</p>
+          <div class="fld-label a">Built</div>
+          <p>A brief assembled every morning: today's calls in order, and for each the open roles, pipeline movement since last contact, outstanding commitments, and the one thing that most needs a decision.</p>
+          <div class="fld-label a">Result</div>
+          <p>Calls start with context instead of reconstruction. Questions that used to surface mid-call get answered before it. The format is fixed, so it reads in under two minutes.</p>
+          <div class="chips">
+            <span class="chip">Calendar</span><span class="chip">Slack</span><span class="chip">Notion</span><span class="chip">Pylon</span>
           </div>
         </div>
-        <div class="dp-body">
-          <div class="fld"><span class="mono">Brief</span><p>Signage that stays legible from across a street, in the rain, at thirty kilometres an hour. The only piece here where viewing distance sets the type size instead of taste.</p></div>
-          <div class="fld"><span class="mono">Constraints</span>
-            <ul><li>Roughly one inch of cap height per ten feet of reading distance, so the phone number sets its own minimum</li><li>Three pieces of information at most. Anything past that will not be read.</li><li>The rider is one line, with no room to be clever</li></ul></div>
-          <div class="fld"><span class="mono">What I decided</span>
-            <ul><li>Brokerage largest, at the top. From the street the brand is what identifies the sign; the agent details are for people who already stopped.</li><li>Contrast over colour. A mid tone on a mid tone disappears at distance even when it looks fine on screen.</li><li>Generous margins, because signs get bent, mounted crooked and half hidden by a hedge.</li><li>Use the step-back control rather than your eye at full screen. That is the only honest test.</li></ul></div>
+        <div class="box-tan self-start">
+          <div class="fld-label c">How it runs</div>
+          <ol class="rule-list">
+            <li><span class="rule-num">1</span>Calendar sets the order and the deadline</li>
+            <li><span class="rule-num">2</span>Slack supplies what changed since last contact</li>
+            <li><span class="rule-num">3</span>Pipeline data supplies stage counts and stalls</li>
+            <li><span class="rule-num">4</span>Anything unresolved is listed as an open item, not omitted</li>
+          </ol>
         </div>
       </div>
-    </article>
+    </details>
 
-    <article class="dp up dp--wide" id="d-social">
-      <div class="dp-h"><h3>Instagram set</h3><span class="tag">Social template</span></div>
-      <p class="dp-spec">1080 × 1080 · three states of one listing · built for someone else to fill in</p>
-      <div class="dp-grid">
-        <div>
-          <div class="igset">
-            <div class="ig ig-1"><div class="ig-ph"></div><div class="ig-scrim"></div>
-              <div class="ig-in"><div class="ig-label">NEW LISTING</div>
-                <div class="ig-addr">412 Roncesvalles Ave</div>
-                <div class="ig-agent" data-fill="name">Daniela Restrepo</div></div></div>
-            <div class="ig ig-2"><div class="ig-ph"></div><div class="ig-scrim"></div>
-              <div class="ig-in"><div class="ig-label">OPEN HOUSE SUN 2 TO 4</div>
-                <div class="ig-addr">412 Roncesvalles Ave</div>
-                <div class="ig-agent" data-fill="name">Daniela Restrepo</div></div></div>
-            <div class="ig ig-3"><div class="ig-ph"></div><div class="ig-scrim"></div>
-              <div class="ig-in"><div class="ig-label">SOLD</div>
-                <div class="ig-addr">412 Roncesvalles Ave</div>
-                <div class="ig-agent" data-fill="name">Daniela Restrepo</div></div></div>
-          </div>
-          <p class="art-cap">Three deliberately different photos: bright, mid, dark. One scrim value has to serve all three.</p>
-          <div class="dc">
-            <div class="dc-row">
-              <div class="dc-top"><span>Address size</span><span class="dc-val" id="vIgAddr">62 px</span></div>
-              <input type="range" id="igAddr" min="34" max="90" step="2" value="62">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Status label</span><span class="dc-val" id="vIgLabel">28 px</span></div>
-              <input type="range" id="igLabel" min="16" max="48" step="1" value="28">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Left and bottom margin</span><span class="dc-val" id="vIgPad">64 px</span></div>
-              <input type="range" id="igPad" min="24" max="120" step="4" value="64">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Scrim darkness</span><span class="dc-val" id="vIgO">86%</span></div>
-              <input type="range" id="igO" min="0" max="100" step="2" value="86">
-            </div>
-            <div class="dc-row">
-              <div class="dc-top"><span>Scrim height</span><span class="dc-val" id="vIgH">58%</span></div>
-              <input type="range" id="igH" min="25" max="100" step="1" value="58">
-            </div>
-            <div class="dc-read">
-              Canva: address <b><span id="rIgAddr">62</span> px</b> semibold, tracking −20. Label <b><span id="rIgLabel">28</span> px</b>, tracking +130. Text starts <b><span id="rIgPad">64</span> px</b> from the left and bottom on all three. Gradient <b>#09100D</b> at <b><span id="rIgO">86</span>%</b>, transparent by <b><span id="rIgH">58</span>%</b> height.
-              <div class="dc-warn" id="igWarn">At this value the text is fighting the bright photo on the left. Check the first tile, not the last.</div>
-            </div>
-          </div>
+    <details id="outreach" class="acc-item">
+      <summary>
+        <span class="acc-title-row"><span class="acc-title disp">Outreach Kit</span><span class="acc-tag">Templates</span></span>
+        <span class="chev"></span>
+      </summary>
+      <div class="acc-body">
+        <div class="fld">
+          <div class="fld-label a">Constraint</div>
+          <p>Outreach fails long. Every message has a word budget and a fixed beat structure, so writing one is assembly rather than composition.</p>
+          <div class="fld-label a">Why it's a system</div>
+          <p style="margin-bottom:0">Because the rules are written down, anyone can produce outreach that reads consistently, and a reviewer checks it against a list instead of a feeling.</p>
         </div>
-        <div class="dp-body">
-          <div class="fld"><span class="mono">Brief</span><p>New listing, open house, sold. Three posts that read as a set when they surface months apart in a feed, and that someone else can fill in without asking me anything.</p></div>
-          <div class="fld"><span class="mono">Constraints</span>
-            <ul><li>Photos arrive at unpredictable crops and quality, so the layout cannot depend on the image</li><li>Text has to stay legible over photography without an overlay swallowing the house</li><li>Posted weekly, so filling it in should take minutes</li></ul></div>
-          <div class="fld"><span class="mono">What I decided</span>
-            <ul><li>The text block holds the same position on all three. Only the label and the photo change, which is what makes them read as a series.</li><li>A gradient scrim instead of a flat box, so the photo stays visible and one value works over both bright and dark images</li><li>The address is the headline, not the status. People scroll for the property.</li></ul></div>
+        <div class="box-tan" style="margin-bottom:0">
+          <div class="fld-label c">Four touchpoints</div>
+          <ul class="touchpoint-list">
+            <li><span>Outreach #1</span><span>three paragraphs, about 120 words</span></li>
+            <li><span>Outreach #2</span><span>one sentence, about 40 words</span></li>
+            <li><span>Intro email</span><span>about 200 words, link in the first two lines</span></li>
+            <li><span>Follow-up</span><span>triggered by the tracker, not by memory</span></li>
+          </ul>
+        </div>
+        <div class="box-mango">
+          <div class="fld-label" style="color:var(--terracotta-deep)">Banned</div>
+          <ul class="banned-list">
+            <li><span class="banned-x">✕</span>Company background walls and full benefits lists</li>
+            <li><span class="banned-x">✕</span>Interview process breakdowns before a recruiter call</li>
+            <li><span class="banned-x">✕</span>Repeated visa and relocation disclaimers</li>
+            <li><span class="banned-x">✕</span>False personalization: no "saw your profile" unless it's true</li>
+          </ul>
         </div>
       </div>
-    </article>
+    </details>
 
-    <article class="dp up" id="d-doc">
-      <div class="dp-h"><h3>Recruiting template system</h3><span class="tag">Document design</span></div>
-      <p class="dp-spec">Contrario AI · adopted org-wide · around 200 documents built on it</p>
-      <div class="dp-grid">
-        <div>
-          <div class="art doc">
-            <div class="doc-in">
-              <div class="doc-kicker">Role specification</div>
-              <div class="doc-h1">Founding Engineer</div>
-              <div class="doc-sub">Series A · agentic payments · San Francisco</div>
-              <div class="doc-rule"></div>
-              <div class="doc-h2">About the role</div>
-              <p class="doc-p">You would own the ledger and settlement engine end to end, from the data model through the reconciliation logic that finance actually closes the month on.</p>
-              <div class="doc-h2">What you will own</div>
-              <div class="doc-li">Design the double-entry ledger and its invariants</div>
-              <div class="doc-li">Ship the settlement engine to production</div>
-              <div class="doc-li">Decide the build and buy line on payment rails</div>
-              <div class="doc-h2" style="margin-top:4.6cqw">Must have</div>
-              <p class="doc-p">Five years building systems where money moves, and the judgment to know which correctness problems are worth slowing down for.</p>
-            </div>
+    <details id="backoffice" class="acc-item">
+      <summary>
+        <span class="acc-title-row"><span class="acc-title disp">Payroll &amp; Onboarding Runbooks</span><span class="acc-tag">Back office</span></span>
+        <span class="chev"></span>
+      </summary>
+      <div class="acc-body">
+        <div class="fld">
+          <div class="fld-label a">Problem</div>
+          <p>Payroll across Colombia and international contractors meant different compliance rules, currencies and rails on one monthly deadline. Onboarding lived in the head of whoever ran the last one, so every hire cost a senior person a week.</p>
+          <div class="fld-label a">Built</div>
+          <p>Written runbooks. The payroll cycle as a dated checklist with verification before each run, and onboarding as a sequence covering contracts, accounts, tooling and first-week training, with every step naming its owner.</p>
+          <div class="fld-label a">Result</div>
+          <p>Payroll runs on schedule and survives a handoff. Documented onboarding halved new-hire ramp time in a prior role. The procedure is the training material.</p>
+          <div class="chips">
+            <span class="chip">Deel</span><span class="chip">QuickBooks</span><span class="chip">Notion</span><span class="chip">Airtable</span>
           </div>
-          <p class="art-cap">Rebuilt here from the original, which lives in a client account.</p>
         </div>
-        <div class="dp-body">
-          <span class="flag">Real prior work, rebuilt</span>
-          <div class="fld"><span class="mono">Brief</span><p>Every recruiter wrote job descriptions in their own format, so clients received documents that did not look like they came from the same company. One template the team would actually use.</p></div>
-          <div class="fld"><span class="mono">Constraints</span>
-            <ul><li>Documents get pasted into LinkedIn, Notion and client email, so the hierarchy has to survive losing all of its styling</li><li>Non-designers fill them in daily, so anything fussy is broken within a week</li><li>Existing colours and one typeface, with no licensing budget</li></ul></div>
-          <div class="fld"><span class="mono">What I decided</span>
-            <ul><li>Three levels of hierarchy and no more, which are role title, section and body, sized far enough apart to read the structure at a glance</li><li>Section headings carry weight rather than colour, so the page survives greyscale printing and a plain-text paste</li><li>A fixed line length on body copy. That was the change that made the documents start to feel finished.</li></ul></div>
-          <div class="fld"><span class="mono">Result</span><p>Around 200 job descriptions built on it, and the JD Package Engine in section 02 is this template with the writing rules attached.</p>
-            <div class="chips"><span class="chip">Canva</span><span class="chip">Docs</span><span class="chip">Notion</span><span class="chip">Adobe CS</span></div></div>
+        <div class="box-tan self-start">
+          <div class="fld-label c">Also standardized</div>
+          <ul class="dot-list small">
+            <li><span class="dot sage"></span>Client intake, contracts and follow-up sequences</li>
+            <li><span class="dot sage"></span>Insurance eligibility checks before services start</li>
+            <li><span class="dot sage"></span>Referral review with document requests tracked to close</li>
+            <li><span class="dot sage"></span>QA passes on internal tools, bugs routed to engineering</li>
+          </ul>
         </div>
       </div>
-    </article>
+    </details>
+  </div>
+</section>
 
-    <div class="dsum up">
-      <h4>Your numbers</h4>
-      <pre id="dspec"></pre>
-      <div class="acts"><button class="btn" id="dcopy">Copy the spec</button><span class="hint">Move the sliders, take the numbers to Canva</span></div>
+<section id="tools" class="sec">
+  <div class="sec-head tight">
+    <span class="num">§ 03</span>
+    <h2>Three of them, running</h2>
+  </div>
+  <p class="sec-note">Not screenshots. These work. Nothing is sent anywhere. It all runs in your browser.</p>
+
+  <div class="composer">
+    <div class="composer-head">
+      <h3 class="disp">Message composer</h3>
+      <span class="flag">With confidentiality check</span>
+    </div>
+    <p class="composer-note">The message an assistant writes forty times a week: chasing something, introducing someone, declining, rescheduling, reaching out cold. Pick the situation, give it the facts, get three lengths. Anything you list as confidential gets scanned for before it goes out.</p>
+
+    <div class="composer-grid">
+      <div class="composer-form">
+        <div class="field-block">
+          <div class="fld-label">Situation</div>
+          <div class="pill-row" id="c-situations"></div>
+        </div>
+        <div class="field-block">
+          <div class="fld-label">Tone</div>
+          <div class="pill-row" id="c-tones"></div>
+        </div>
+        <div class="two-col">
+          <label class="stack">Recipient first name
+            <input class="dark-input" id="c_name" placeholder="Priya">
+          </label>
+          <label class="stack">On behalf of (optional)
+            <input class="dark-input" id="c_behalf" placeholder="Marta, our CEO">
+          </label>
+          <label class="stack">Key detail: amount, comp, deadline
+            <input class="dark-input" id="c_detail" placeholder="$180–210k + 0.4%">
+          </label>
+          <label class="stack">Link (optional)
+            <input class="dark-input" id="c_link" placeholder="cal.com/lucia">
+          </label>
+        </div>
+        <label class="stack">Context: what this is about
+          <textarea class="dark-input" id="c_ctx" rows="3" placeholder="a Series A company in agentic payments whose revenue tripled in nine months, hiring a founding engineer to own the ledger and settlement engine"></textarea>
+        </label>
+        <label class="stack">The ask: one line
+          <input class="dark-input" id="c_ask" placeholder="a 20-minute call this week">
+        </label>
+        <label class="stack warn-label">Never mention (comma separated)
+          <input class="dark-input warn" id="c_never" placeholder="client name, valuation">
+        </label>
+        <div class="gen-row">
+          <button type="button" class="gen-btn" id="c_go">Generate</button>
+          <span class="gen-hint">Nothing leaves your browser</span>
+        </div>
+      </div>
+
+      <div class="out-col" id="c_out">
+        <div class="out-empty">Fill in what you have and press Generate. Three lengths come back.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-card-head">
+        <h3 class="disp">Meeting overlap finder</h3>
+        <span class="flag">Live, DST-aware</span>
+      </div>
+      <p class="tool-note">One call, six time zones, and nobody wants a 6am. Mango columns work for everyone. Click a column header to copy the line for the invite.</p>
+      <div class="tz-legend">
+        <span><i class="sw" style="background:#eee7db;border:1px solid rgba(32,30,29,0.12)"></i>Outside hours</span>
+        <span><i class="sw" style="background:#ccdbb2"></i>Working hours locally</span>
+        <span><i class="sw" style="background:#d67f48"></i>Works for everyone</span>
+      </div>
+      <div class="tz-scroll">
+        <div class="tz-inner">
+          <div class="tz-head" id="tz-head"></div>
+          <div id="tz-rows"></div>
+        </div>
+      </div>
+      <p class="tz-hint" id="tz-hint"></p>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-card-head">
+        <h3 class="disp">Follow-up queue</h3>
+        <span class="flag" id="q-threshold-label"></span>
+      </div>
+      <p class="tool-note">Add anyone you're waiting on. The threshold decides who gets chased, so it's a rule instead of something you re-litigate every morning. Drafts are for review, never sent.</p>
+      <div class="queue-form">
+        <label>Name
+          <input class="light-input" id="q_name" placeholder="Priya Raman">
+        </label>
+        <label>Role or subject
+          <input class="light-input" id="q_subject" placeholder="Founding Engineer">
+        </label>
+        <label>Date sent
+          <input class="light-input" id="q_date" type="date">
+        </label>
+        <button type="button" class="add-btn" id="q_add">Add</button>
+      </div>
+
+      <div class="queue-table">
+        <div class="q-head"><span>Name</span><span>Subject</span><span>Waiting</span><span>Status</span></div>
+        <div id="q-rows"></div>
+      </div>
+
+      <div class="queue-actions">
+        <button type="button" class="draft-all-btn" id="q_draft">Draft all overdue</button>
+        <span class="queue-hint" id="q-overdue-label"></span>
+      </div>
+      <div id="q-drafts"></div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="about">
-  <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 06</span><h2>How I got here</h2></div>
-    <div class="about">
-      <figure class="pf up">
-        <img src="/images/portrait.jpg" alt="Portrait of Lucía Fadul" width="520" height="520" loading="lazy">
-        <figcaption class="mono">Lucía Fadul<br>Colombia</figcaption>
-      </figure>
-      <div class="up">
-        <p>I'm from <b>Córdoba</b>, on the Colombian Caribbean coast. My first real job was at the town hall in Chinú, where I administered a database of <b>8,000+ families</b> whose subsidies depended on their kids staying in school and up to date on health checks. Fifty people a day came to the counter. If a record was wrong, a family didn't eat that month.</p>
-        <p>That's where the whole thing starts. I studied <b>Systems and Telecommunications Engineering</b>, taught adults Windows and Office at SENA, then spent two years in Boston as an au pair, which is how I actually learned English, and how I learned that a schedule for three children under five is a production system with no margin.</p>
+<section id="builds" class="sec">
+  <div class="sec-head tight">
+    <span class="num">§ 04</span>
+    <h2>Automations, specified</h2>
+  </div>
+  <p class="sec-note wide">These aren't past projects dressed up as case studies. They're specifications: trigger, steps, and what happens when something is missing, written out precisely enough to hand me one and have it running this week. Every one of them automates something I've done by hand for long enough to know where it breaks. Open any row.</p>
+
+  <div class="bp-list">
+    <details class="bp">
+      <summary>
+        <span class="bp-code">B01</span>
+        <span class="bp-text"><span class="bp-title">Inbox to task, triaged</span><span class="bp-desc">Turns a starred email into a dated task with a named owner, and tells the channel it exists.</span></span>
+        <span class="bp-meta"><span class="bp-platform">Zapier</span><span class="bp-time">~3 hrs/week back</span><span class="chev bp-chev"></span></span>
+      </summary>
+      <div class="bp-flow">
+        <div><div class="fld-label a">Trigger</div><p>You star an email in Gmail</p></div>
+        <div><div class="fld-label b">Step 01</div><p>Reads the sender, the subject and any date mentioned in the body</p></div>
+        <div><div class="fld-label b">Step 02</div><p>Creates a task in Notion or ClickUp with that due date and the right owner</p></div>
+        <div><div class="fld-label b">Step 03</div><p>Attaches the thread link so nobody has to go searching for context</p></div>
+        <div><div class="fld-label c">Result</div><p>Posts in the team channel. Your inbox stays a queue instead of a filing cabinet.</p></div>
       </div>
-      <div class="up">
-        <p class="pull" style="margin-bottom:26px">Everything since has been the same job in a different costume: make the process survive the person running it.</p>
-        <p>Since then it's been remote operations for US teams: executive support in Miami, a back office in Colombia, then payroll, intake and SOPs at a YC health startup, and now recruiting operations for another one, across 50+ active clients.</p>
-        <p>The pattern is consistent enough that I stopped pretending it was a coincidence. I get handed something repetitive and undocumented, and I hand back a written procedure that somebody else can run. Then I go find the next one.</p>
+    </details>
+
+    <details class="bp">
+      <summary>
+        <span class="bp-code">B02</span>
+        <span class="bp-text"><span class="bp-title">Client intake, provisioned in one pass</span><span class="bp-desc">One form submission creates the folder, the contract, the CRM record and the welcome email.</span></span>
+        <span class="bp-meta"><span class="bp-platform">Make</span><span class="bp-time">~90 min per client</span><span class="chev bp-chev"></span></span>
+      </summary>
+      <div class="bp-flow">
+        <div><div class="fld-label a">Trigger</div><p>A new client submits the intake form</p></div>
+        <div><div class="fld-label b">Step 01</div><p>Creates their Drive folder from the standard template</p></div>
+        <div><div class="fld-label b">Step 02</div><p>Generates the contract with their details merged in</p></div>
+        <div><div class="fld-label b">Step 03</div><p>Creates the CRM record and links the folder to it</p></div>
+        <div><div class="fld-label b">Step 04</div><p>Sends the welcome email with the booking link already in it</p></div>
+        <div><div class="fld-label c">Result</div><p>Slack notification with everything linked. Onboarding starts the same hour, not the next day.</p></div>
+      </div>
+    </details>
+
+    <details class="bp">
+      <summary>
+        <span class="bp-code">B03</span>
+        <span class="bp-text"><span class="bp-title">Invoice chase that escalates itself</span><span class="bp-desc">Finds what's overdue, picks the right message for how late it is, and drafts it.</span></span>
+        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time">~2 hrs/week back</span><span class="chev bp-chev"></span></span>
+      </summary>
+      <div class="bp-flow">
+        <div><div class="fld-label a">Trigger</div><p>Runs every weekday at 8am</p></div>
+        <div><div class="fld-label b">Step 01</div><p>Reads the invoice sheet and finds anything unpaid past its due date</p></div>
+        <div><div class="fld-label b">Step 02</div><p>Picks the message by age: a nudge at 7 days, a firmer note at 14, escalation to the account owner at 30</p></div>
+        <div><div class="fld-label b">Step 03</div><p>Creates the draft and stops there. It never sends</p></div>
+        <div><div class="fld-label c">Result</div><p>A morning list of drafts to approve. Nobody gets chased twice and nobody gets forgotten.</p></div>
+      </div>
+    </details>
+
+    <details class="bp">
+      <summary>
+        <span class="bp-code">B04</span>
+        <span class="bp-text"><span class="bp-title">Meeting to action items</span><span class="bp-desc">Pulls commitments out of a call transcript and turns them into tasks with real owners.</span></span>
+        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time">~4 hrs/week back</span><span class="chev bp-chev"></span></span>
+      </summary>
+      <div class="bp-flow">
+        <div><div class="fld-label a">Trigger</div><p>A call transcript lands in the folder</p></div>
+        <div><div class="fld-label b">Step 01</div><p>Separates decisions, commitments and open questions, since each needs different handling</p></div>
+        <div><div class="fld-label b">Step 02</div><p>Assigns each action to the person who agreed to it, on the date they said</p></div>
+        <div><div class="fld-label b">Step 03</div><p>Creates the tasks and posts a summary in the channel</p></div>
+        <div><div class="fld-label c">Result</div><p>Anything without a named owner gets flagged rather than quietly dropped.</p></div>
+      </div>
+    </details>
+
+    <details class="bp">
+      <summary>
+        <span class="bp-code">B05</span>
+        <span class="bp-text"><span class="bp-title">Payroll pre-flight check</span><span class="bp-desc">Runs the checks three days early, so errors get caught before the run instead of after it.</span></span>
+        <span class="bp-meta"><span class="bp-platform">Make</span><span class="bp-time">Catches the expensive mistake</span><span class="chev bp-chev"></span></span>
+      </summary>
+      <div class="bp-flow">
+        <div><div class="fld-label a">Trigger</div><p>Three days before every payroll date</p></div>
+        <div><div class="fld-label b">Step 01</div><p>Pulls the contractor list from Deel and the hours from the tracker</p></div>
+        <div><div class="fld-label b">Step 02</div><p>Compares against last cycle and flags anything moving more than 10%</p></div>
+        <div><div class="fld-label b">Step 03</div><p>Flags missing timesheets, expired contracts and unconfirmed bank details</p></div>
+        <div><div class="fld-label c">Result</div><p>A review checklist in your inbox with three days of runway to fix whatever it found.</p></div>
+      </div>
+    </details>
+
+    <details class="bp">
+      <summary>
+        <span class="bp-code">B06</span>
+        <span class="bp-text"><span class="bp-title">Weekly leadership brief, assembled</span><span class="bp-desc">The Friday summary nobody has time to write, written before anyone asks for it.</span></span>
+        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time">~2 hrs/week back</span><span class="chev bp-chev"></span></span>
+      </summary>
+      <div class="bp-flow">
+        <div><div class="fld-label a">Trigger</div><p>Friday at 3pm</p></div>
+        <div><div class="fld-label b">Step 01</div><p>Pulls the week's calendar, CRM movement and closed tasks</p></div>
+        <div><div class="fld-label b">Step 02</div><p>Compares against last week and surfaces only what actually changed</p></div>
+        <div><div class="fld-label b">Step 03</div><p>Lists open items with names and dates attached to them</p></div>
+        <div><div class="fld-label c">Result</div><p>One brief in the inbox before the weekend. Monday starts with decisions instead of archaeology.</p></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="design" class="sec">
+  <div class="sec-head tight">
+    <span class="num">§ 05</span>
+    <h2>The other half: design</h2>
+  </div>
+  <p class="sec-note wide">Operations pays the bills, but a good half of the job has always been making the thing look like it came from one company. Cards, signage, social sets, document templates. The client work sits in accounts I no longer have access to, so these specimens are built fresh on an invented brand. The controls under each one are the real decisions, and they print the numbers you would type into Canva.</p>
+
+  <div class="name-tester">
+    <span class="lbl">Stress test the name</span>
+    <div id="name-buttons"></div>
+  </div>
+
+  <div class="design-grid">
+    <div class="specimen" id="d-card">
+      <div class="specimen-no">01</div>
+      <div class="specimen-head"><h3 class="disp">Business card</h3><span class="flag">Print</span></div>
+      <p class="specimen-spec">3.5 × 2 in · 0.125 in bleed · one typeface</p>
+
+      <div class="stage bc-stage">
+        <div class="bc-card" id="bc-card">
+          <div class="bc-mark">Sample Realty</div>
+          <div>
+            <div class="bc-name" id="bc-name">Daniela Restrepo</div>
+            <div class="bc-title">Sales Representative</div>
+          </div>
+          <div>
+            <div class="bc-rule"></div>
+            <div class="bc-meta" id="bc-meta">
+              <span>416 000 0000</span>
+              <span>daniela@samplerealty.ca</span>
+              <span>Toronto, ON</span>
+              <span>samplerealty.ca</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="art-cap">Drawn at trim, not a screenshot. Resize the window and the type scales with the card.</p>
+
+      <div class="control-stack">
+        <div class="control-row">
+          <div class="control-top"><span>Name size</span><span class="control-val" id="v-bcName">23 pt</span></div>
+          <input type="range" id="bcName" min="14" max="34" step="1" value="23">
+        </div>
+        <div class="control-row">
+          <div class="control-top"><span>Name tracking</span><span class="control-val" id="v-bcTrack">−30</span></div>
+          <input type="range" id="bcTrack" min="-60" max="40" step="5" value="-30">
+        </div>
+        <div>
+          <div class="control-group-label">Contact block</div>
+          <div class="pill-row" id="bc-contact-buttons" style="gap:7px"></div>
+        </div>
+      </div>
+
+      <div class="spec-readout" id="bc-spec"></div>
+      <div class="spec-warn" id="bc-warn">The name is past the safe margin. Size it down, or the long-name agents get a broken card.</div>
+
+      <div class="brief-block">
+        <div class="fld-label a">Brief</div>
+        <p>A card layout that has to hold for eighty-five people. One card is not the problem. The template is, and it always breaks on the name.</p>
+        <div class="fld-label b">Constraints</div>
+        <ul class="dot-list small" style="margin-bottom:18px">
+          <li><span class="dot" style="background:#a19786"></span>No brand guide, so weight and size carry the hierarchy instead of colour</li>
+          <li><span class="dot" style="background:#a19786"></span>Six pieces of contact information have to fit without crowding the name</li>
+          <li><span class="dot" style="background:#a19786"></span>Nothing within a quarter inch of the trim</li>
+        </ul>
+        <div class="fld-label c">What I decided</div>
+        <ul class="dot-list small">
+          <li><span class="dot sage"></span>The person's name is the largest element, not the brokerage. A card is handed over by a human.</li>
+          <li><span class="dot sage"></span>Name and title pair tightly, then a rule opens space before the contact block, so the eye reads two groups instead of five lines</li>
+          <li><span class="dot sage"></span>Contact runs in two columns rather than one stack, which stops the lower third going heavy</li>
+          <li><span class="dot sage"></span>Tracking pulled in slightly. At this size the default spacing reads loose against the small text under it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="specimen" id="d-sign">
+      <div class="specimen-no">02</div>
+      <div class="specimen-head"><h3 class="disp">Lawn sign and rider</h3><span class="flag">Large format</span></div>
+      <p class="specimen-spec">24 × 18 in and 24 × 6 in · read from a moving car</p>
+
+      <div class="stage sign-stage">
+        <div class="sign-wrap" id="sign-wrap">
+          <div class="sign-card">
+            <div class="sign-mark" style="font-size:8.75cqw">Sample Realty</div>
+            <div class="sign-rule"></div>
+            <div class="sign-name" id="sign-name" style="font-size:6.67cqw">Daniela Restrepo</div>
+            <div class="sign-phone" style="font-size:8.33cqw">416 000 0000</div>
+          </div>
+          <div class="rider-card">
+            <div class="rider-text" id="rider-text" style="font-size:6.25cqw">OPEN HOUSE SUNDAY</div>
+          </div>
+        </div>
+      </div>
+      <p class="art-cap" id="sign-distance">Viewing distance: standing at the sign</p>
+
+      <div class="control-stack">
+        <div class="control-row">
+          <div class="control-top"><span>Step back from the sign</span><span class="control-val" id="v-stepBack">0 ft</span></div>
+          <input type="range" id="stepBack" min="0" max="60" step="5" value="0">
+        </div>
+        <div class="control-row">
+          <div class="control-top"><span>Rider line</span><span class="control-val" id="v-rider">1.5 in</span></div>
+          <input type="range" id="rider" min="1" max="3.4" step="0.1" value="1.5">
+        </div>
+      </div>
+
+      <div class="spec-readout" id="sign-spec"></div>
+      <div class="spec-warn" id="sign-warn">That is wider than the sign. It will spill past the 2 in margin.</div>
+
+      <div class="brief-block">
+        <div class="fld-label a">Brief</div>
+        <p>Signage that stays legible from across a street, in the rain, at thirty kilometres an hour. The only piece here where viewing distance sets the type size instead of taste.</p>
+        <div class="fld-label b">Constraints</div>
+        <ul class="dot-list small" style="margin-bottom:18px">
+          <li><span class="dot" style="background:#a19786"></span>Roughly one inch of cap height per ten feet of reading distance, so the phone number sets its own minimum</li>
+          <li><span class="dot" style="background:#a19786"></span>Three pieces of information at most. Anything past that will not be read.</li>
+          <li><span class="dot" style="background:#a19786"></span>The rider is one line, with no room to be clever</li>
+        </ul>
+        <div class="fld-label c">What I decided</div>
+        <ul class="dot-list small">
+          <li><span class="dot sage"></span>Brokerage largest, at the top. From the street the brand is what identifies the sign; the agent details are for people who already stopped.</li>
+          <li><span class="dot sage"></span>Contrast over colour. A mid tone on a mid tone disappears at distance even when it looks fine on screen.</li>
+          <li><span class="dot sage"></span>Generous margins, because signs get bent, mounted crooked and half hidden by a hedge.</li>
+          <li><span class="dot sage"></span>Use the step-back control rather than your eye at full screen. That is the only honest test.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="specimen" id="d-social">
+      <div class="specimen-no">03</div>
+      <div class="specimen-head"><h3 class="disp">Instagram set</h3><span class="flag">Social template</span></div>
+      <p class="specimen-spec">1080 × 1080 · three states of one listing · built for someone else to fill in</p>
+
+      <div class="ig-grid">
+        <div class="ig-tile t1" id="ig-1">
+          <div class="ig-scrim"></div>
+          <div class="ig-content">
+            <div class="ig-label">NEW LISTING</div>
+            <div class="ig-addr">412 Roncesvalles Ave</div>
+            <div class="ig-agent" data-fill="name">Daniela Restrepo</div>
+          </div>
+        </div>
+        <div class="ig-tile t2" id="ig-2">
+          <div class="ig-scrim"></div>
+          <div class="ig-content">
+            <div class="ig-label">OPEN HOUSE SUN 2 TO 4</div>
+            <div class="ig-addr">412 Roncesvalles Ave</div>
+            <div class="ig-agent" data-fill="name">Daniela Restrepo</div>
+          </div>
+        </div>
+        <div class="ig-tile t3" id="ig-3">
+          <div class="ig-scrim"></div>
+          <div class="ig-content">
+            <div class="ig-label">SOLD</div>
+            <div class="ig-addr">412 Roncesvalles Ave</div>
+            <div class="ig-agent" data-fill="name">Daniela Restrepo</div>
+          </div>
+        </div>
+      </div>
+      <p class="art-cap">Three deliberately different photo values: bright, mid, dark. One scrim value has to serve all three.</p>
+
+      <div class="control-stack">
+        <div class="control-row">
+          <div class="control-top"><span>Address size</span><span class="control-val" id="v-igAddr">62 px</span></div>
+          <input type="range" id="igAddr" min="38" max="86" step="2" value="62">
+        </div>
+        <div class="control-row">
+          <div class="control-top"><span>Scrim darkness</span><span class="control-val" id="v-igScrim">86%</span></div>
+          <input type="range" id="igScrim" min="20" max="100" step="2" value="86">
+        </div>
+        <div class="control-row">
+          <div class="control-top"><span>Scrim height</span><span class="control-val" id="v-igScrimH">58%</span></div>
+          <input type="range" id="igScrimH" min="25" max="100" step="1" value="58">
+        </div>
+      </div>
+
+      <div class="spec-readout" id="ig-spec"></div>
+      <div class="spec-warn" id="ig-warn">At this value the text is fighting the bright photo on the left. Check the first tile, not the last.</div>
+
+      <div class="brief-block">
+        <div class="fld-label a">Brief</div>
+        <p>New listing, open house, sold. Three posts that read as a set when they surface months apart in a feed, and that someone else can fill in without asking me anything.</p>
+        <div class="fld-label b">Constraints</div>
+        <ul class="dot-list small" style="margin-bottom:18px">
+          <li><span class="dot" style="background:#a19786"></span>Photos arrive at unpredictable crops and quality, so the layout cannot depend on the image</li>
+          <li><span class="dot" style="background:#a19786"></span>Text has to stay legible over photography without an overlay swallowing the house</li>
+          <li><span class="dot" style="background:#a19786"></span>Posted weekly, so filling it in should take minutes</li>
+        </ul>
+        <div class="fld-label c">What I decided</div>
+        <ul class="dot-list small">
+          <li><span class="dot sage"></span>The text block holds the same position on all three. Only the label and the photo change, which is what makes them read as a series.</li>
+          <li><span class="dot sage"></span>A gradient scrim instead of a flat box, so the photo stays visible and one value works over both bright and dark images</li>
+          <li><span class="dot sage"></span>The address is the headline, not the status. People scroll for the property.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="specimen dark" id="d-doc">
+      <div class="specimen-no">04</div>
+      <div class="specimen-head"><h3 class="disp">Recruiting template system</h3><span class="flag">Real prior work, rebuilt</span></div>
+      <p class="specimen-spec">Contrario AI · adopted org-wide · around 200 documents built on it</p>
+
+      <div class="doc-preview">
+        <div class="doc-kicker">Role specification</div>
+        <div class="doc-h1">Founding Engineer</div>
+        <div class="doc-sub">Series A · agentic payments · San Francisco</div>
+        <div class="doc-h2">About the role</div>
+        <p class="doc-p">You would own the ledger and settlement engine end to end, from the data model through the reconciliation logic that finance actually closes the month on.</p>
+        <div class="doc-h2">What you will own</div>
+        <ul class="doc-list">
+          <li><span class="dot"></span>Design the double-entry ledger and its invariants</li>
+          <li><span class="dot"></span>Ship the settlement engine to production</li>
+          <li><span class="dot"></span>Decide the build and buy line on payment rails</li>
+        </ul>
+        <div class="doc-h2">Must have</div>
+        <p class="doc-p" style="margin-bottom:0">Five years building systems where money moves, and the judgment to know which correctness problems are worth slowing down for.</p>
+      </div>
+      <p class="art-cap" style="color:var(--dark-muted2)">Rebuilt here from the original, which lives in a client account.</p>
+
+      <div class="brief-block">
+        <div class="fld-label dark-a">Brief</div>
+        <p>Every recruiter wrote job descriptions in their own format, so clients received documents that did not look like they came from the same company. One template the team would actually use.</p>
+        <div class="fld-label dark-b">Constraints</div>
+        <ul class="dot-list small" style="margin-bottom:18px">
+          <li><span class="dot"></span>Documents get pasted into LinkedIn, Notion and client email, so the hierarchy has to survive losing all of its styling</li>
+          <li><span class="dot"></span>Non-designers fill them in daily, so anything fussy is broken within a week</li>
+          <li><span class="dot"></span>Existing colours and one typeface, with no licensing budget</li>
+        </ul>
+        <div class="fld-label dark-c">What I decided</div>
+        <ul class="dot-list small" style="margin-bottom:18px">
+          <li><span class="dot sage"></span>Three levels of hierarchy and no more, which are role title, section and body, sized far enough apart to read the structure at a glance</li>
+          <li><span class="dot sage"></span>Section headings carry weight rather than colour, so the page survives greyscale printing and a plain-text paste</li>
+          <li><span class="dot sage"></span>A fixed line length on body copy. That was the change that made the documents start to feel finished.</li>
+        </ul>
+        <div class="fld-label dark-a">Result</div>
+        <p>Around 200 job descriptions built on it, and the JD Package Engine in section 02 is this template with the writing rules attached.</p>
+        <div class="chips">
+          <span class="chip">Canva</span><span class="chip">Docs</span><span class="chip">Notion</span><span class="chip">Adobe CS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="numbers-band">
+    <div>
+      <h3 class="disp">Your numbers</h3>
+      <p>Move the sliders and take the numbers straight to Canva.</p>
+    </div>
+    <button type="button" class="numbers-btn" id="copy-spec">Copy the spec</button>
+  </div>
+</section>
+
+<section id="about" class="sec">
+  <div class="sec-head">
+    <span class="num">§ 06</span>
+    <h2>How I got here</h2>
+  </div>
+  <div class="about-grid">
+    <figure class="portrait-fig">
+      <img src="/images/portrait.jpg" alt="Portrait of Lucía Fadul" width="520" height="520" loading="lazy">
+      <figcaption>Lucía Fadul<br>Colombia</figcaption>
+    </figure>
+    <div class="about-copy">
+      <p class="lede">I'm from <strong>Córdoba</strong>, on the Colombian Caribbean coast. My first real job was at the town hall in Chinú, where I administered a database of <strong>8,000+ families</strong> whose subsidies depended on their kids staying in school and up to date on health checks. Fifty people a day came to the counter. If a record was wrong, a family didn't eat that month.</p>
+      <p>That's where the whole thing starts. I studied <strong>Systems and Telecommunications Engineering</strong>, taught adults Windows and Office at SENA, then spent two years in Boston as an au pair, which is how I actually learned English, and how I learned that a schedule for three children under five is a production system with no margin.</p>
+      <p class="pull">Everything since has been the same job in a different costume: make the process survive the person running it.</p>
+      <p>Since then it's been remote operations for US teams: executive support in Miami, a back office in Colombia, then payroll, intake and SOPs at a YC health startup, and now recruiting operations for another one, across 50+ active clients.</p>
+      <p style="margin-bottom:0">The pattern is consistent enough that I stopped pretending it was a coincidence. I get handed something repetitive and undocumented, and I hand back a written procedure that somebody else can run. Then I go find the next one.</p>
+    </div>
+  </div>
+</section>
+
+<section id="record" class="sec">
+  <div class="sec-head">
+    <span class="num">§ 07</span>
+    <h2>Record</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="t-row">
+      <span class="t-no">01</span>
+      <div>
+        <div class="t-date">Feb 2026 – present</div>
+        <div class="t-role disp">Operations Assistant</div>
+        <div class="t-org">Contrario AI (YC 22) · Remote, US</div>
+      </div>
+      <p class="t-desc">Day-to-day operations across 50+ active clients and recruiter partners. Built and maintains the five systems indexed above.</p>
+    </div>
+    <div class="t-row">
+      <span class="t-no">02</span>
+      <div>
+        <div class="t-date">Mar 2025 – Apr 2026</div>
+        <div class="t-role disp">Operations Manager</div>
+        <div class="t-org">Solum Health (YC 22) · Remote, US</div>
+      </div>
+      <p class="t-desc">Multi-country payroll, client scheduling and intake, insurance verification, SOP authoring, AI agent workflow design, and QA testing alongside engineering.</p>
+    </div>
+    <div class="t-row">
+      <span class="t-no">03</span>
+      <div>
+        <div class="t-date">Sep 2024 – Feb 2025</div>
+        <div class="t-role disp">Back Office Assistant</div>
+        <div class="t-org">Leanware · Remote, Colombia</div>
+      </div>
+      <p class="t-desc">Administrative, financial and operational support. Scheduling, invoicing and time tracking, with no-code automation replacing the manual steps.</p>
+    </div>
+    <div class="t-row">
+      <span class="t-no">04</span>
+      <div>
+        <div class="t-date">Sep 2022 – Aug 2024</div>
+        <div class="t-role disp">Supervisor &amp; Virtual Office Assistant</div>
+        <div class="t-org">The Org / AO Investment · Remote, US</div>
+      </div>
+      <p class="t-desc">Led a remote follow-up team. Built the manuals, workflows and training programs, and produced the monthly management reports leadership decided from.</p>
+    </div>
+    <div class="t-row">
+      <span class="t-no">05</span>
+      <div>
+        <div class="t-date">Aug 2022 – Dec 2024</div>
+        <div class="t-role disp">Marketing &amp; Administrative Assistant</div>
+        <div class="t-org">Melocoton LLC · Remote, Colombia</div>
+      </div>
+      <p class="t-desc">Managed CEO and CCO calendars, cutting scheduling conflicts by 40%. Wrote the SOPs and training manuals that halved new-hire onboarding time.</p>
+    </div>
+    <div class="t-row">
+      <span class="t-no">06</span>
+      <div>
+        <div class="t-date">2016 – 2022</div>
+        <div class="t-role disp">Earlier</div>
+        <div class="t-org">Fueled on Bacon · EF Education First · Town Hall Chinú · SENA</div>
+      </div>
+      <p class="t-desc">Executive assistant work in Miami, two years in Boston as an au pair, a public-sector database of 8,000+ beneficiary records, and IT instruction for adult learners.</p>
+    </div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <h4 class="disp">Automation &amp; AI</h4>
+      <div class="skill-tags">
+        <span class="skill-tag orange">Zapier</span><span class="skill-tag orange">Make</span><span class="skill-tag orange">n8n</span><span class="skill-tag orange">Claude</span><span class="skill-tag orange">ChatGPT</span><span class="skill-tag orange">Python</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4 class="disp">Ops &amp; projects</h4>
+      <div class="skill-tags">
+        <span class="skill-tag neutral">Notion</span><span class="skill-tag neutral">Airtable</span><span class="skill-tag neutral">ClickUp</span><span class="skill-tag neutral">Slack</span><span class="skill-tag neutral">Pylon</span><span class="skill-tag neutral">Google Workspace</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4 class="disp">Finance &amp; people</h4>
+      <div class="skill-tags">
+        <span class="skill-tag green">Deel</span><span class="skill-tag green">QuickBooks</span><span class="skill-tag green">Zoho</span><span class="skill-tag green">International payroll</span><span class="skill-tag green">Contracts &amp; onboarding</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h4 class="disp">CRM &amp; growth</h4>
+      <div class="skill-tags">
+        <span class="skill-tag neutral">HubSpot</span><span class="skill-tag neutral">Salesforce</span><span class="skill-tag neutral">GoHighLevel</span><span class="skill-tag neutral">Canva</span><span class="skill-tag neutral">Adobe Creative Suite</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="record">
-  <div class="wrap">
-    <div class="sec-head"><span class="mono num">§ 07</span><h2>Record</h2></div>
-    <div class="tl">
-      <div class="tli up"><span class="n">01</span><span class="when">Feb 2026 – present</span>
-        <div><h4>Operations Assistant</h4><p class="org">Contrario AI (YC 22) · Remote, US</p>
-        <p class="d">Day-to-day operations across 50+ active clients and recruiter partners. Built and maintains the five systems indexed above.</p></div></div>
-      <div class="tli up"><span class="n">02</span><span class="when">Mar 2025 – Apr 2026</span>
-        <div><h4>Operations Manager</h4><p class="org">Solum Health (YC 22) · Remote, US</p>
-        <p class="d">Multi-country payroll, client scheduling and intake, insurance verification, SOP authoring, AI agent workflow design, and QA testing alongside engineering.</p></div></div>
-      <div class="tli up"><span class="n">03</span><span class="when">Sep 2024 – Feb 2025</span>
-        <div><h4>Back Office Assistant</h4><p class="org">Leanware · Remote, Colombia</p>
-        <p class="d">Administrative, financial and operational support. Scheduling, invoicing and time tracking, with no-code automation replacing the manual steps.</p></div></div>
-      <div class="tli up"><span class="n">04</span><span class="when">Sep 2022 – Aug 2024</span>
-        <div><h4>Supervisor &amp; Virtual Office Assistant</h4><p class="org">The Org / AO Investment · Remote, US</p>
-        <p class="d">Led a remote follow-up team. Built the manuals, workflows and training programs, and produced the monthly management reports leadership decided from.</p></div></div>
-      <div class="tli up"><span class="n">05</span><span class="when">Aug 2022 – Dec 2024</span>
-        <div><h4>Marketing &amp; Administrative Assistant</h4><p class="org">Melocoton LLC · Remote, Colombia</p>
-        <p class="d">Managed CEO and CCO calendars, cutting scheduling conflicts by 40%. Wrote the SOPs and training manuals that halved new-hire onboarding time.</p></div></div>
-      <div class="tli up"><span class="n">06</span><span class="when">2016 – 2022</span>
-        <div><h4>Earlier</h4><p class="org">Fueled on Bacon · EF Education First · Town Hall Chinú · SENA</p>
-        <p class="d">Executive assistant work in Miami, two years in Boston as an au pair, a public-sector database of 8,000+ beneficiary records, and IT instruction for adult learners.</p></div></div>
-    </div>
-    <div class="st" style="margin-top:clamp(46px,6vw,76px)">
-      <div><h4>Automation &amp; AI</h4><ul><li>Zapier</li><li>Make</li><li>n8n</li><li>Claude</li><li>ChatGPT</li><li>Python</li></ul></div>
-      <div><h4>Ops &amp; projects</h4><ul><li>Notion</li><li>Airtable</li><li>ClickUp</li><li>Slack</li><li>Pylon</li><li>Google Workspace</li></ul></div>
-      <div><h4>Finance &amp; people</h4><ul><li>Deel</li><li>QuickBooks</li><li>Zoho</li><li>International payroll</li><li>Contracts &amp; onboarding</li></ul></div>
-      <div><h4>CRM &amp; growth</h4><ul><li>HubSpot</li><li>Salesforce</li><li>GoHighLevel</li><li>Canva</li><li>Adobe Creative Suite</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<section class="end" id="contact">
-  <div class="wrap">
-    <span class="mono">§ 08 &nbsp;&nbsp; Open to</span>
-    <h2 style="margin-top:20px">Executive Assistant. Operations. Chief of Staff support.</h2>
+<section id="open" class="sec" style="padding-top:0">
+  <div class="open-box">
+    <span class="num">§ 08 Open to</span>
+    <h2 class="disp">Executive Assistant. Operations. Chief of Staff support.</h2>
     <p>Remote, US hours, English and Spanish. If there's something specific in your workflow you want to see me handle, send it over. I'd rather show the work than describe it.</p>
-    <div class="links">
-      <a class="pri" href="mailto:luciafadul01@gmail.com">luciafadul01@gmail.com</a>
-      <a href="https://www.linkedin.com/in/lufadulm/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="tel:+573043144750">+57 304 314 4750</a>
+    <div class="open-links">
+      <a href="mailto:luciafadul01@gmail.com" class="open-link primary">luciafadul01@gmail.com</a>
+      <a href="https://www.linkedin.com/in/lufadulm/" target="_blank" rel="noopener" class="open-link ghost">LinkedIn</a>
+      <a href="tel:+573043144750" class="open-link ghost">+57 304 314 4750</a>
     </div>
-    <div class="colo mono"><span>Lucía Fadul · Colombia</span><span>Designed, written and built by me</span></div>
   </div>
 </section>
 
-</main>
+<footer class="site-footer">
+  <span>Lucía Fadul · Colombia</span>
+  <span>Designed, written and built by me</span>
+</footer>
+
 <script>
 (function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* reveal */
-  var ups = document.querySelectorAll(".up");
-  if(reduce || !("IntersectionObserver" in window)){
-    ups.forEach(function(e){ e.classList.add("in"); });
-  } else {
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-      });
-    }, {rootMargin:"0px 0px -8% 0px", threshold:.08});
-    ups.forEach(function(e,i){ e.style.transitionDelay = Math.min(i,6)*55+"ms"; io.observe(e); });
-  }
-
-  /* rail */
-  var links = document.querySelectorAll(".rail a");
-  var secs = Array.prototype.map.call(links, function(a){ return document.getElementById(a.dataset.r); });
-  function railSync(){
-    var y = window.scrollY + window.innerHeight*0.35, cur = -1;
-    secs.forEach(function(s,i){ if(s && s.offsetTop <= y) cur = i; });
-    links.forEach(function(a,i){ a.classList.toggle("on", i===cur); });
-  }
-  window.addEventListener("scroll", railSync, {passive:true}); railSync();
-
-  /* clock */
-  function tick(){
-    var el = document.getElementById("clk");
-    if(el) el.textContent = new Intl.DateTimeFormat("en-GB",{timeZone:"America/Bogota",hour:"2-digit",minute:"2-digit"}).format(new Date());
-  }
-  tick(); setInterval(tick, 20000);
-
   var esc = function(s){ return s.replace(/[&<>]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c]; }); };
   var words = function(s){ return s.trim().split(/\s+/).filter(Boolean).length; };
   var v = function(id){ return document.getElementById(id).value.trim(); };
+  var byId = function(id){ return document.getElementById(id); };
 
-  function blk(label, cap, text){
-    var n = words(text), over = cap && n > cap;
-    return '<div class="msg"><div class="msg-h"><span class="mono">'+label+'</span>'+
-      '<span style="display:flex;gap:10px;align-items:center">'+
-      '<span class="count '+(over?"over":"ok")+'">'+n+" words"+(cap?" / "+cap:"")+'</span>'+
-      '<button class="copy" data-copy="'+esc(text).replace(/"/g,"&quot;")+'">Copy</button></span></div>'+
-      "<pre>"+esc(text)+"</pre></div>";
+  /* ===================== composer ===================== */
+  var SITUATIONS = ['Cold outreach', 'Intro on behalf of an exec', 'Chasing something overdue', 'Rescheduling or apologising', 'Declining politely'];
+  var TONES = ['Direct', 'Warm', 'Formal'];
+  var comp = { sit: SITUATIONS[0], tone: TONES[0], copied: -1 };
+
+  function renderPills(container, items, active, onPick){
+    container.innerHTML = '';
+    items.forEach(function(label){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'pill' + (label === active ? ' active' : '');
+      b.textContent = label;
+      b.addEventListener('click', function(){ onPick(label); });
+      container.appendChild(b);
+    });
   }
+  function renderComposerPills(){
+    renderPills(byId('c-situations'), SITUATIONS, comp.sit, function(l){ comp.sit = l; renderComposerPills(); });
+    renderPills(byId('c-tones'), TONES, comp.tone, function(l){ comp.tone = l; renderComposerPills(); });
+  }
+  renderComposerPills();
 
-  /* triage demo */
-  var threads = [
-    {from:"priya.raman@…", sub:"Re: Founding Engineer intro", cat:"followup", label:"Follow-up · day 4"},
-    {from:"team@contrario.ai", sub:"Sourcing sync, Thursday", cat:"internal", label:"Internal"},
-    {from:"d.okafor@…", sub:"Re: Would love to chat, sending times", cat:"reply", label:"Candidate reply"},
-    {from:"mailer-daemon", sub:"Automatic reply: Out of office until Sept 2", cat:"auto", label:"Auto-reply"},
-    {from:"team@contrario.ai", sub:"Excited to let you know… · Staff Designer", cat:"sent", label:"Sent · awaiting"},
-    {from:"j.moreau@…", sub:"Re: Head of GTM, a few questions first", cat:"reply", label:"Candidate reply"},
-    {from:"hello@…", sub:"Partnership enquiry", cat:"inbound", label:"New inbound"},
-    {from:"team@contrario.ai", sub:"Excited to let you know… · Backend Lead", cat:"followup", label:"Follow-up · day 6"}
-  ];
-  var cls = {reply:"b-reply", followup:"b-followup", sent:"b-sent", internal:"b-internal", auto:"b-auto", inbound:"b-sent"};
-  var box = document.getElementById("mailbox");
-  threads.forEach(function(t){
-    var el = document.createElement("div"); el.className = "mail";
-    el.innerHTML = '<span class="mail-from"></span><span class="mail-sub"></span><span class="badge '+cls[t.cat]+'"></span>';
-    el.querySelector(".mail-from").textContent = t.from;
-    el.querySelector(".mail-sub").textContent = t.sub;
-    el.querySelector(".badge").textContent = t.label;
-    box.appendChild(el);
-  });
-  document.getElementById("run").addEventListener("click", function(){
-    var btn = this, out = document.getElementById("out");
-    btn.disabled = true; btn.textContent = "Scanning…";
-    var badges = box.querySelectorAll(".badge"), step = reduce ? 0 : 120;
-    badges.forEach(function(b,i){ setTimeout(function(){ b.classList.add("on"); }, i*step); });
-    setTimeout(function(){
-      var c = {reply:0, followup:0, sent:0, internal:0, auto:0, inbound:0};
-      threads.forEach(function(t){ c[t.cat]++; });
-      document.getElementById("tally").innerHTML =
-        "<div><b>"+c.reply+"</b> replies · respond today</div>"+
-        "<div><b>"+c.followup+"</b> past 3 days · drafts created</div>"+
-        "<div><b>"+c.sent+"</b> awaiting reply</div>"+
-        "<div><b>"+(c.internal+c.auto+c.inbound)+"</b> no action</div>";
-      out.classList.add("on"); btn.textContent = "Triage complete";
-    }, badges.length*step + 200);
-  });
-
-  /* composer */
-  var TONE = {
-    direct:  function(n){ return "Hi "+n+", "; },
-    warm:    function(n){ return "Hi "+n+", hope your week is going well. "; },
-    formal:  function(n){ return "Dear "+n+",\n\n"; }
-  };
-  var SC = {
-    cold: function(f,o){ return {
-      one: o+"I'm working with "+f.ctx+". Worth "+f.ask+"?",
-      msg: o+"I'm working with "+f.ctx+".\n\n"+f.detail+". I thought of you before I thought of a list.\n\nOpen to "+f.ask+"?"+(f.link?" "+f.link:""),
-      eml: o+"I'm reaching out about "+f.ctx+".\n\n"+(f.link?"Grab a time here: "+f.link+"\n\n":"")+
-           "The relevant details: "+f.detail+". "+(f.boss?"You'd be working directly with "+f.boss+". ":"")+
-           "They move quickly, so this won't drag on for months.\n\nIf the timing is wrong, say so and I'll leave it there. Otherwise, "+f.ask+" is all I'm asking for."
-    };},
-    intro: function(f,o){ return {
-      one: o+"introducing you to "+(f.boss||"my colleague")+" about "+f.ctx+". "+f.ask+"?",
-      msg: o+"I'm writing on behalf of "+(f.boss||"my colleague")+" about "+f.ctx+".\n\n"+f.detail+".\n\nI'm looking after the scheduling, so "+f.ask+". Just reply here and I'll handle the rest."+(f.link?"\n\n"+f.link:""),
-      eml: o+"I'm writing on behalf of "+(f.boss||"my colleague")+", who'd like to speak with you about "+f.ctx+".\n\n"+
-           (f.link?"You can book directly here: "+f.link+"\n\n":"")+
-           "Context: "+f.detail+".\n\nI handle the calendar, so anything scheduling-related comes to me rather than to them. Reply here with "+f.ask+" and I'll confirm within the day."
-    };},
-    chase: function(f,o){ return {
-      one: o+"following up on "+f.ctx+". "+f.detail+". Can you confirm "+f.ask+"?",
-      msg: o+"following up on "+f.ctx+". I wanted to make sure it hadn't got buried.\n\nWhere it stands: "+f.detail+".\n\nCould you confirm "+f.ask+"? If something's blocking it on your side, tell me what and I'll work around it."+(f.link?"\n\n"+f.link:""),
-      eml: o+"I'm following up on "+f.ctx+".\n\nWhere things stand: "+f.detail+". "+(f.link?"Details here: "+f.link+" ":"")+
-           "\n\nI'd like to close this out rather than keep it open, so could you confirm "+f.ask+"?\n\nIf it's stuck on something, let me know what it is, since chasing you again next week helps neither of us."
-    };},
-    resched: function(f,o){ return {
-      one: o+"I need to move "+f.ctx+". "+f.detail+". Does "+f.ask+" work?",
-      msg: o+"I need to move "+f.ctx+", and I'm sorry for the short notice.\n\n"+f.detail+".\n\nWould "+f.ask+" work instead? If not, send me two windows that do and I'll make one of them happen."+(f.link?"\n\n"+f.link:""),
-      eml: o+"I need to move "+f.ctx+", and I want to apologise for doing it at short notice.\n\n"+
-           "The reason, briefly: "+f.detail+".\n\n"+(f.link?"You can pick a new time directly here: "+f.link+"\n\n":"")+
-           "Would "+f.ask+" work? If none of those suit, send me two windows that do and I'll build the rest of the day around them. The change is on my side, so the inconvenience shouldn't be on yours."
-    };},
-    decline: function(f,o){ return {
-      one: o+"we're going to pass on "+f.ctx+". "+f.detail+". Thank you for putting it together.",
-      msg: o+"thank you for "+f.ctx+". I know what goes into putting one together.\n\nWe're going to pass. "+f.detail+".\n\nI'd rather tell you now than leave you waiting on a maybe. "+f.ask+".",
-      eml: o+"thank you for "+f.ctx+". I know how much work goes into one of these.\n\n"+
-           "We've decided to pass, and I'd rather tell you plainly than leave you chasing a maybe. "+f.detail+".\n\n"+
-           "This isn't a reflection of the quality of what you sent. "+f.ask+", and I'll keep your details on file so we're not starting from zero next time."
-    };}
-  };
-  document.getElementById("c_go").addEventListener("click", function(){
+  function buildComposer(){
     var f = {
-      ctx: v("c_ctx"), ask: v("c_ask"), detail: v("c_detail"),
-      link: v("c_link"), boss: v("c_boss"), name: v("c_name") || "there"
+      name: v('c_name'), behalf: v('c_behalf'), detail: v('c_detail'),
+      link: v('c_link'), ctx: v('c_ctx'), ask: v('c_ask'), never: v('c_never')
     };
-    var m = SC[document.getElementById("c_sc").value](f, TONE[document.getElementById("c_tone").value](f.name));
+    var n = f.name || 'there';
+    var greet = comp.tone === 'Formal' ? 'Dear ' + n + ',' : 'Hi ' + n + ',';
+    var sign = comp.tone === 'Formal' ? 'Kind regards,\nLucía' : comp.tone === 'Warm' ? 'Thanks so much,\nLucía' : 'Thanks,\nLucía';
+    var ask = f.ask || 'a short call this week';
+    var linkLine = f.link ? 'Grab a time here: ' + f.link : '';
+    var P = {
+      'Cold outreach': [
+        f.ctx ? 'I am reaching out about ' + f.ctx + '.' : 'I am reaching out about a role I think is worth two minutes of your time.',
+        f.detail ? 'The part most people want up front: ' + f.detail + '.' : '',
+        'If it is worth a look, I am asking for ' + ask + '. If the timing is off, say so and I will close the loop.'
+      ],
+      'Intro on behalf of an exec': [
+        (f.behalf ? 'I run operations for ' + f.behalf + '. ' : 'I am writing on behalf of our team. ') + (f.ctx ? 'This is about ' + f.ctx + '.' : ''),
+        f.detail ? 'Relevant detail: ' + f.detail + '.' : '',
+        'I am holding time for ' + ask + '. ' + linkLine
+      ],
+      'Chasing something overdue': [
+        f.ctx ? 'Following up on ' + f.ctx + '.' : 'Following up on my last note.',
+        f.detail ? 'For reference: ' + f.detail + '.' : '',
+        'Could you confirm ' + ask + '? If it has moved, tell me the new date and I will work to it.'
+      ],
+      'Rescheduling or apologising': [
+        f.ctx ? 'I need to move ' + f.ctx + ', and that is on me.' : 'I need to move our time, and that is on me.',
+        f.detail ? 'Context: ' + f.detail + '.' : '',
+        'I can do ' + ask + '. ' + (linkLine || 'Send me a window that works and I will make it work.')
+      ],
+      'Declining politely': [
+        f.ctx ? 'Thank you for thinking of me on ' + f.ctx + '.' : 'Thank you for thinking of me.',
+        f.detail ? 'The honest reason: ' + f.detail + '.' : '',
+        'I am going to pass this time. If ' + ask + ' becomes useful later, I would be glad to revisit it.'
+      ]
+    };
+    var p = (P[comp.sit] || P['Cold outreach']).map(function(x){ return (x || '').trim(); }).filter(Boolean);
+    var one = greet + ' ' + p[p.length - 1];
+    var std = greet + '\n\n' + p[0] + '\n\n' + p[p.length - 1] + '\n\n' + sign;
+    var full = greet + '\n\n' + p.join('\n\n') + (linkLine && p.join(' ').indexOf(linkLine) === -1 ? '\n\n' + linkLine : '') + '\n\n' + sign;
 
-    var never = v("c_never").split(/,\s*/).filter(Boolean);
-    var all = (m.one+" "+m.msg+" "+m.eml).toLowerCase();
-    var hits = never.filter(function(t){ return all.indexOf(t.toLowerCase()) > -1; });
-    var guard = hits.length
-      ? '<div class="guard fail"><b>HOLD</b>: these appear in the drafts and you marked them confidential: '+hits.join(", ")+". Take them out, or move them to an internal note, before this goes anywhere.</div>"
-      : '<div class="guard pass"><b>CLEAR</b>: none of the '+never.length+" confidential terms appear in any of the three drafts.</div>";
+    var banned = f.never.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+    var all = (one + ' ' + std + ' ' + full).toLowerCase();
+    var flags = banned.filter(function(b){ return all.indexOf(b.toLowerCase()) !== -1; });
 
-    var out = document.getElementById("c_out");
-    out.innerHTML = guard + blk("One-liner · chat or DM", 45, m.one) +
-      blk("Message · email or long-form DM", 130, m.msg) +
-      blk("Full email", 220, m.eml);
-    out.classList.add("on");
-  });
+    var guard = flags.length
+      ? '<div class="flag-box"><strong>Confidentiality check failed</strong>Found in the draft: ' + esc(flags.join(', ')) + '. Rewrite before this goes out.</div>'
+      : '';
 
-  /* blueprints */
-  Array.prototype.forEach.call(document.querySelectorAll(".bp-h"), function(btn){
-    btn.addEventListener("click", function(){
-      var bp = btn.parentNode, open = bp.classList.toggle("open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-      if(open && !reduce){
-        Array.prototype.forEach.call(bp.querySelectorAll(".node"), function(n,i){
-          n.style.transitionDelay = (i*80)+"ms";
-        });
-      }
-    });
-  });
+    var defs = [['One line', one, 0], ['Standard', std, 1], ['Full', full, 2]];
+    var cards = defs.map(function(d){
+      return '<div class="out-card"><div class="out-card-head"><span class="lbl">' + d[0] + '</span>' +
+        '<span class="meta"><span class="words">' + words(d[1]) + ' words</span>' +
+        '<button type="button" class="copy-btn" data-copy-idx="' + d[2] + '">Copy</button></span></div>' +
+        '<p>' + esc(d[1]) + '</p></div>';
+    }).join('');
 
-  document.addEventListener("click", function(e){
-    var b = e.target.closest(".copy"); if(!b) return;
-    navigator.clipboard.writeText(b.getAttribute("data-copy")).then(function(){
-      var t = b.textContent; b.textContent = "Copied"; setTimeout(function(){ b.textContent = t; }, 1400);
-    });
-  });
-
-  /* overlap */
-  var zones = [
-    {label:"Colombia (me)", tz:"America/Bogota", abbr:"COT"},
-    {label:"San Francisco", tz:"America/Los_Angeles", abbr:"PT"},
-    {label:"Denver", tz:"America/Denver", abbr:"MT"},
-    {label:"Chicago", tz:"America/Chicago", abbr:"CT"},
-    {label:"New York", tz:"America/New_York", abbr:"ET"},
-    {label:"London", tz:"Europe/London", abbr:"UK"}
-  ];
-  var base = new Date(); base.setUTCMinutes(0,0,0);
-  var utc = function(h){ return new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth(), base.getUTCDate(), h)); };
-  var hourIn = function(tz,d){ return parseInt(new Intl.DateTimeFormat("en-US",{timeZone:tz,hour:"2-digit",hour12:false}).format(d),10); };
-  var slots = [];
-  for(var h=0; h<24; h++){
-    var d = utc(h);
-    var cells = zones.map(function(z){
-      var hr = hourIn(z.tz, d);
-      return {text:new Intl.DateTimeFormat("en-US",{timeZone:z.tz,hour:"numeric",minute:"2-digit",hour12:true}).format(d), work: hr>=9 && hr<=17};
-    });
-    slots.push({i:h, cells:cells, all: cells.every(function(c){ return c.work; })});
+    byId('c_out').innerHTML = guard + cards;
+    byId('c_out').dataset.texts = JSON.stringify([one, std, full]);
   }
-  var vis = slots.filter(function(s){ var hr = hourIn("America/Bogota", utc(s.i)); return hr>=5 && hr<=21; });
-  vis.sort(function(a,b){ return hourIn("America/Bogota", utc(a.i)) - hourIn("America/Bogota", utc(b.i)); });
-  var html = '<thead><tr><th style="cursor:default">Working day</th>';
-  vis.forEach(function(o,k){ html += '<th class="'+(o.all?"all":"")+'" data-k="'+k+'">'+o.cells[0].text.replace(":00","")+"</th>"; });
-  html += "</tr></thead><tbody>";
-  zones.forEach(function(z,zi){
-    html += "<tr><td>"+z.label+' <span style="opacity:.55">'+z.abbr+"</span></td>";
-    vis.forEach(function(o){
-      var c = o.cells[zi];
-      html += '<td class="'+(o.all?"all":(c.work?"work":""))+'">'+c.text.replace(" ","").replace(":00","")+"</td>";
-    });
-    html += "</tr>";
-  });
-  document.getElementById("tztable").innerHTML = html + "</tbody>";
-  document.getElementById("tztable").addEventListener("click", function(e){
-    var th = e.target.closest("th[data-k]"); if(!th) return;
-    var o = vis[parseInt(th.getAttribute("data-k"),10)];
-    var line = zones.map(function(z,zi){ return o.cells[zi].text+" "+z.abbr; }).join("  /  ");
-    navigator.clipboard.writeText(line).then(function(){
-      document.getElementById("tzcopied").textContent = "Copied: "+line;
+  byId('c_go').addEventListener('click', buildComposer);
+  byId('c_out').addEventListener('click', function(e){
+    var b = e.target.closest('.copy-btn'); if(!b) return;
+    var texts = JSON.parse(byId('c_out').dataset.texts || '[]');
+    var text = texts[parseInt(b.getAttribute('data-copy-idx'), 10)];
+    if(text === undefined) return;
+    navigator.clipboard.writeText(text).then(function(){
+      var t = b.textContent; b.textContent = 'Copied';
+      setTimeout(function(){ b.textContent = t; }, 1600);
     });
   });
 
-  /* queue */
-  var DAY = 86400000, today = new Date(); today.setHours(0,0,0,0);
-  var iso = function(d){ return new Date(d).toISOString().slice(0,10); };
-  var q = [
-    {name:"Priya Raman", role:"Founding Engineer", sent: iso(today - 4*DAY)},
-    {name:"Daniel Okafor", role:"Head of GTM", sent: iso(today - 1*DAY)},
-    {name:"Jules Moreau", role:"Backend Lead", sent: iso(today - 7*DAY)}
+  /* ===================== overlap finder ===================== */
+  var ZONES = [
+    { city: 'Bogotá', tz: 'America/Bogota' },
+    { city: 'San Francisco', tz: 'America/Los_Angeles' },
+    { city: 'New York', tz: 'America/New_York' },
+    { city: 'London', tz: 'Europe/London' },
+    { city: 'Berlin', tz: 'Europe/Berlin' },
+    { city: 'Bangalore', tz: 'Asia/Kolkata' }
   ];
-  document.getElementById("q_date").value = iso(today);
-  var days = function(s){ return Math.max(0, Math.round((today - new Date(s+"T00:00:00")) / DAY)); };
-  var stat = function(n){ return n >= 6 ? {k:"over", t:"Overdue"} : n >= 3 ? {k:"due", t:"Follow up"} : {k:"wait", t:"Awaiting"}; };
-  function render(){
-    document.querySelector("#q_table tbody").innerHTML = q.map(function(r){
-      var n = days(r.sent), s = stat(n);
-      return "<tr><td>"+esc(r.name)+'</td><td style="opacity:.6">'+esc(r.role)+"</td>"+
-        '<td style="font-family:var(--mono);font-size:11px">'+n+(n===1?" day":" days")+"</td>"+
-        '<td><span class="pill p-'+s.k+'">'+s.t+"</span></td></tr>";
-    }).join("");
+  var WORK_START = 9, WORK_END = 18;
+
+  function hourOf(date, tz){
+    var parts = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(date);
+    var h = parseInt(parts.find(function(p){ return p.type === 'hour'; }).value, 10);
+    var m = parts.find(function(p){ return p.type === 'minute'; }).value;
+    return { h: h === 24 ? 0 : h, m: m };
   }
-  render();
-  document.getElementById("q_add").addEventListener("click", function(){
-    var n = v("q_name"), r = v("q_role"), d = v("q_date");
-    if(!n || !d){ document.getElementById("q_name").focus(); return; }
-    q.push({name:n, role:r || "n/a", sent:d});
-    ["q_name","q_role"].forEach(function(id){ document.getElementById(id).value = ""; });
-    render();
-  });
-  document.getElementById("q_draft").addEventListener("click", function(){
-    var due = q.filter(function(r){ return days(r.sent) >= 3; }), out = document.getElementById("q_out");
-    if(!due.length){
-      out.innerHTML = '<div class="guard pass"><b>NOTHING DUE</b>: everyone is inside the three-day window.</div>';
-      out.classList.add("on"); return;
+  function renderOverlap(){
+    var base = new Date(); base.setUTCHours(0, 0, 0, 0);
+    var slots = []; for(var i = 0; i < 24; i++) slots.push(new Date(base.getTime() + i * 3600000));
+    var grid = ZONES.map(function(z){ return slots.map(function(d){ return hourOf(d, z.tz); }); });
+    var good = slots.map(function(_, i){ return grid.every(function(row){ return row[i].h >= WORK_START && row[i].h < WORK_END; }); });
+
+    var anchorTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    var headHtml = '<div class="tz-head-label">Your time</div>';
+    slots.forEach(function(d, i){
+      var t = hourOf(d, anchorTz);
+      var bg = good[i] ? '#ffe1d0' : 'transparent';
+      var fg = good[i] ? '#8c491a' : '#a19786';
+      headHtml += '<button type="button" title="Copy the invite line" data-k="' + i + '" style="background:' + bg + ';color:' + fg + '">' + String(t.h).padStart(2, '0') + '</button>';
+    });
+    byId('tz-head').innerHTML = headHtml;
+
+    var rowsHtml = ZONES.map(function(z, zi){
+      var cells = slots.map(function(_, i){
+        var t = grid[zi][i], work = t.h >= WORK_START && t.h < WORK_END;
+        var bg = good[i] ? '#d67f48' : work ? '#ccdbb2' : '#eee7db';
+        var fg = good[i] ? '#fdfcfa' : work ? '#3d472b' : '#a19786';
+        return '<div class="tz-cell" style="background:' + bg + ';color:' + fg + '">' + String(t.h).padStart(2, '0') + '</div>';
+      }).join('');
+      return '<div class="tz-row"><div class="tz-city">' + z.city + '</div>' + cells + '</div>';
+    }).join('');
+    byId('tz-rows').innerHTML = rowsHtml;
+
+    var goodCount = good.filter(Boolean).length;
+    byId('tz-hint').textContent = goodCount
+      ? goodCount + ' hours today work for all six. Click a column header to copy.'
+      : 'No hour today lands inside working hours everywhere. Someone takes the early one.';
+
+    byId('tz-head').onclick = function(e){
+      var btn = e.target.closest('button[data-k]'); if(!btn) return;
+      var i = parseInt(btn.getAttribute('data-k'), 10);
+      var line = ZONES.map(function(z, zi){ return String(grid[zi][i].h).padStart(2, '0') + ':' + grid[zi][i].m + ' ' + z.city; }).join(' · ');
+      navigator.clipboard.writeText(line).then(function(){
+        btn.style.background = '#7a8a5e'; btn.style.color = '#f0fae1';
+        byId('tz-hint').textContent = 'Copied to your clipboard.';
+        setTimeout(function(){ renderOverlap(); }, 1600);
+      });
+    };
+  }
+  renderOverlap();
+
+  /* ===================== follow-up queue ===================== */
+  var THRESHOLD = 3;
+  var queueItems = [];
+  var qForm = { name: '', subject: '', date: '' };
+  byId('q_date').value = new Date().toISOString().slice(0, 10);
+  byId('q-threshold-label').textContent = THRESHOLD + '-day rule, applied';
+
+  function daysWaiting(dateStr){
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var d = new Date(dateStr + 'T00:00:00');
+    return Math.max(0, Math.round((today - d) / 86400000));
+  }
+  function renderQueue(){
+    if(!queueItems.length){
+      byId('q-rows').innerHTML = '<div class="q-empty">Nobody in the queue. Add someone above.</div>';
+    } else {
+      byId('q-rows').innerHTML = queueItems.map(function(it, i){
+        var n = daysWaiting(it.date), over = n >= THRESHOLD;
+        return '<div class="q-row' + (over ? ' over' : '') + '">' +
+          '<span class="q-name">' + esc(it.name) + '</span>' +
+          '<span class="q-subject">' + esc(it.subject) + '</span>' +
+          '<span class="q-days' + (over ? ' over' : '') + '">' + n + 'd</span>' +
+          '<span class="q-status-row"><span class="q-pill ' + (over ? 'due' : 'wait') + '">' + (over ? 'Follow up' : 'Waiting') + '</span>' +
+          '<button type="button" class="q-remove" data-idx="' + i + '" title="Remove">×</button></span></div>';
+      }).join('');
     }
-    out.innerHTML = due.map(function(r){
-      var n = days(r.sent), first = r.name.split(" ")[0];
-      var body = "Hi "+first+", following up on my note about the "+r.role+" role. I wanted to make sure it didn't get buried.\n\n"+
-        (n >= 6 ? "I know timing is everything with these. If it's not the right moment, tell me and I'll close the loop, no hard feelings.\n\n"
-                : "Short version: the team is moving quickly, and comp and scope are in the thread below.\n\n")+
-        "If you're still interested, grab a time here: [booking link]";
-      return blk("Draft for "+r.name+" · day "+n, 0, body);
-    }).join("");
-    out.classList.add("on");
+    var overdue = queueItems.filter(function(it){ return daysWaiting(it.date) >= THRESHOLD; });
+    byId('q-overdue-label').textContent = overdue.length ? overdue.length + ' past the ' + THRESHOLD + '-day threshold' : 'Nobody is past the threshold';
+  }
+  renderQueue();
+  byId('q-rows').addEventListener('click', function(e){
+    var b = e.target.closest('.q-remove'); if(!b) return;
+    queueItems.splice(parseInt(b.getAttribute('data-idx'), 10), 1);
+    renderQueue();
+  });
+  byId('q_add').addEventListener('click', function(){
+    var name = v('q_name'), subject = v('q_subject'), date = v('q_date');
+    if(!name || !date){ byId('q_name').focus(); return; }
+    queueItems.push({ name: name, subject: subject || 'Not specified', date: date });
+    byId('q_name').value = ''; byId('q_subject').value = '';
+    renderQueue();
+  });
+  byId('q_draft').addEventListener('click', function(){
+    var overdue = queueItems.filter(function(it){ return daysWaiting(it.date) >= THRESHOLD; });
+    if(!overdue.length){ byId('q-drafts').innerHTML = ''; return; }
+    byId('q-drafts').innerHTML = overdue.map(function(it){
+      var body = 'Hi ' + it.name.split(' ')[0] + ', following up on my note about ' + (it.subject === 'Not specified' ? 'the role' : it.subject) + '. I wanted to make sure it did not get buried.\n\nIf the timing is off, say so and I will close the loop. If not, send me a window and I will work to it.';
+      return '<div class="q-draft"><div class="fld-label">Draft · ' + esc(it.name) + '</div><p>' + esc(body) + '</p></div>';
+    }).join('');
   });
 
-  /* ===== design specimens ===== */
-  var PT_CARD = (1/72)/3.5*100;   /* one point across a 3.5 in card */
-  var IN_SIGN = 100/24;           /* one inch across a 24 in sign   */
-  var PX_IG   = 100/1080;         /* one pixel across a 1080 post   */
-  var num = function(id){ return parseFloat(document.getElementById(id).value); };
-  var put = function(id, txt){ var el = document.getElementById(id); if(el) el.textContent = txt; };
-  var setv = function(el, k, val){ if(el) el.style.setProperty(k, val); };
-  var track = function(n){ return (n < 0 ? "−" : "+") + Math.abs(n); };
+  /* ===================== design specimens ===================== */
+  var NAMES = ['Jo Ng', 'Daniela Restrepo', 'Christopher Vandenbergh', 'María José Restrepo-Ochoa'];
+  var ds = { name: 'Daniela Restrepo', nameSize: 23, tracking: -30, contact: 'Two columns', stepBack: 0, rider: 1.5, addr: 62, scrim: 86, scrimH: 58 };
 
-  var bcArt = document.getElementById("bcArt");
-  var signWrap = document.getElementById("signWrap");
-  var currentName = "Daniela Restrepo";
-
-  function fillIdentity(){
-    Array.prototype.forEach.call(document.querySelectorAll('[data-fill="name"]'), function(el){
-      el.textContent = currentName;
-    });
+  function renderNameButtons(){
+    byId('name-buttons').innerHTML = NAMES.map(function(n){
+      return '<button type="button" class="name-btn' + (n === ds.name ? ' active' : '') + '" data-name="' + esc(n) + '">' + esc(n) + '</button>';
+    }).join('');
   }
+  byId('name-buttons').addEventListener('click', function(e){
+    var b = e.target.closest('.name-btn'); if(!b) return;
+    ds.name = b.getAttribute('data-name');
+    renderNameButtons();
+    drawDesign();
+  });
+
+  function renderContactButtons(){
+    var opts = ['Two columns', 'One stack'];
+    byId('bc-contact-buttons').innerHTML = opts.map(function(o){
+      return '<button type="button" class="pill' + (o === ds.contact ? ' active' : '') + '" data-contact="' + o + '" style="color:' + (o === ds.contact ? '#f9f4ed' : '#645c50') + ';border-color:' + (o === ds.contact ? 'var(--terracotta)' : 'rgba(32,30,29,0.22)') + ';background:' + (o === ds.contact ? 'var(--terracotta)' : 'transparent') + '">' + o + '</button>';
+    }).join('');
+  }
+  byId('bc-contact-buttons').addEventListener('click', function(e){
+    var b = e.target.closest('[data-contact]'); if(!b) return;
+    ds.contact = b.getAttribute('data-contact');
+    renderContactButtons();
+    drawDesign();
+  });
+
+  function track(n){ return (n < 0 ? '−' : '+') + Math.abs(n); }
 
   function drawBc(){
-    var size = num("bcName"), tr = num("bcTrack"), cols = document.getElementById("bcCols").value === "1";
-    setv(bcArt, "--bcName", (size * PT_CARD) + "cqw");
-    setv(bcArt, "--bcTrack", (tr/1000) + "em");
-    document.getElementById("bcMeta").classList.toggle("stacked", !cols);
-    put("vBcName", size + " pt"); put("rBcName", size);
-    put("vBcTrack", track(tr));   put("rBcTrack", track(tr));
-    put("vBcMeta", cols ? "Two columns" : "One stack");
-    var nm = bcArt.querySelector(".bc-name");
-    document.getElementById("bcWarn").classList.toggle("on", nm.scrollWidth > nm.clientWidth + 1);
+    var nm = ds.name, size = ds.nameSize, tr = ds.tracking, cols = ds.contact === 'Two columns';
+    byId('bc-name').textContent = nm;
+    byId('bc-name').style.fontSize = (size / 252 * 100).toFixed(2) + 'cqw';
+    byId('bc-name').style.letterSpacing = (tr / 1000).toFixed(3) + 'em';
+    byId('bc-meta').style.gridTemplateColumns = cols ? '1fr 1fr' : '1fr';
+    byId('v-bcName').textContent = size + ' pt';
+    byId('v-bcTrack').textContent = track(tr);
+
+    var estIn = nm.length * size * 0.5 / 72 + nm.length * (tr / 1000) * size / 72;
+    var warn = estIn > 2.9;
+    byId('bc-warn').classList.toggle('on', warn);
+    byId('bc-spec').textContent = 'Canva: name ' + size + ' pt semibold, letter spacing ' + tr + '. Title 9 pt regular. Rule 0.5 pt. Contact 8 pt, line spacing 1.45.';
   }
 
   function drawSign(){
-    var mk = num("lwMark"), nm = num("lwName"), ph = num("lwPhone"),
-        rd = num("rdSize"), d = num("lwDist");
-    var lawn = signWrap.querySelector(".lawn");
-    setv(lawn, "--lwMark",  (mk * IN_SIGN) + "cqw");
-    setv(lawn, "--lwName",  (nm * IN_SIGN) + "cqw");
-    setv(lawn, "--lwPhone", (ph * IN_SIGN) + "cqw");
-    setv(signWrap.querySelector(".rider"), "--rdSize", (rd * IN_SIGN) + "cqw");
+    var wrap = byId('sign-wrap');
+    byId('sign-name').textContent = ds.name;
+    var scale = 1 / (1 + ds.stepBack / 22);
+    wrap.style.transform = 'scale(' + scale.toFixed(3) + ')';
+    byId('rider-text').style.fontSize = (ds.rider / 24 * 100).toFixed(2) + 'cqw';
 
-    put("vLwMark", mk.toFixed(1) + " in");   put("rLwMark", mk.toFixed(1));
-    put("vLwName", nm.toFixed(1) + " in");   put("rLwName", nm.toFixed(1));
-    put("vLwPhone", ph.toFixed(1) + " in");  put("rLwPhone", ph.toFixed(1));
-    put("vRdSize", rd.toFixed(1) + " in");   put("rRdSize", rd.toFixed(1));
-    put("vDist", d + " ft");
+    byId('v-stepBack').textContent = ds.stepBack + ' ft';
+    byId('v-rider').textContent = ds.rider.toFixed(1) + ' in';
+    byId('sign-distance').textContent = ds.stepBack === 0
+      ? 'Viewing distance: standing at the sign'
+      : 'Viewing distance: ' + ds.stepBack + ' ft back, about ' + Math.round(ds.stepBack / 3) + ' m';
 
-    var scale = 1 / (1 + d/14);
-    signWrap.style.transform = "scale(" + scale.toFixed(3) + ")";
-    signWrap.style.marginBottom = (-(1 - scale) * signWrap.offsetHeight) + "px";
-    put("distCap", d === 0
-      ? "Viewing distance: standing at the sign"
-      : "Viewing distance: " + d + " ft, about " +
-        (d <= 15 ? "the front walk" : d <= 30 ? "the sidewalk" : "a car going past") +
-        ". Can you still read the phone number?");
-
-    var spill = [".lawn-mark", ".lawn-name", ".lawn-phone", ".rider-in"].some(function(sel){
-      var el = signWrap.querySelector(sel);
-      return el.scrollWidth > el.clientWidth + 1;
-    });
-    document.getElementById("lwWarn").classList.toggle("on", spill);
+    var warn = ds.rider > 2.2;
+    byId('sign-warn').classList.toggle('on', warn);
+    byId('sign-spec').textContent = 'Canva: mark 2.1 in, name 1.6 in, phone 2.0 in, rider ' + ds.rider.toFixed(1) + ' in. Margins 2 in all round.';
   }
 
   function drawIg(){
-    var ad = num("igAddr"), lb = num("igLabel"), pd = num("igPad"),
-        op = num("igO"), ht = num("igH");
-    Array.prototype.forEach.call(document.querySelectorAll(".ig"), function(ig){
-      setv(ig, "--igAddr",  (ad * PX_IG) + "cqw");
-      setv(ig, "--igLabel", (lb * PX_IG) + "cqw");
-      setv(ig, "--igPad",   (pd * PX_IG) + "cqw");
-      setv(ig, "--igScrimO", op/100);
-      setv(ig, "--igScrimH", ht + "%");
+    document.querySelectorAll('[data-fill="name"]').forEach(function(el){ el.textContent = ds.name; });
+    document.querySelectorAll('.ig-tile').forEach(function(tile){
+      tile.style.setProperty('--igAddr', (ds.addr / 1080 * 100).toFixed(2) + 'cqw');
+      tile.style.setProperty('--igScrim', 'rgba(9,16,13,' + (ds.scrim / 100).toFixed(2) + ')');
+      tile.style.setProperty('--igScrimH', ds.scrimH + '%');
     });
-    put("vIgAddr", ad + " px");  put("rIgAddr", ad);
-    put("vIgLabel", lb + " px"); put("rIgLabel", lb);
-    put("vIgPad", pd + " px");   put("rIgPad", pd);
-    put("vIgO", op + "%");       put("rIgO", op);
-    put("vIgH", ht + "%");       put("rIgH", ht);
-    document.getElementById("igWarn").classList.toggle("on", op < 55);
+    byId('v-igAddr').textContent = ds.addr + ' px';
+    byId('v-igScrim').textContent = ds.scrim + '%';
+    byId('v-igScrimH').textContent = ds.scrimH + '%';
+
+    var warn = ds.scrim < 55;
+    byId('ig-warn').classList.toggle('on', warn);
+    byId('ig-spec').textContent = 'Canva: address ' + ds.addr + ' px semibold, tracking −20. Label 28 px, tracking +130. Text starts 64 px from the left and bottom on all three. Gradient #09100D at ' + ds.scrim + '%, transparent by ' + ds.scrimH + '% height.';
   }
 
-  function writeSpec(){
-    var cols = document.getElementById("bcCols").value === "1";
-    document.getElementById("dspec").textContent =
-      "BUSINESS CARD · 3.5 x 2 in, 0.25 in margins\n" +
-      "  Name          Semibold " + num("bcName") + " pt, tracking " + track(num("bcTrack")) + "\n" +
-      "  Title         Regular 9 pt\n" +
-      "  Rule          0.5 pt\n" +
-      "  Contact       Regular 8 pt, " + (cols ? "two columns" : "one stack") + ", line spacing 1.45\n\n" +
-      "LAWN SIGN · 24 x 18 in, 2 in margins\n" +
-      "  Brokerage     Semibold " + num("lwMark").toFixed(1) + " in\n" +
-      "  Agent name    Semibold " + num("lwName").toFixed(1) + " in\n" +
-      "  Phone         Semibold " + num("lwPhone").toFixed(1) + " in\n" +
-      "RIDER · 24 x 6 in, same side margins\n" +
-      "  One line      Semibold " + num("rdSize").toFixed(1) + " in\n\n" +
-      "INSTAGRAM · 1080 x 1080, three posts\n" +
-      "  Address       Semibold " + num("igAddr") + " px, tracking -20\n" +
-      "  Status label  " + num("igLabel") + " px, tracking +130\n" +
-      "  Margin        " + num("igPad") + " px left and bottom, identical on all three\n" +
-      "  Scrim         #09100D at " + num("igO") + "%, transparent by " + num("igH") + "% height\n\n" +
-      "COLOURS         Forest #0B1512 · Sea #0A5B4F · Mango #DA8B00 · Paper #F2ECE1";
+  function specText(){
+    return byId('bc-spec').textContent + '\n' + byId('sign-spec').textContent + '\n' + byId('ig-spec').textContent;
   }
 
-  function drawDesign(){ fillIdentity(); drawBc(); drawSign(); drawIg(); writeSpec(); }
+  function drawDesign(){ drawBc(); drawSign(); drawIg(); }
 
-  Array.prototype.forEach.call(
-    document.querySelectorAll("#design input[type=range]"), function(i){
-      i.addEventListener("input", drawDesign);
+  renderNameButtons();
+  renderContactButtons();
+
+  document.querySelectorAll('#d-card input[type=range], #d-sign input[type=range], #d-social input[type=range]').forEach(function(input){
+    input.addEventListener('input', function(){
+      ds.nameSize = +byId('bcName').value; ds.tracking = +byId('bcTrack').value;
+      ds.stepBack = +byId('stepBack').value; ds.rider = +byId('rider').value;
+      ds.addr = +byId('igAddr').value; ds.scrim = +byId('igScrim').value; ds.scrimH = +byId('igScrimH').value;
+      drawDesign();
     });
-
-  Array.prototype.forEach.call(
-    document.querySelectorAll("#nameSet button"), function(b){
-      b.addEventListener("click", function(){
-        currentName = b.getAttribute("data-name");
-        Array.prototype.forEach.call(document.querySelectorAll("#nameSet button"), function(o){
-          o.classList.toggle("on", o === b);
-        });
-        drawDesign();
-      });
-    });
-
-  document.getElementById("dcopy").addEventListener("click", function(){
-    var btn = this;
-    navigator.clipboard.writeText(document.getElementById("dspec").textContent).then(function(){
-      btn.textContent = "Copied";
-      setTimeout(function(){ btn.textContent = "Copy the spec"; }, 1500);
-    }).catch(function(){ btn.textContent = "Select the text above"; });
   });
 
-  window.addEventListener("resize", drawSign, {passive:true});
+  byId('copy-spec').addEventListener('click', function(){
+    var btn = this;
+    navigator.clipboard.writeText(specText()).then(function(){
+      btn.textContent = 'Copied';
+      setTimeout(function(){ btn.textContent = 'Copy the spec'; }, 1600);
+    }).catch(function(){ btn.textContent = 'Select the text above'; });
+  });
+
+  window.addEventListener('resize', drawSign, { passive: true });
   drawDesign();
 })();
 </script>
