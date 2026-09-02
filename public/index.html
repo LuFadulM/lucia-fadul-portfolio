@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <style>
 :root{
   --cream:#f5ead8;
@@ -68,6 +70,10 @@ summary::marker{content:""}
 .nav-link.is-live:hover{background:#ffc6a5}
 .nav-cta{margin-left:6px;padding:8px 16px;border-radius:999px;background:var(--terracotta);color:#f9f4ed;font-weight:700}
 .nav-cta:hover{background:var(--terracotta-dark);color:#fff;text-decoration:none}
+.lang-toggle{display:flex;align-items:center;gap:2px;padding:3px;border-radius:999px;background:var(--tan2);margin-left:2px}
+.lang-btn{padding:5px 10px;border-radius:999px;border:0;background:transparent;color:var(--muted2);font-size:11px;font-weight:800;letter-spacing:0.04em;cursor:pointer;font-family:var(--body)}
+.lang-btn.active{background:var(--terracotta);color:#f9f4ed}
+.lang-btn:not(.active):hover{color:var(--ink)}
 
 /* ===== hero ===== */
 .hero{padding:clamp(28px,6vw,72px) 0 clamp(40px,7vw,88px)}
@@ -430,38 +436,42 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     <span class="disp">Lucía Fadul</span>
   </a>
   <div class="nav-links">
-    <a href="#index" class="nav-link">01 Index</a>
-    <a href="#systems" class="nav-link">02 Systems</a>
-    <a href="#tools" class="nav-link is-live">03 Tools · live</a>
-    <a href="#builds" class="nav-link">04 Builds</a>
-    <a href="#design" class="nav-link">05 Design</a>
-    <a href="#about" class="nav-link">06 About</a>
-    <a href="#record" class="nav-link">07 Record</a>
-    <a href="#open" class="nav-cta">Hire me</a>
+    <a href="#index" class="nav-link" data-es="01 Índice">01 Index</a>
+    <a href="#systems" class="nav-link" data-es="02 Sistemas">02 Systems</a>
+    <a href="#tools" class="nav-link is-live" data-es="03 Herramientas · en vivo">03 Tools · live</a>
+    <a href="#builds" class="nav-link" data-es="04 Automatizaciones">04 Builds</a>
+    <a href="#design" class="nav-link" data-es="05 Diseño">05 Design</a>
+    <a href="#about" class="nav-link" data-es="06 Sobre mí">06 About</a>
+    <a href="#record" class="nav-link" data-es="07 Trayectoria">07 Record</a>
+    <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language">
+      <button type="button" class="lang-btn" data-lang-btn="en">EN</button>
+      <button type="button" class="lang-btn" data-lang-btn="es">ES</button>
+    </div>
+    <a href="#open" class="nav-cta" data-es="Contrátame">Hire me</a>
   </div>
 </nav>
 
 <header id="top" class="hero">
   <div class="hero-status">
     <span class="hero-dot"></span>
-    <span>Open to work · Colombia · US hours · EN / ES</span>
+    <span data-es="Disponible · Colombia · horario de EE. UU. · EN / ES">Open to work · Colombia · US hours · EN / ES</span>
   </div>
 
-  <h1>Most of my job is <em>deleting</em> my job.</h1>
+  <h1 data-es="La mayor parte de mi trabajo es &lt;em&gt;eliminar&lt;/em&gt; mi trabajo.">Most of my job is <em>deleting</em> my job.</h1>
 
   <div class="hero-foot">
     <div class="hero-col">
-      <div class="kicker">Position</div>
-      <p>I run operations for early-stage US startups and keep turning the repetitive parts into systems that run without me.</p>
+      <div class="kicker" data-es="Posición">Position</div>
+      <p data-es="Manejo operaciones para startups de EE. UU. en etapa temprana, convirtiendo lo repetitivo en sistemas que funcionan sin mí.">I run operations for early-stage US startups and keep turning the repetitive parts into systems that run without me.</p>
     </div>
     <div class="hero-col mid">
-      <div class="kicker">What follows</div>
-      <p>An index of what's currently in production. The problem, what I built, the rules that keep it honest, and what it costs to run.</p>
+      <div class="kicker" data-es="Lo que sigue">What follows</div>
+      <p data-es="Un índice de lo que está en producción hoy. El problema, lo que construí, las reglas que lo sostienen y lo que cuesta operarlo.">An index of what's currently in production. The problem, what I built, the rules that keep it honest, and what it costs to run.</p>
     </div>
     <div class="hero-col tag">
-      <div class="kicker">Three of them</div>
-      <p>are sitting further down as working tools. Use them. They run in your browser and send nothing anywhere.</p>
-      <a href="#tools" class="hero-open">Open the tools →</a>
+      <div class="kicker" data-es="Tres de ellos">Three of them</div>
+      <p data-es="están más abajo, funcionando de verdad. Úsalos. Corren en tu navegador y no envían nada a ningún lado.">are sitting further down as working tools. Use them. They run in your browser and send nothing anywhere.</p>
+      <a href="#tools" class="hero-open" data-es="Ver las herramientas →">Open the tools →</a>
     </div>
   </div>
 </header>
@@ -469,7 +479,7 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 <section id="index" class="sec">
   <div class="sec-head">
     <span class="num">§ 01</span>
-    <h2>In production</h2>
+    <h2 data-es="En producción">In production</h2>
   </div>
 
   <div class="idx-grid">
@@ -477,11 +487,11 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
       <div>
         <div class="idx-no">001</div>
         <h3>JD Package Engine</h3>
-        <p>One intake call becomes six publication-ready documents, with client names firewalled out of everything that goes out before a candidate is qualified.</p>
+        <p data-es="Una llamada de intake se convierte en seis documentos listos para publicar, con los nombres de clientes fuera de todo lo que sale antes de calificar a un candidato.">One intake call becomes six publication-ready documents, with client names firewalled out of everything that goes out before a candidate is qualified.</p>
       </div>
       <div class="idx-tags">
         <span class="idx-tag on-dark">~200 JDs</span>
-        <span class="idx-tag on-dark neutral">6 artifacts per intake</span>
+        <span class="idx-tag on-dark neutral" data-es="6 artefactos por intake">6 artifacts per intake</span>
       </div>
     </a>
 
@@ -489,11 +499,11 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
       <div>
         <div class="idx-no">002</div>
         <h3>Inbox Tracker</h3>
-        <p>Scans the full inbox daily, sorts every thread into five categories, and drafts the follow-up the moment someone goes quiet.</p>
+        <p data-es="Escanea todo el inbox a diario, clasifica cada hilo en cinco categorías y redacta el seguimiento en cuanto alguien deja de responder.">Scans the full inbox daily, sorts every thread into five categories, and drafts the follow-up the moment someone goes quiet.</p>
       </div>
       <div class="idx-tags">
-        <span class="idx-tag">5 thread types</span>
-        <span class="idx-tag neutral">3-day trigger</span>
+        <span class="idx-tag" data-es="5 tipos de hilo">5 thread types</span>
+        <span class="idx-tag neutral" data-es="Gatillo a 3 días">3-day trigger</span>
       </div>
     </a>
 
@@ -501,11 +511,11 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
       <div>
         <div class="idx-no">003</div>
         <h3>Daily Call Brief</h3>
-        <p>Calendar, Slack and pipeline data consolidated into one prioritized brief before leadership walks into back-to-back client calls.</p>
+        <p data-es="Calendario, Slack y datos del pipeline consolidados en un brief priorizado antes de que liderazgo entre a llamadas seguidas con clientes.">Calendar, Slack and pipeline data consolidated into one prioritized brief before leadership walks into back-to-back client calls.</p>
       </div>
       <div class="idx-tags">
-        <span class="idx-tag">50+ accounts</span>
-        <span class="idx-tag neutral">Lands before call one</span>
+        <span class="idx-tag" data-es="50+ cuentas">50+ accounts</span>
+        <span class="idx-tag neutral" data-es="Listo antes de la primera llamada">Lands before call one</span>
       </div>
     </a>
 
@@ -513,11 +523,11 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
       <div>
         <div class="idx-no">004</div>
         <h3>Outreach Kit</h3>
-        <p>Recruiter messages, connection requests, intro emails and follow-ups, each written to a fixed word budget and a fixed set of beats.</p>
+        <p data-es="Mensajes de reclutamiento, solicitudes de conexión, correos de presentación y seguimientos, cada uno con un límite fijo de palabras y una estructura fija.">Recruiter messages, connection requests, intro emails and follow-ups, each written to a fixed word budget and a fixed set of beats.</p>
       </div>
       <div class="idx-tags">
-        <span class="idx-tag on-tint">4 touchpoints</span>
-        <span class="idx-tag on-tint">120-word cap</span>
+        <span class="idx-tag on-tint" data-es="4 puntos de contacto">4 touchpoints</span>
+        <span class="idx-tag on-tint" data-es="Tope de 120 palabras">120-word cap</span>
       </div>
     </a>
 
@@ -525,11 +535,11 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
       <div>
         <div class="idx-no">005</div>
         <h3>Payroll &amp; Onboarding Runbooks</h3>
-        <p>Multi-country payroll, contractor records and new-hire ramp, written down as procedures anyone on the team can execute without me.</p>
+        <p data-es="Nómina multipaís, registros de contratistas y el arranque de nuevas contrataciones, documentados como procedimientos que cualquiera del equipo puede ejecutar sin mí.">Multi-country payroll, contractor records and new-hire ramp, written down as procedures anyone on the team can execute without me.</p>
       </div>
       <div class="idx-tags">
-        <span class="idx-tag">2 regions</span>
-        <span class="idx-tag neutral">Ramp time −50%</span>
+        <span class="idx-tag" data-es="2 regiones">2 regions</span>
+        <span class="idx-tag neutral" data-es="Tiempo de arranque −50%">Ramp time −50%</span>
       </div>
     </a>
 
@@ -588,43 +598,43 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 <section id="systems" class="sec">
   <div class="sec-head tight">
     <span class="num">§ 02</span>
-    <h2>Opened up</h2>
+    <h2 data-es="Por dentro">Opened up</h2>
   </div>
-  <p class="sec-note">Client names and confidential terms are missing on purpose. That firewall is part of the design, not an omission.</p>
+  <p class="sec-note" data-es="Los nombres de clientes y los términos confidenciales faltan a propósito. Ese firewall es parte del diseño, no una omisión.">Client names and confidential terms are missing on purpose. That firewall is part of the design, not an omission.</p>
 
   <div class="acc">
     <details id="jd" open class="acc-item">
       <summary>
-        <span class="acc-title-row"><span class="acc-title disp">JD Package Engine</span><span class="acc-tag">Recruiting ops</span></span>
+        <span class="acc-title-row"><span class="acc-title disp">JD Package Engine</span><span class="acc-tag" data-es="Operaciones de reclutamiento">Recruiting ops</span></span>
         <span class="chev"></span>
       </summary>
       <div class="acc-body">
         <div class="fld">
-          <div class="fld-label a">Problem</div>
-          <p>Every search started from a blank page. Intake calls produced an hour of messy transcript, and the resulting job descriptions drifted in voice and structure depending on who wrote them. Sensitive client detail leaked into candidate-facing copy.</p>
-          <div class="fld-label a">Built</div>
-          <p style="margin-bottom:12px">A pipeline that turns one transcript into a full package:</p>
+          <div class="fld-label a" data-es="Problema">Problem</div>
+          <p data-es="Cada búsqueda empezaba desde una página en blanco. Las llamadas de intake producían una hora de transcripción desordenada, y las job descriptions resultantes variaban en voz y estructura según quién las escribiera. Detalles sensibles del cliente se filtraban en el copy dirigido a candidatos.">Every search started from a blank page. Intake calls produced an hour of messy transcript, and the resulting job descriptions drifted in voice and structure depending on who wrote them. Sensitive client detail leaked into candidate-facing copy.</p>
+          <div class="fld-label a" data-es="Construido">Built</div>
+          <p style="margin-bottom:12px" data-es="Un pipeline que convierte una transcripción en un paquete completo:">A pipeline that turns one transcript into a full package:</p>
           <ul class="dot-list">
-            <li><span class="dot"></span>Published JD, third person, website-ready</li>
-            <li><span class="dot"></span>Internal brief with verbatim calibration quotes</li>
-            <li><span class="dot"></span>Outreach #1 and #2, to a strict word budget</li>
-            <li><span class="dot"></span>Intro email, booking link front-loaded</li>
-            <li><span class="dot"></span>Platform fields and screening questions</li>
-            <li><span class="dot"></span>Green-flag / red-flag criteria per role</li>
+            <li><span class="dot"></span><span data-es="JD publicado, en tercera persona, listo para el sitio web">Published JD, third person, website-ready</span></li>
+            <li><span class="dot"></span><span data-es="Brief interno con citas textuales de calibración">Internal brief with verbatim calibration quotes</span></li>
+            <li><span class="dot"></span><span data-es="Outreach #1 y #2, con un límite estricto de palabras">Outreach #1 and #2, to a strict word budget</span></li>
+            <li><span class="dot"></span><span data-es="Correo de presentación, con el link de agenda al inicio">Intro email, booking link front-loaded</span></li>
+            <li><span class="dot"></span><span data-es="Campos de plataforma y preguntas de filtro">Platform fields and screening questions</span></li>
+            <li><span class="dot"></span><span data-es="Criterios de green-flag / red-flag por rol">Green-flag / red-flag criteria per role</span></li>
           </ul>
         </div>
         <div class="fld">
           <div class="box-tan">
-            <div class="fld-label c">Rules that hold it</div>
+            <div class="fld-label c" data-es="Reglas que lo sostienen">Rules that hold it</div>
             <ol class="rule-list">
-              <li><span class="rule-num">1</span>No client name or URL before the intro-email stage. Outreach uses stage, backer, category and traction signal instead</li>
-              <li><span class="rule-num">2</span>Off-record intel and restricted commercial terms live only in the internal brief, with distribution flagged</li>
-              <li><span class="rule-num">3</span>Anything demographic gets marked non-actionable and never shapes sourcing</li>
-              <li><span class="rule-num">4</span>Conflicting sources get reconciled and flagged, never silently resolved</li>
+              <li><span class="rule-num">1</span><span data-es="Ningún nombre de cliente ni URL antes de la etapa de correo de presentación. El outreach usa etapa, inversionista, categoría y señal de tracción en su lugar">No client name or URL before the intro-email stage. Outreach uses stage, backer, category and traction signal instead</span></li>
+              <li><span class="rule-num">2</span><span data-es="La información off-record y los términos comerciales restringidos viven solo en el brief interno, con su distribución marcada">Off-record intel and restricted commercial terms live only in the internal brief, with distribution flagged</span></li>
+              <li><span class="rule-num">3</span><span data-es="Todo lo demográfico se marca como no accionable y nunca define el sourcing">Anything demographic gets marked non-actionable and never shapes sourcing</span></li>
+              <li><span class="rule-num">4</span><span data-es="Las fuentes en conflicto se concilian y se marcan, nunca se resuelven en silencio">Conflicting sources get reconciled and flagged, never silently resolved</span></li>
             </ol>
           </div>
-          <div class="fld-label a">Result</div>
-          <p>Around 200 job descriptions on this template, adopted org-wide. Turnaround dropped from a from-scratch write to an edit pass. Nothing confidential has to be caught by a reviewer, because it never enters the published doc at all.</p>
+          <div class="fld-label a" data-es="Resultado">Result</div>
+          <p data-es="Cerca de 200 job descriptions sobre esta plantilla, adoptada en toda la organización. El tiempo de entrega pasó de escribir desde cero a solo una edición. Nada confidencial depende de que un revisor lo detecte, porque nunca entra al documento publicado.">Around 200 job descriptions on this template, adopted org-wide. Turnaround dropped from a from-scratch write to an edit pass. Nothing confidential has to be caught by a reviewer, because it never enters the published doc at all.</p>
           <div class="chips">
             <span class="chip">Notion</span><span class="chip">Slack</span><span class="chip">Claude</span><span class="chip">Docs</span>
           </div>
@@ -634,36 +644,36 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
     <details id="inbox" class="acc-item">
       <summary>
-        <span class="acc-title-row"><span class="acc-title disp">Inbox Tracker</span><span class="acc-tag">Pipeline hygiene</span></span>
+        <span class="acc-title-row"><span class="acc-title disp">Inbox Tracker</span><span class="acc-tag" data-es="Higiene del pipeline">Pipeline hygiene</span></span>
         <span class="chev"></span>
       </summary>
       <div class="acc-body">
         <div class="fld">
-          <div class="fld-label a">Problem</div>
-          <p>Intro emails go out from a shared team address; replies land in mine. Across dozens of concurrent searches, someone who replies on day four and hears nothing is a lost placement. Manual scanning missed people and ate the first hour of every morning.</p>
-          <div class="fld-label a">Built</div>
-          <p>A daily scan with defined queries and a fixed classification model. Every thread lands in exactly one bucket, and anyone past the three-day threshold gets a follow-up draft written automatically.</p>
-          <div class="fld-label a">Result</div>
-          <p>Triage went from an open-ended morning task to a report with a defined output. Nobody sits unanswered, and the follow-up decision is a rule rather than a judgment call I re-make every day.</p>
+          <div class="fld-label a" data-es="Problema">Problem</div>
+          <p data-es="Los correos de presentación salen desde una dirección compartida del equipo; las respuestas llegan a la mía. Entre docenas de búsquedas simultáneas, alguien que responde al cuarto día y no recibe nada es una colocación perdida. El escaneo manual dejaba pasar personas y consumía la primera hora de cada mañana.">Intro emails go out from a shared team address; replies land in mine. Across dozens of concurrent searches, someone who replies on day four and hears nothing is a lost placement. Manual scanning missed people and ate the first hour of every morning.</p>
+          <div class="fld-label a" data-es="Construido">Built</div>
+          <p data-es="Un escaneo diario con consultas definidas y un modelo de clasificación fijo. Cada hilo cae en exactamente una categoría, y quien pasa el umbral de tres días recibe un borrador de seguimiento generado automáticamente.">A daily scan with defined queries and a fixed classification model. Every thread lands in exactly one bucket, and anyone past the three-day threshold gets a follow-up draft written automatically.</p>
+          <div class="fld-label a" data-es="Resultado">Result</div>
+          <p data-es="El triage pasó de ser una tarea matutina abierta a un reporte con un resultado definido. Nadie se queda sin respuesta, y la decisión de dar seguimiento es una regla y no un juicio que repito cada día.">Triage went from an open-ended morning task to a report with a defined output. Nobody sits unanswered, and the follow-up decision is a rule rather than a judgment call I re-make every day.</p>
           <div class="chips">
             <span class="chip">Gmail</span><span class="chip">Claude</span><span class="chip">Slack</span>
           </div>
         </div>
         <div>
           <div class="box-tan">
-            <div class="fld-label c">How it runs</div>
+            <div class="fld-label c" data-es="Cómo funciona">How it runs</div>
             <ol class="rule-list">
-              <li><span class="rule-num">1</span>Three queries cover the window: today's inbox, sent intros, threads I'm on</li>
-              <li><span class="rule-num">2</span>A reply only counts from a non-team address that isn't an auto-reply</li>
-              <li><span class="rule-num">3</span>Day three with no answer flips a thread into the queue</li>
-              <li><span class="rule-num">4</span>Drafts are created, never sent. I review before anything goes</li>
+              <li><span class="rule-num">1</span><span data-es="Tres consultas cubren la ventana: el inbox de hoy, las presentaciones enviadas, los hilos en los que estoy">Three queries cover the window: today's inbox, sent intros, threads I'm on</span></li>
+              <li><span class="rule-num">2</span><span data-es="Una respuesta solo cuenta si viene de una dirección fuera del equipo y no es una respuesta automática">A reply only counts from a non-team address that isn't an auto-reply</span></li>
+              <li><span class="rule-num">3</span><span data-es="Al tercer día sin respuesta, el hilo pasa a la cola">Day three with no answer flips a thread into the queue</span></li>
+              <li><span class="rule-num">4</span><span data-es="Los borradores se crean, nunca se envían. Reviso todo antes de que salga">Drafts are created, never sent. I review before anything goes</span></li>
             </ol>
           </div>
           <div class="draft-box" style="margin-top:20px">
-            <div class="fld-label">Draft generated · day 4, no reply</div>
-            <p>Hi Priya, following up on my note about the founding engineer role. I wanted to make sure it didn't get buried.</p>
-            <p>Short version: Series A, ex-payments team, moving fast on this one. Comp and scope are in the thread below.</p>
-            <p>If the timing is off, say so and I'll close the loop. If not, grab a time here: [booking link]</p>
+            <div class="fld-label" data-es="Borrador generado · día 4, sin respuesta">Draft generated · day 4, no reply</div>
+            <p data-es="Hola Priya, quiero dar seguimiento a mi nota sobre el rol de founding engineer. Quería asegurarme de que no se perdiera.">Hi Priya, following up on my note about the founding engineer role. I wanted to make sure it didn't get buried.</p>
+            <p data-es="En corto: Serie A, equipo ex-payments, avanzando rápido con esta posición. La compensación y el alcance están en el hilo de abajo.">Short version: Series A, ex-payments team, moving fast on this one. Comp and scope are in the thread below.</p>
+            <p data-es="Si el momento no es el indicado, dímelo y cierro el tema. Si sigue interesando, agenda un horario aquí: [link de agenda]">If the timing is off, say so and I'll close the loop. If not, grab a time here: [booking link]</p>
           </div>
         </div>
       </div>
@@ -671,28 +681,28 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
     <details id="brief" class="acc-item">
       <summary>
-        <span class="acc-title-row"><span class="acc-title disp">Daily Call Brief</span><span class="acc-tag">Executive support</span></span>
+        <span class="acc-title-row"><span class="acc-title disp">Daily Call Brief</span><span class="acc-tag" data-es="Soporte ejecutivo">Executive support</span></span>
         <span class="chev"></span>
       </summary>
       <div class="acc-body">
         <div class="fld">
-          <div class="fld-label a">Problem</div>
-          <p>Leadership walks into back-to-back client calls across 50+ accounts. The context for each one, from where the search stands to what was promised last time and who is waiting on us, was scattered across calendar, Slack and the tracker.</p>
-          <div class="fld-label a">Built</div>
-          <p>A brief assembled every morning: today's calls in order, and for each the open roles, pipeline movement since last contact, outstanding commitments, and the one thing that most needs a decision.</p>
-          <div class="fld-label a">Result</div>
-          <p>Calls start with context instead of reconstruction. Questions that used to surface mid-call get answered before it. The format is fixed, so it reads in under two minutes.</p>
+          <div class="fld-label a" data-es="Problema">Problem</div>
+          <p data-es="El liderazgo entra a llamadas con clientes una tras otra, en más de 50 cuentas. El contexto de cada una, desde en qué va la búsqueda hasta qué se prometió la última vez y quién espera respuesta, estaba disperso entre calendario, Slack y el tracker.">Leadership walks into back-to-back client calls across 50+ accounts. The context for each one, from where the search stands to what was promised last time and who is waiting on us, was scattered across calendar, Slack and the tracker.</p>
+          <div class="fld-label a" data-es="Construido">Built</div>
+          <p data-es="Un brief armado cada mañana: las llamadas del día en orden, y para cada una los roles abiertos, el movimiento del pipeline desde el último contacto, los compromisos pendientes y lo único que más necesita una decisión.">A brief assembled every morning: today's calls in order, and for each the open roles, pipeline movement since last contact, outstanding commitments, and the one thing that most needs a decision.</p>
+          <div class="fld-label a" data-es="Resultado">Result</div>
+          <p data-es="Las llamadas empiezan con contexto en vez de reconstrucción. Preguntas que antes salían a mitad de llamada ahora se responden antes. El formato es fijo, así que se lee en menos de dos minutos.">Calls start with context instead of reconstruction. Questions that used to surface mid-call get answered before it. The format is fixed, so it reads in under two minutes.</p>
           <div class="chips">
             <span class="chip">Calendar</span><span class="chip">Slack</span><span class="chip">Notion</span><span class="chip">Pylon</span>
           </div>
         </div>
         <div class="box-tan self-start">
-          <div class="fld-label c">How it runs</div>
+          <div class="fld-label c" data-es="Cómo funciona">How it runs</div>
           <ol class="rule-list">
-            <li><span class="rule-num">1</span>Calendar sets the order and the deadline</li>
-            <li><span class="rule-num">2</span>Slack supplies what changed since last contact</li>
-            <li><span class="rule-num">3</span>Pipeline data supplies stage counts and stalls</li>
-            <li><span class="rule-num">4</span>Anything unresolved is listed as an open item, not omitted</li>
+            <li><span class="rule-num">1</span><span data-es="El calendario define el orden y el plazo">Calendar sets the order and the deadline</span></li>
+            <li><span class="rule-num">2</span><span data-es="Slack aporta lo que cambió desde el último contacto">Slack supplies what changed since last contact</span></li>
+            <li><span class="rule-num">3</span><span data-es="Los datos del pipeline aportan conteos de etapa y estancamientos">Pipeline data supplies stage counts and stalls</span></li>
+            <li><span class="rule-num">4</span><span data-es="Todo lo no resuelto se lista como pendiente, nunca se omite">Anything unresolved is listed as an open item, not omitted</span></li>
           </ol>
         </div>
       </div>
@@ -700,32 +710,32 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
     <details id="outreach" class="acc-item">
       <summary>
-        <span class="acc-title-row"><span class="acc-title disp">Outreach Kit</span><span class="acc-tag">Templates</span></span>
+        <span class="acc-title-row"><span class="acc-title disp">Outreach Kit</span><span class="acc-tag" data-es="Plantillas">Templates</span></span>
         <span class="chev"></span>
       </summary>
       <div class="acc-body">
         <div class="fld">
-          <div class="fld-label a">Constraint</div>
-          <p>Outreach fails long. Every message has a word budget and a fixed beat structure, so writing one is assembly rather than composition.</p>
-          <div class="fld-label a">Why it's a system</div>
-          <p style="margin-bottom:0">Because the rules are written down, anyone can produce outreach that reads consistently, and a reviewer checks it against a list instead of a feeling.</p>
+          <div class="fld-label a" data-es="Restricción">Constraint</div>
+          <p data-es="El outreach falla cuando es largo. Cada mensaje tiene un límite de palabras y una estructura fija de puntos, así que escribir uno es ensamblar, no componer.">Outreach fails long. Every message has a word budget and a fixed beat structure, so writing one is assembly rather than composition.</p>
+          <div class="fld-label a" data-es="Por qué es un sistema">Why it's a system</div>
+          <p style="margin-bottom:0" data-es="Porque las reglas están escritas, cualquiera puede producir outreach que se lea de forma consistente, y un revisor lo compara contra una lista en vez de una impresión.">Because the rules are written down, anyone can produce outreach that reads consistently, and a reviewer checks it against a list instead of a feeling.</p>
         </div>
         <div class="box-tan" style="margin-bottom:0">
-          <div class="fld-label c">Four touchpoints</div>
+          <div class="fld-label c" data-es="Cuatro puntos de contacto">Four touchpoints</div>
           <ul class="touchpoint-list">
-            <li><span>Outreach #1</span><span>three paragraphs, about 120 words</span></li>
-            <li><span>Outreach #2</span><span>one sentence, about 40 words</span></li>
-            <li><span>Intro email</span><span>about 200 words, link in the first two lines</span></li>
-            <li><span>Follow-up</span><span>triggered by the tracker, not by memory</span></li>
+            <li><span>Outreach #1</span><span data-es="tres párrafos, unas 120 palabras">three paragraphs, about 120 words</span></li>
+            <li><span>Outreach #2</span><span data-es="una oración, unas 40 palabras">one sentence, about 40 words</span></li>
+            <li><span data-es="Correo de presentación">Intro email</span><span data-es="unas 200 palabras, link en las primeras dos líneas">about 200 words, link in the first two lines</span></li>
+            <li><span data-es="Seguimiento">Follow-up</span><span data-es="activado por el tracker, no por memoria">triggered by the tracker, not by memory</span></li>
           </ul>
         </div>
         <div class="box-mango">
-          <div class="fld-label" style="color:var(--terracotta-deep)">Banned</div>
+          <div class="fld-label" style="color:var(--terracotta-deep)" data-es="Prohibido">Banned</div>
           <ul class="banned-list">
-            <li><span class="banned-x">✕</span>Company background walls and full benefits lists</li>
-            <li><span class="banned-x">✕</span>Interview process breakdowns before a recruiter call</li>
-            <li><span class="banned-x">✕</span>Repeated visa and relocation disclaimers</li>
-            <li><span class="banned-x">✕</span>False personalization: no "saw your profile" unless it's true</li>
+            <li><span class="banned-x">✕</span><span data-es="Muros de contexto de la empresa y listas completas de beneficios">Company background walls and full benefits lists</span></li>
+            <li><span class="banned-x">✕</span><span data-es="Desgloses del proceso de entrevistas antes de la llamada con el reclutador">Interview process breakdowns before a recruiter call</span></li>
+            <li><span class="banned-x">✕</span><span data-es="Aclaraciones repetidas sobre visa y reubicación">Repeated visa and relocation disclaimers</span></li>
+            <li><span class="banned-x">✕</span><span data-es="Personalización falsa: nada de &quot;vi tu perfil&quot; si no es cierto">False personalization: no "saw your profile" unless it's true</span></li>
           </ul>
         </div>
       </div>
@@ -733,28 +743,28 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
     <details id="backoffice" class="acc-item">
       <summary>
-        <span class="acc-title-row"><span class="acc-title disp">Payroll &amp; Onboarding Runbooks</span><span class="acc-tag">Back office</span></span>
+        <span class="acc-title-row"><span class="acc-title disp">Payroll &amp; Onboarding Runbooks</span><span class="acc-tag" data-es="Back office">Back office</span></span>
         <span class="chev"></span>
       </summary>
       <div class="acc-body">
         <div class="fld">
-          <div class="fld-label a">Problem</div>
-          <p>Payroll across Colombia and international contractors meant different compliance rules, currencies and rails on one monthly deadline. Onboarding lived in the head of whoever ran the last one, so every hire cost a senior person a week.</p>
-          <div class="fld-label a">Built</div>
-          <p>Written runbooks. The payroll cycle as a dated checklist with verification before each run, and onboarding as a sequence covering contracts, accounts, tooling and first-week training, with every step naming its owner.</p>
-          <div class="fld-label a">Result</div>
-          <p>Payroll runs on schedule and survives a handoff. Documented onboarding halved new-hire ramp time in a prior role. The procedure is the training material.</p>
+          <div class="fld-label a" data-es="Problema">Problem</div>
+          <p data-es="La nómina entre Colombia y contratistas internacionales implicaba reglas de cumplimiento, monedas y rieles distintos en una sola fecha límite mensual. El onboarding vivía en la cabeza de quien hubiera hecho el último, así que cada contratación le costaba una semana a una persona senior.">Payroll across Colombia and international contractors meant different compliance rules, currencies and rails on one monthly deadline. Onboarding lived in the head of whoever ran the last one, so every hire cost a senior person a week.</p>
+          <div class="fld-label a" data-es="Construido">Built</div>
+          <p data-es="Runbooks escritos. El ciclo de nómina como checklist con fecha, con verificación antes de cada corrida, y el onboarding como una secuencia que cubre contratos, cuentas, herramientas y la capacitación de la primera semana, con cada paso con su responsable.">Written runbooks. The payroll cycle as a dated checklist with verification before each run, and onboarding as a sequence covering contracts, accounts, tooling and first-week training, with every step naming its owner.</p>
+          <div class="fld-label a" data-es="Resultado">Result</div>
+          <p data-es="La nómina corre a tiempo y sobrevive un relevo. El onboarding documentado redujo a la mitad el tiempo de arranque de nuevas contrataciones en un rol anterior. El procedimiento es el material de capacitación.">Payroll runs on schedule and survives a handoff. Documented onboarding halved new-hire ramp time in a prior role. The procedure is the training material.</p>
           <div class="chips">
             <span class="chip">Deel</span><span class="chip">QuickBooks</span><span class="chip">Notion</span><span class="chip">Airtable</span>
           </div>
         </div>
         <div class="box-tan self-start">
-          <div class="fld-label c">Also standardized</div>
+          <div class="fld-label c" data-es="También estandaricé">Also standardized</div>
           <ul class="dot-list small">
-            <li><span class="dot sage"></span>Client intake, contracts and follow-up sequences</li>
-            <li><span class="dot sage"></span>Insurance eligibility checks before services start</li>
-            <li><span class="dot sage"></span>Referral review with document requests tracked to close</li>
-            <li><span class="dot sage"></span>QA passes on internal tools, bugs routed to engineering</li>
+            <li><span class="dot sage"></span><span data-es="Intake de clientes, contratos y secuencias de seguimiento">Client intake, contracts and follow-up sequences</span></li>
+            <li><span class="dot sage"></span><span data-es="Verificaciones de elegibilidad de seguro antes de iniciar servicios">Insurance eligibility checks before services start</span></li>
+            <li><span class="dot sage"></span><span data-es="Revisión de referidos con solicitudes de documentos rastreadas hasta el cierre">Referral review with document requests tracked to close</span></li>
+            <li><span class="dot sage"></span><span data-es="Pasadas de QA sobre herramientas internas, bugs enrutados a ingeniería">QA passes on internal tools, bugs routed to engineering</span></li>
           </ul>
         </div>
       </div>
@@ -765,58 +775,58 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 <section id="tools" class="sec">
   <div class="sec-head tight">
     <span class="num">§ 03</span>
-    <h2>Three of them, running</h2>
+    <h2 data-es="Tres de ellas, funcionando">Three of them, running</h2>
   </div>
-  <p class="sec-note">Not screenshots. These work. Nothing is sent anywhere. It all runs in your browser.</p>
+  <p class="sec-note" data-es="No son capturas de pantalla. Esto funciona de verdad. No se envía nada a ningún lado. Todo corre en tu navegador.">Not screenshots. These work. Nothing is sent anywhere. It all runs in your browser.</p>
 
   <div class="composer">
     <div class="composer-head">
       <h3 class="disp">Message composer</h3>
-      <span class="flag">With confidentiality check</span>
+      <span class="flag" data-es="Con verificación de confidencialidad">With confidentiality check</span>
     </div>
-    <p class="composer-note">The message an assistant writes forty times a week: chasing something, introducing someone, declining, rescheduling, reaching out cold. Pick the situation, give it the facts, get three lengths. Anything you list as confidential gets scanned for before it goes out.</p>
+    <p class="composer-note" data-es="El mensaje que un asistente escribe cuarenta veces por semana: dar seguimiento a algo, presentar a alguien, declinar, reprogramar, contactar en frío. Elige la situación, dale los datos y obtén tres versiones. Todo lo que marques como confidencial se revisa antes de que salga.">The message an assistant writes forty times a week: chasing something, introducing someone, declining, rescheduling, reaching out cold. Pick the situation, give it the facts, get three lengths. Anything you list as confidential gets scanned for before it goes out.</p>
 
     <div class="composer-grid">
       <div class="composer-form">
         <div class="field-block">
-          <div class="fld-label">Situation</div>
+          <div class="fld-label" data-es="Situación">Situation</div>
           <div class="pill-row" id="c-situations"></div>
         </div>
         <div class="field-block">
-          <div class="fld-label">Tone</div>
+          <div class="fld-label" data-es="Tono">Tone</div>
           <div class="pill-row" id="c-tones"></div>
         </div>
         <div class="two-col">
-          <label class="stack">Recipient first name
-            <input class="dark-input" id="c_name" placeholder="Priya">
+          <label class="stack"><span data-es="Nombre del destinatario">Recipient first name</span>
+            <input class="dark-input" id="c_name" placeholder="Priya" data-es-placeholder="Priya">
           </label>
-          <label class="stack">On behalf of (optional)
-            <input class="dark-input" id="c_behalf" placeholder="Marta, our CEO">
+          <label class="stack"><span data-es="En nombre de (opcional)">On behalf of (optional)</span>
+            <input class="dark-input" id="c_behalf" placeholder="Marta, our CEO" data-es-placeholder="Marta, nuestra CEO">
           </label>
-          <label class="stack">Key detail: amount, comp, deadline
-            <input class="dark-input" id="c_detail" placeholder="$180–210k + 0.4%">
+          <label class="stack"><span data-es="Dato clave: monto, compensación, plazo">Key detail: amount, comp, deadline</span>
+            <input class="dark-input" id="c_detail" placeholder="$180–210k + 0.4%" data-es-placeholder="$180–210k + 0.4%">
           </label>
-          <label class="stack">Link (optional)
-            <input class="dark-input" id="c_link" placeholder="cal.com/lucia">
+          <label class="stack"><span data-es="Link (opcional)">Link (optional)</span>
+            <input class="dark-input" id="c_link" placeholder="cal.com/lucia" data-es-placeholder="cal.com/lucia">
           </label>
         </div>
-        <label class="stack">Context: what this is about
-          <textarea class="dark-input" id="c_ctx" rows="3" placeholder="a Series A company in agentic payments whose revenue tripled in nine months, hiring a founding engineer to own the ledger and settlement engine"></textarea>
+        <label class="stack"><span data-es="Contexto: de qué se trata">Context: what this is about</span>
+          <textarea class="dark-input" id="c_ctx" rows="3" placeholder="a Series A company in agentic payments whose revenue tripled in nine months, hiring a founding engineer to own the ledger and settlement engine" data-es-placeholder="una empresa Serie A en pagos agénticos cuyos ingresos se triplicaron en nueve meses, contratando a un founding engineer para liderar el ledger y el motor de settlement"></textarea>
         </label>
-        <label class="stack">The ask: one line
-          <input class="dark-input" id="c_ask" placeholder="a 20-minute call this week">
+        <label class="stack"><span data-es="La solicitud: una línea">The ask: one line</span>
+          <input class="dark-input" id="c_ask" placeholder="a 20-minute call this week" data-es-placeholder="una llamada de 20 minutos esta semana">
         </label>
-        <label class="stack warn-label">Never mention (comma separated)
-          <input class="dark-input warn" id="c_never" placeholder="client name, valuation">
+        <label class="stack warn-label"><span data-es="Nunca mencionar (separado por comas)">Never mention (comma separated)</span>
+          <input class="dark-input warn" id="c_never" placeholder="client name, valuation" data-es-placeholder="nombre del cliente, valuación">
         </label>
         <div class="gen-row">
-          <button type="button" class="gen-btn" id="c_go">Generate</button>
-          <span class="gen-hint">Nothing leaves your browser</span>
+          <button type="button" class="gen-btn" id="c_go" data-es="Generar">Generate</button>
+          <span class="gen-hint" data-es="Nada sale de tu navegador">Nothing leaves your browser</span>
         </div>
       </div>
 
       <div class="out-col" id="c_out">
-        <div class="out-empty">Fill in what you have and press Generate. Three lengths come back.</div>
+        <div class="out-empty" data-es="Completa lo que tengas y presiona Generar. Recibirás tres versiones.">Fill in what you have and press Generate. Three lengths come back.</div>
       </div>
     </div>
   </div>
@@ -825,13 +835,13 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     <div class="tool-card">
       <div class="tool-card-head">
         <h3 class="disp">Meeting overlap finder</h3>
-        <span class="flag">Live, DST-aware</span>
+        <span class="flag" data-es="En vivo, con horario de verano">Live, DST-aware</span>
       </div>
-      <p class="tool-note">One call, six time zones, and nobody wants a 6am. Mango columns work for everyone. Click a column header to copy the line for the invite.</p>
+      <p class="tool-note" data-es="Una llamada, seis zonas horarias, y nadie quiere una reunión a las 6am. Las columnas en mango funcionan para todos. Haz clic en un encabezado de columna para copiar la línea de la invitación.">One call, six time zones, and nobody wants a 6am. Mango columns work for everyone. Click a column header to copy the line for the invite.</p>
       <div class="tz-legend">
-        <span><i class="sw" style="background:#eee7db;border:1px solid rgba(32,30,29,0.12)"></i>Outside hours</span>
-        <span><i class="sw" style="background:#ccdbb2"></i>Working hours locally</span>
-        <span><i class="sw" style="background:#d67f48"></i>Works for everyone</span>
+        <span><i class="sw" style="background:#eee7db;border:1px solid rgba(32,30,29,0.12)"></i><span data-es="Fuera de horario">Outside hours</span></span>
+        <span><i class="sw" style="background:#ccdbb2"></i><span data-es="Horario laboral local">Working hours locally</span></span>
+        <span><i class="sw" style="background:#d67f48"></i><span data-es="Funciona para todos">Works for everyone</span></span>
       </div>
       <div class="tz-scroll">
         <div class="tz-inner">
@@ -847,27 +857,27 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
         <h3 class="disp">Follow-up queue</h3>
         <span class="flag" id="q-threshold-label"></span>
       </div>
-      <p class="tool-note">Add anyone you're waiting on. The threshold decides who gets chased, so it's a rule instead of something you re-litigate every morning. Drafts are for review, never sent.</p>
+      <p class="tool-note" data-es="Agrega a cualquiera que esté esperando respuesta. El umbral decide a quién se le da seguimiento, así que es una regla y no algo que decidas de nuevo cada mañana. Los borradores son para revisar, nunca se envían.">Add anyone you're waiting on. The threshold decides who gets chased, so it's a rule instead of something you re-litigate every morning. Drafts are for review, never sent.</p>
       <div class="queue-form">
-        <label>Name
+        <label><span data-es="Nombre">Name</span>
           <input class="light-input" id="q_name" placeholder="Priya Raman">
         </label>
-        <label>Role or subject
+        <label><span data-es="Rol o asunto">Role or subject</span>
           <input class="light-input" id="q_subject" placeholder="Founding Engineer">
         </label>
-        <label>Date sent
+        <label><span data-es="Fecha de envío">Date sent</span>
           <input class="light-input" id="q_date" type="date">
         </label>
-        <button type="button" class="add-btn" id="q_add">Add</button>
+        <button type="button" class="add-btn" id="q_add" data-es="Agregar">Add</button>
       </div>
 
       <div class="queue-table">
-        <div class="q-head"><span>Name</span><span>Subject</span><span>Waiting</span><span>Status</span></div>
+        <div class="q-head"><span data-es="Nombre">Name</span><span data-es="Asunto">Subject</span><span data-es="Esperando">Waiting</span><span data-es="Estado">Status</span></div>
         <div id="q-rows"></div>
       </div>
 
       <div class="queue-actions">
-        <button type="button" class="draft-all-btn" id="q_draft">Draft all overdue</button>
+        <button type="button" class="draft-all-btn" id="q_draft" data-es="Redactar todos los vencidos">Draft all overdue</button>
         <span class="queue-hint" id="q-overdue-label"></span>
       </div>
       <div id="q-drafts"></div>
@@ -878,99 +888,99 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 <section id="builds" class="sec">
   <div class="sec-head tight">
     <span class="num">§ 04</span>
-    <h2>Automations, specified</h2>
+    <h2 data-es="Automatizaciones, especificadas">Automations, specified</h2>
   </div>
-  <p class="sec-note wide">These aren't past projects dressed up as case studies. They're specifications: trigger, steps, and what happens when something is missing, written out precisely enough to hand me one and have it running this week. Every one of them automates something I've done by hand for long enough to know where it breaks. Open any row.</p>
+  <p class="sec-note wide" data-es="Estas no son proyectos pasados disfrazados de casos de estudio. Son especificaciones: disparador, pasos y qué pasa cuando falta algo, escritas con la precisión suficiente para dármelas y tenerlas funcionando esta semana. Cada una automatiza algo que hice a mano el tiempo suficiente para saber dónde se rompe. Abre cualquier fila.">These aren't past projects dressed up as case studies. They're specifications: trigger, steps, and what happens when something is missing, written out precisely enough to hand me one and have it running this week. Every one of them automates something I've done by hand for long enough to know where it breaks. Open any row.</p>
 
   <div class="bp-list">
     <details class="bp">
       <summary>
         <span class="bp-code">B01</span>
-        <span class="bp-text"><span class="bp-title">Inbox to task, triaged</span><span class="bp-desc">Turns a starred email into a dated task with a named owner, and tells the channel it exists.</span></span>
-        <span class="bp-meta"><span class="bp-platform">Zapier</span><span class="bp-time">~3 hrs/week back</span><span class="chev bp-chev"></span></span>
+        <span class="bp-text"><span class="bp-title" data-es="De inbox a tarea, clasificado">Inbox to task, triaged</span><span class="bp-desc" data-es="Convierte un correo destacado en una tarea con fecha y responsable asignado, y avisa en el canal que existe.">Turns a starred email into a dated task with a named owner, and tells the channel it exists.</span></span>
+        <span class="bp-meta"><span class="bp-platform">Zapier</span><span class="bp-time" data-es="~3 hrs/semana recuperadas">~3 hrs/week back</span><span class="chev bp-chev"></span></span>
       </summary>
       <div class="bp-flow">
-        <div><div class="fld-label a">Trigger</div><p>You star an email in Gmail</p></div>
-        <div><div class="fld-label b">Step 01</div><p>Reads the sender, the subject and any date mentioned in the body</p></div>
-        <div><div class="fld-label b">Step 02</div><p>Creates a task in Notion or ClickUp with that due date and the right owner</p></div>
-        <div><div class="fld-label b">Step 03</div><p>Attaches the thread link so nobody has to go searching for context</p></div>
-        <div><div class="fld-label c">Result</div><p>Posts in the team channel. Your inbox stays a queue instead of a filing cabinet.</p></div>
+        <div><div class="fld-label a" data-es="Disparador">Trigger</div><p data-es="Destacas un correo en Gmail">You star an email in Gmail</p></div>
+        <div><div class="fld-label b" data-es="Paso 01">Step 01</div><p data-es="Lee el remitente, el asunto y cualquier fecha mencionada en el cuerpo">Reads the sender, the subject and any date mentioned in the body</p></div>
+        <div><div class="fld-label b" data-es="Paso 02">Step 02</div><p data-es="Crea una tarea en Notion o ClickUp con esa fecha límite y el responsable correcto">Creates a task in Notion or ClickUp with that due date and the right owner</p></div>
+        <div><div class="fld-label b" data-es="Paso 03">Step 03</div><p data-es="Adjunta el link del hilo para que nadie tenga que buscar contexto">Attaches the thread link so nobody has to go searching for context</p></div>
+        <div><div class="fld-label c" data-es="Resultado">Result</div><p data-es="Publica en el canal del equipo. Tu inbox se queda como una cola, no como un archivero.">Posts in the team channel. Your inbox stays a queue instead of a filing cabinet.</p></div>
       </div>
     </details>
 
     <details class="bp">
       <summary>
         <span class="bp-code">B02</span>
-        <span class="bp-text"><span class="bp-title">Client intake, provisioned in one pass</span><span class="bp-desc">One form submission creates the folder, the contract, the CRM record and the welcome email.</span></span>
-        <span class="bp-meta"><span class="bp-platform">Make</span><span class="bp-time">~90 min per client</span><span class="chev bp-chev"></span></span>
+        <span class="bp-text"><span class="bp-title" data-es="Intake de cliente, aprovisionado de una sola vez">Client intake, provisioned in one pass</span><span class="bp-desc" data-es="Un solo formulario crea la carpeta, el contrato, el registro en el CRM y el correo de bienvenida.">One form submission creates the folder, the contract, the CRM record and the welcome email.</span></span>
+        <span class="bp-meta"><span class="bp-platform">Make</span><span class="bp-time" data-es="~90 min por cliente">~90 min per client</span><span class="chev bp-chev"></span></span>
       </summary>
       <div class="bp-flow">
-        <div><div class="fld-label a">Trigger</div><p>A new client submits the intake form</p></div>
-        <div><div class="fld-label b">Step 01</div><p>Creates their Drive folder from the standard template</p></div>
-        <div><div class="fld-label b">Step 02</div><p>Generates the contract with their details merged in</p></div>
-        <div><div class="fld-label b">Step 03</div><p>Creates the CRM record and links the folder to it</p></div>
-        <div><div class="fld-label b">Step 04</div><p>Sends the welcome email with the booking link already in it</p></div>
-        <div><div class="fld-label c">Result</div><p>Slack notification with everything linked. Onboarding starts the same hour, not the next day.</p></div>
+        <div><div class="fld-label a" data-es="Disparador">Trigger</div><p data-es="Un cliente nuevo envía el formulario de intake">A new client submits the intake form</p></div>
+        <div><div class="fld-label b" data-es="Paso 01">Step 01</div><p data-es="Crea su carpeta de Drive a partir de la plantilla estándar">Creates their Drive folder from the standard template</p></div>
+        <div><div class="fld-label b" data-es="Paso 02">Step 02</div><p data-es="Genera el contrato con sus datos ya combinados">Generates the contract with their details merged in</p></div>
+        <div><div class="fld-label b" data-es="Paso 03">Step 03</div><p data-es="Crea el registro en el CRM y le enlaza la carpeta">Creates the CRM record and links the folder to it</p></div>
+        <div><div class="fld-label b" data-es="Paso 04">Step 04</div><p data-es="Envía el correo de bienvenida con el link de agenda ya incluido">Sends the welcome email with the booking link already in it</p></div>
+        <div><div class="fld-label c" data-es="Resultado">Result</div><p data-es="Notificación en Slack con todo enlazado. El onboarding arranca esa misma hora, no al día siguiente.">Slack notification with everything linked. Onboarding starts the same hour, not the next day.</p></div>
       </div>
     </details>
 
     <details class="bp">
       <summary>
         <span class="bp-code">B03</span>
-        <span class="bp-text"><span class="bp-title">Invoice chase that escalates itself</span><span class="bp-desc">Finds what's overdue, picks the right message for how late it is, and drafts it.</span></span>
-        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time">~2 hrs/week back</span><span class="chev bp-chev"></span></span>
+        <span class="bp-text"><span class="bp-title" data-es="Cobro de facturas que se escala solo">Invoice chase that escalates itself</span><span class="bp-desc" data-es="Encuentra lo vencido, elige el mensaje correcto según qué tan atrasado esté, y lo redacta.">Finds what's overdue, picks the right message for how late it is, and drafts it.</span></span>
+        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time" data-es="~2 hrs/semana recuperadas">~2 hrs/week back</span><span class="chev bp-chev"></span></span>
       </summary>
       <div class="bp-flow">
-        <div><div class="fld-label a">Trigger</div><p>Runs every weekday at 8am</p></div>
-        <div><div class="fld-label b">Step 01</div><p>Reads the invoice sheet and finds anything unpaid past its due date</p></div>
-        <div><div class="fld-label b">Step 02</div><p>Picks the message by age: a nudge at 7 days, a firmer note at 14, escalation to the account owner at 30</p></div>
-        <div><div class="fld-label b">Step 03</div><p>Creates the draft and stops there. It never sends</p></div>
-        <div><div class="fld-label c">Result</div><p>A morning list of drafts to approve. Nobody gets chased twice and nobody gets forgotten.</p></div>
+        <div><div class="fld-label a" data-es="Disparador">Trigger</div><p data-es="Corre todos los días hábiles a las 8am">Runs every weekday at 8am</p></div>
+        <div><div class="fld-label b" data-es="Paso 01">Step 01</div><p data-es="Lee la hoja de facturas y encuentra lo que sigue sin pagar después de su fecha límite">Reads the invoice sheet and finds anything unpaid past its due date</p></div>
+        <div><div class="fld-label b" data-es="Paso 02">Step 02</div><p data-es="Elige el mensaje según la antigüedad: un recordatorio a los 7 días, una nota más firme a los 14, escalamiento al dueño de la cuenta a los 30">Picks the message by age: a nudge at 7 days, a firmer note at 14, escalation to the account owner at 30</p></div>
+        <div><div class="fld-label b" data-es="Paso 03">Step 03</div><p data-es="Crea el borrador y se detiene ahí. Nunca lo envía">Creates the draft and stops there. It never sends</p></div>
+        <div><div class="fld-label c" data-es="Resultado">Result</div><p data-es="Una lista matutina de borradores para aprobar. A nadie se le cobra dos veces y a nadie se le olvida.">A morning list of drafts to approve. Nobody gets chased twice and nobody gets forgotten.</p></div>
       </div>
     </details>
 
     <details class="bp">
       <summary>
         <span class="bp-code">B04</span>
-        <span class="bp-text"><span class="bp-title">Meeting to action items</span><span class="bp-desc">Pulls commitments out of a call transcript and turns them into tasks with real owners.</span></span>
-        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time">~4 hrs/week back</span><span class="chev bp-chev"></span></span>
+        <span class="bp-text"><span class="bp-title" data-es="De reunión a tareas">Meeting to action items</span><span class="bp-desc" data-es="Extrae compromisos de la transcripción de una llamada y los convierte en tareas con responsables reales.">Pulls commitments out of a call transcript and turns them into tasks with real owners.</span></span>
+        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time" data-es="~4 hrs/semana recuperadas">~4 hrs/week back</span><span class="chev bp-chev"></span></span>
       </summary>
       <div class="bp-flow">
-        <div><div class="fld-label a">Trigger</div><p>A call transcript lands in the folder</p></div>
-        <div><div class="fld-label b">Step 01</div><p>Separates decisions, commitments and open questions, since each needs different handling</p></div>
-        <div><div class="fld-label b">Step 02</div><p>Assigns each action to the person who agreed to it, on the date they said</p></div>
-        <div><div class="fld-label b">Step 03</div><p>Creates the tasks and posts a summary in the channel</p></div>
-        <div><div class="fld-label c">Result</div><p>Anything without a named owner gets flagged rather than quietly dropped.</p></div>
+        <div><div class="fld-label a" data-es="Disparador">Trigger</div><p data-es="Una transcripción de llamada llega a la carpeta">A call transcript lands in the folder</p></div>
+        <div><div class="fld-label b" data-es="Paso 01">Step 01</div><p data-es="Separa decisiones, compromisos y preguntas abiertas, porque cada una necesita un manejo distinto">Separates decisions, commitments and open questions, since each needs different handling</p></div>
+        <div><div class="fld-label b" data-es="Paso 02">Step 02</div><p data-es="Asigna cada acción a la persona que se comprometió, en la fecha que dijo">Assigns each action to the person who agreed to it, on the date they said</p></div>
+        <div><div class="fld-label b" data-es="Paso 03">Step 03</div><p data-es="Crea las tareas y publica un resumen en el canal">Creates the tasks and posts a summary in the channel</p></div>
+        <div><div class="fld-label c" data-es="Resultado">Result</div><p data-es="Todo lo que no tenga responsable asignado se marca, en vez de perderse en silencio.">Anything without a named owner gets flagged rather than quietly dropped.</p></div>
       </div>
     </details>
 
     <details class="bp">
       <summary>
         <span class="bp-code">B05</span>
-        <span class="bp-text"><span class="bp-title">Payroll pre-flight check</span><span class="bp-desc">Runs the checks three days early, so errors get caught before the run instead of after it.</span></span>
-        <span class="bp-meta"><span class="bp-platform">Make</span><span class="bp-time">Catches the expensive mistake</span><span class="chev bp-chev"></span></span>
+        <span class="bp-text"><span class="bp-title" data-es="Revisión previa de nómina">Payroll pre-flight check</span><span class="bp-desc" data-es="Corre las verificaciones tres días antes, para atrapar errores antes de la corrida y no después.">Runs the checks three days early, so errors get caught before the run instead of after it.</span></span>
+        <span class="bp-meta"><span class="bp-platform">Make</span><span class="bp-time" data-es="Atrapa el error costoso">Catches the expensive mistake</span><span class="chev bp-chev"></span></span>
       </summary>
       <div class="bp-flow">
-        <div><div class="fld-label a">Trigger</div><p>Three days before every payroll date</p></div>
-        <div><div class="fld-label b">Step 01</div><p>Pulls the contractor list from Deel and the hours from the tracker</p></div>
-        <div><div class="fld-label b">Step 02</div><p>Compares against last cycle and flags anything moving more than 10%</p></div>
-        <div><div class="fld-label b">Step 03</div><p>Flags missing timesheets, expired contracts and unconfirmed bank details</p></div>
-        <div><div class="fld-label c">Result</div><p>A review checklist in your inbox with three days of runway to fix whatever it found.</p></div>
+        <div><div class="fld-label a" data-es="Disparador">Trigger</div><p data-es="Tres días antes de cada fecha de nómina">Three days before every payroll date</p></div>
+        <div><div class="fld-label b" data-es="Paso 01">Step 01</div><p data-es="Trae la lista de contratistas desde Deel y las horas desde el tracker">Pulls the contractor list from Deel and the hours from the tracker</p></div>
+        <div><div class="fld-label b" data-es="Paso 02">Step 02</div><p data-es="Compara contra el ciclo anterior y marca todo lo que se mueva más de un 10%">Compares against last cycle and flags anything moving more than 10%</p></div>
+        <div><div class="fld-label b" data-es="Paso 03">Step 03</div><p data-es="Marca hojas de horas faltantes, contratos vencidos y datos bancarios sin confirmar">Flags missing timesheets, expired contracts and unconfirmed bank details</p></div>
+        <div><div class="fld-label c" data-es="Resultado">Result</div><p data-es="Un checklist de revisión en tu inbox, con tres días de margen para corregir lo que haya encontrado.">A review checklist in your inbox with three days of runway to fix whatever it found.</p></div>
       </div>
     </details>
 
     <details class="bp">
       <summary>
         <span class="bp-code">B06</span>
-        <span class="bp-text"><span class="bp-title">Weekly leadership brief, assembled</span><span class="bp-desc">The Friday summary nobody has time to write, written before anyone asks for it.</span></span>
-        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time">~2 hrs/week back</span><span class="chev bp-chev"></span></span>
+        <span class="bp-text"><span class="bp-title" data-es="Brief semanal para liderazgo, armado">Weekly leadership brief, assembled</span><span class="bp-desc" data-es="El resumen de los viernes que nadie tiene tiempo de escribir, listo antes de que alguien lo pida.">The Friday summary nobody has time to write, written before anyone asks for it.</span></span>
+        <span class="bp-meta"><span class="bp-platform">n8n</span><span class="bp-time" data-es="~2 hrs/semana recuperadas">~2 hrs/week back</span><span class="chev bp-chev"></span></span>
       </summary>
       <div class="bp-flow">
-        <div><div class="fld-label a">Trigger</div><p>Friday at 3pm</p></div>
-        <div><div class="fld-label b">Step 01</div><p>Pulls the week's calendar, CRM movement and closed tasks</p></div>
-        <div><div class="fld-label b">Step 02</div><p>Compares against last week and surfaces only what actually changed</p></div>
-        <div><div class="fld-label b">Step 03</div><p>Lists open items with names and dates attached to them</p></div>
-        <div><div class="fld-label c">Result</div><p>One brief in the inbox before the weekend. Monday starts with decisions instead of archaeology.</p></div>
+        <div><div class="fld-label a" data-es="Disparador">Trigger</div><p data-es="Viernes a las 3pm">Friday at 3pm</p></div>
+        <div><div class="fld-label b" data-es="Paso 01">Step 01</div><p data-es="Trae el calendario de la semana, el movimiento del CRM y las tareas cerradas">Pulls the week's calendar, CRM movement and closed tasks</p></div>
+        <div><div class="fld-label b" data-es="Paso 02">Step 02</div><p data-es="Compara contra la semana anterior y muestra solo lo que realmente cambió">Compares against last week and surfaces only what actually changed</p></div>
+        <div><div class="fld-label b" data-es="Paso 03">Step 03</div><p data-es="Lista los pendientes con nombres y fechas asignadas">Lists open items with names and dates attached to them</p></div>
+        <div><div class="fld-label c" data-es="Resultado">Result</div><p data-es="Un brief en el inbox antes del fin de semana. El lunes empieza con decisiones, no con arqueología.">One brief in the inbox before the weekend. Monday starts with decisions instead of archaeology.</p></div>
       </div>
     </details>
   </div>
@@ -979,20 +989,20 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 <section id="design" class="sec">
   <div class="sec-head tight">
     <span class="num">§ 05</span>
-    <h2>The other half: design</h2>
+    <h2 data-es="La otra mitad: diseño">The other half: design</h2>
   </div>
-  <p class="sec-note wide">Operations pays the bills, but a good half of the job has always been making the thing look like it came from one company. Cards, signage, social sets, document templates. The client work sits in accounts I no longer have access to, so these specimens are built fresh on an invented brand. The controls under each one are the real decisions, and they print the numbers you would type into Canva.</p>
+  <p class="sec-note wide" data-es="Operaciones paga las cuentas, pero la otra mitad del trabajo siempre ha sido lograr que las cosas se vean como si vinieran de una sola empresa. Tarjetas, señalética, sets para redes, plantillas de documentos. El trabajo con clientes vive en cuentas a las que ya no tengo acceso, así que estos especímenes están construidos desde cero sobre una marca inventada. Los controles debajo de cada uno son las decisiones reales, e imprimen los números que escribirías en Canva.">Operations pays the bills, but a good half of the job has always been making the thing look like it came from one company. Cards, signage, social sets, document templates. The client work sits in accounts I no longer have access to, so these specimens are built fresh on an invented brand. The controls under each one are the real decisions, and they print the numbers you would type into Canva.</p>
 
   <div class="name-tester">
-    <span class="lbl">Stress test the name</span>
+    <span class="lbl" data-es="Pon a prueba el nombre">Stress test the name</span>
     <div id="name-buttons"></div>
   </div>
 
   <div class="design-grid">
     <div class="specimen" id="d-card">
       <div class="specimen-no">01</div>
-      <div class="specimen-head"><h3 class="disp">Business card</h3><span class="flag">Print</span></div>
-      <p class="specimen-spec">3.5 × 2 in · 0.125 in bleed · one typeface</p>
+      <div class="specimen-head"><h3 class="disp">Business card</h3><span class="flag" data-es="Impreso">Print</span></div>
+      <p class="specimen-spec" data-es="3.5 × 2 in · sangrado de 0.125 in · una tipografía">3.5 × 2 in · 0.125 in bleed · one typeface</p>
 
       <div class="stage bc-stage">
         <div class="bc-card" id="bc-card">
@@ -1012,49 +1022,49 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
           </div>
         </div>
       </div>
-      <p class="art-cap">Drawn at trim, not a screenshot. Resize the window and the type scales with the card.</p>
+      <p class="art-cap" data-es="Dibujado a tamaño final, no es una captura de pantalla. Cambia el tamaño de la ventana y el tipo escala con la tarjeta.">Drawn at trim, not a screenshot. Resize the window and the type scales with the card.</p>
 
       <div class="control-stack">
         <div class="control-row">
-          <div class="control-top"><span>Name size</span><span class="control-val" id="v-bcName">23 pt</span></div>
+          <div class="control-top"><span data-es="Tamaño del nombre">Name size</span><span class="control-val" id="v-bcName">23 pt</span></div>
           <input type="range" id="bcName" min="14" max="34" step="1" value="23">
         </div>
         <div class="control-row">
-          <div class="control-top"><span>Name tracking</span><span class="control-val" id="v-bcTrack">−30</span></div>
+          <div class="control-top"><span data-es="Tracking del nombre">Name tracking</span><span class="control-val" id="v-bcTrack">−30</span></div>
           <input type="range" id="bcTrack" min="-60" max="40" step="5" value="-30">
         </div>
         <div>
-          <div class="control-group-label">Contact block</div>
+          <div class="control-group-label" data-es="Bloque de contacto">Contact block</div>
           <div class="pill-row" id="bc-contact-buttons" style="gap:7px"></div>
         </div>
       </div>
 
       <div class="spec-readout" id="bc-spec"></div>
-      <div class="spec-warn" id="bc-warn">The name is past the safe margin. Size it down, or the long-name agents get a broken card.</div>
+      <div class="spec-warn" id="bc-warn" data-es="El nombre pasó el margen seguro. Redúcelo, o a los agentes con nombres largos se les rompe la tarjeta.">The name is past the safe margin. Size it down, or the long-name agents get a broken card.</div>
 
       <div class="brief-block">
-        <div class="fld-label a">Brief</div>
-        <p>A card layout that has to hold for eighty-five people. One card is not the problem. The template is, and it always breaks on the name.</p>
-        <div class="fld-label b">Constraints</div>
+        <div class="fld-label a" data-es="Brief">Brief</div>
+        <p data-es="Un diseño de tarjeta que tiene que funcionar para ochenta y cinco personas. Una tarjeta no es el problema. La plantilla sí, y siempre se rompe en el nombre.">A card layout that has to hold for eighty-five people. One card is not the problem. The template is, and it always breaks on the name.</p>
+        <div class="fld-label b" data-es="Restricciones">Constraints</div>
         <ul class="dot-list small" style="margin-bottom:18px">
-          <li><span class="dot" style="background:#a19786"></span>No brand guide, so weight and size carry the hierarchy instead of colour</li>
-          <li><span class="dot" style="background:#a19786"></span>Six pieces of contact information have to fit without crowding the name</li>
-          <li><span class="dot" style="background:#a19786"></span>Nothing within a quarter inch of the trim</li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="Sin guía de marca, así que el peso y el tamaño llevan la jerarquía en vez del color">No brand guide, so weight and size carry the hierarchy instead of colour</span></li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="Seis datos de contacto tienen que caber sin apretar el nombre">Six pieces of contact information have to fit without crowding the name</span></li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="Nada a menos de un cuarto de pulgada del corte">Nothing within a quarter inch of the trim</span></li>
         </ul>
-        <div class="fld-label c">What I decided</div>
+        <div class="fld-label c" data-es="Lo que decidí">What I decided</div>
         <ul class="dot-list small">
-          <li><span class="dot sage"></span>The person's name is the largest element, not the brokerage. A card is handed over by a human.</li>
-          <li><span class="dot sage"></span>Name and title pair tightly, then a rule opens space before the contact block, so the eye reads two groups instead of five lines</li>
-          <li><span class="dot sage"></span>Contact runs in two columns rather than one stack, which stops the lower third going heavy</li>
-          <li><span class="dot sage"></span>Tracking pulled in slightly. At this size the default spacing reads loose against the small text under it.</li>
+          <li><span class="dot sage"></span><span data-es="El nombre de la persona es el elemento más grande, no la inmobiliaria. Una tarjeta la entrega un humano.">The person's name is the largest element, not the brokerage. A card is handed over by a human.</span></li>
+          <li><span class="dot sage"></span><span data-es="El nombre y el título van pegados, y una línea abre espacio antes del bloque de contacto, así el ojo lee dos grupos en vez de cinco líneas">Name and title pair tightly, then a rule opens space before the contact block, so the eye reads two groups instead of five lines</span></li>
+          <li><span class="dot sage"></span><span data-es="El contacto va en dos columnas en vez de una sola, lo que evita que el tercio inferior se vea pesado">Contact runs in two columns rather than one stack, which stops the lower third going heavy</span></li>
+          <li><span class="dot sage"></span><span data-es="El tracking se ajustó un poco hacia adentro. A este tamaño, el espaciado por defecto se ve suelto frente al texto pequeño debajo.">Tracking pulled in slightly. At this size the default spacing reads loose against the small text under it.</span></li>
         </ul>
       </div>
     </div>
 
     <div class="specimen" id="d-sign">
       <div class="specimen-no">02</div>
-      <div class="specimen-head"><h3 class="disp">Lawn sign and rider</h3><span class="flag">Large format</span></div>
-      <p class="specimen-spec">24 × 18 in and 24 × 6 in · read from a moving car</p>
+      <div class="specimen-head"><h3 class="disp">Lawn sign and rider</h3><span class="flag" data-es="Formato grande">Large format</span></div>
+      <p class="specimen-spec" data-es="24 × 18 in y 24 × 6 in · legible desde un auto en movimiento">24 × 18 in and 24 × 6 in · read from a moving car</p>
 
       <div class="stage sign-stage">
         <div class="sign-wrap" id="sign-wrap">
@@ -1073,47 +1083,47 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
       <div class="control-stack">
         <div class="control-row">
-          <div class="control-top"><span>Step back from the sign</span><span class="control-val" id="v-stepBack">0 ft</span></div>
+          <div class="control-top"><span data-es="Aléjate del letrero">Step back from the sign</span><span class="control-val" id="v-stepBack">0 ft</span></div>
           <input type="range" id="stepBack" min="0" max="60" step="5" value="0">
         </div>
         <div class="control-row">
-          <div class="control-top"><span>Rider line</span><span class="control-val" id="v-rider">1.5 in</span></div>
+          <div class="control-top"><span data-es="Línea del rider">Rider line</span><span class="control-val" id="v-rider">1.5 in</span></div>
           <input type="range" id="rider" min="1" max="3.4" step="0.1" value="1.5">
         </div>
       </div>
 
       <div class="spec-readout" id="sign-spec"></div>
-      <div class="spec-warn" id="sign-warn">That is wider than the sign. It will spill past the 2 in margin.</div>
+      <div class="spec-warn" id="sign-warn" data-es="Eso es más ancho que el letrero. Se saldrá del margen de 2 in.">That is wider than the sign. It will spill past the 2 in margin.</div>
 
       <div class="brief-block">
-        <div class="fld-label a">Brief</div>
-        <p>Signage that stays legible from across a street, in the rain, at thirty kilometres an hour. The only piece here where viewing distance sets the type size instead of taste.</p>
-        <div class="fld-label b">Constraints</div>
+        <div class="fld-label a" data-es="Brief">Brief</div>
+        <p data-es="Señalética que se mantiene legible desde el otro lado de la calle, bajo la lluvia, a treinta kilómetros por hora. La única pieza aquí donde la distancia de visión define el tamaño de tipo, no el gusto.">Signage that stays legible from across a street, in the rain, at thirty kilometres an hour. The only piece here where viewing distance sets the type size instead of taste.</p>
+        <div class="fld-label b" data-es="Restricciones">Constraints</div>
         <ul class="dot-list small" style="margin-bottom:18px">
-          <li><span class="dot" style="background:#a19786"></span>Roughly one inch of cap height per ten feet of reading distance, so the phone number sets its own minimum</li>
-          <li><span class="dot" style="background:#a19786"></span>Three pieces of information at most. Anything past that will not be read.</li>
-          <li><span class="dot" style="background:#a19786"></span>The rider is one line, with no room to be clever</li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="Aproximadamente una pulgada de altura de caja por cada diez pies de distancia de lectura, así que el teléfono define su propio mínimo">Roughly one inch of cap height per ten feet of reading distance, so the phone number sets its own minimum</span></li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="Máximo tres datos. Cualquier cosa después de eso no se lee.">Three pieces of information at most. Anything past that will not be read.</span></li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="El rider es una sola línea, sin espacio para ser ingenioso">The rider is one line, with no room to be clever</span></li>
         </ul>
-        <div class="fld-label c">What I decided</div>
+        <div class="fld-label c" data-es="Lo que decidí">What I decided</div>
         <ul class="dot-list small">
-          <li><span class="dot sage"></span>Brokerage largest, at the top. From the street the brand is what identifies the sign; the agent details are for people who already stopped.</li>
-          <li><span class="dot sage"></span>Contrast over colour. A mid tone on a mid tone disappears at distance even when it looks fine on screen.</li>
-          <li><span class="dot sage"></span>Generous margins, because signs get bent, mounted crooked and half hidden by a hedge.</li>
-          <li><span class="dot sage"></span>Use the step-back control rather than your eye at full screen. That is the only honest test.</li>
+          <li><span class="dot sage"></span><span data-es="La inmobiliaria es lo más grande, arriba. Desde la calle, la marca es lo que identifica el letrero; los datos del agente son para quien ya se detuvo.">Brokerage largest, at the top. From the street the brand is what identifies the sign; the agent details are for people who already stopped.</span></li>
+          <li><span class="dot sage"></span><span data-es="Contraste antes que color. Un tono medio sobre otro tono medio desaparece a distancia, aunque se vea bien en pantalla.">Contrast over colour. A mid tone on a mid tone disappears at distance even when it looks fine on screen.</span></li>
+          <li><span class="dot sage"></span><span data-es="Márgenes generosos, porque los letreros se doblan, se instalan torcidos y quedan medio escondidos detrás de un seto.">Generous margins, because signs get bent, mounted crooked and half hidden by a hedge.</span></li>
+          <li><span class="dot sage"></span><span data-es="Usa el control de distancia en vez de confiar en tu ojo con la pantalla completa. Esa es la única prueba honesta.">Use the step-back control rather than your eye at full screen. That is the only honest test.</span></li>
         </ul>
       </div>
     </div>
 
     <div class="specimen" id="d-social">
       <div class="specimen-no">03</div>
-      <div class="specimen-head"><h3 class="disp">Instagram set</h3><span class="flag">Social template</span></div>
-      <p class="specimen-spec">1080 × 1080 · three states of one listing · built for someone else to fill in</p>
+      <div class="specimen-head"><h3 class="disp">Instagram set</h3><span class="flag" data-es="Plantilla social">Social template</span></div>
+      <p class="specimen-spec" data-es="1080 × 1080 · tres estados de un mismo listado · pensado para que alguien más lo llene">1080 × 1080 · three states of one listing · built for someone else to fill in</p>
 
       <div class="ig-grid">
         <div class="ig-tile t1" id="ig-1">
           <div class="ig-scrim"></div>
           <div class="ig-content">
-            <div class="ig-label">NEW LISTING</div>
+            <div class="ig-label" data-es="NUEVO LISTADO">NEW LISTING</div>
             <div class="ig-addr">412 Roncesvalles Ave</div>
             <div class="ig-agent" data-fill="name">Daniela Restrepo</div>
           </div>
@@ -1121,7 +1131,7 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
         <div class="ig-tile t2" id="ig-2">
           <div class="ig-scrim"></div>
           <div class="ig-content">
-            <div class="ig-label">OPEN HOUSE SUN 2 TO 4</div>
+            <div class="ig-label" data-es="CASA ABIERTA DOM 2 A 4">OPEN HOUSE SUN 2 TO 4</div>
             <div class="ig-addr">412 Roncesvalles Ave</div>
             <div class="ig-agent" data-fill="name">Daniela Restrepo</div>
           </div>
@@ -1129,54 +1139,54 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
         <div class="ig-tile t3" id="ig-3">
           <div class="ig-scrim"></div>
           <div class="ig-content">
-            <div class="ig-label">SOLD</div>
+            <div class="ig-label" data-es="VENDIDO">SOLD</div>
             <div class="ig-addr">412 Roncesvalles Ave</div>
             <div class="ig-agent" data-fill="name">Daniela Restrepo</div>
           </div>
         </div>
       </div>
-      <p class="art-cap">Three deliberately different photo values: bright, mid, dark. One scrim value has to serve all three.</p>
+      <p class="art-cap" data-es="Tres valores de foto deliberadamente distintos: clara, media, oscura. Un solo valor de scrim tiene que servir para las tres.">Three deliberately different photo values: bright, mid, dark. One scrim value has to serve all three.</p>
 
       <div class="control-stack">
         <div class="control-row">
-          <div class="control-top"><span>Address size</span><span class="control-val" id="v-igAddr">62 px</span></div>
+          <div class="control-top"><span data-es="Tamaño de la dirección">Address size</span><span class="control-val" id="v-igAddr">62 px</span></div>
           <input type="range" id="igAddr" min="38" max="86" step="2" value="62">
         </div>
         <div class="control-row">
-          <div class="control-top"><span>Scrim darkness</span><span class="control-val" id="v-igScrim">86%</span></div>
+          <div class="control-top"><span data-es="Oscuridad del scrim">Scrim darkness</span><span class="control-val" id="v-igScrim">86%</span></div>
           <input type="range" id="igScrim" min="20" max="100" step="2" value="86">
         </div>
         <div class="control-row">
-          <div class="control-top"><span>Scrim height</span><span class="control-val" id="v-igScrimH">58%</span></div>
+          <div class="control-top"><span data-es="Altura del scrim">Scrim height</span><span class="control-val" id="v-igScrimH">58%</span></div>
           <input type="range" id="igScrimH" min="25" max="100" step="1" value="58">
         </div>
       </div>
 
       <div class="spec-readout" id="ig-spec"></div>
-      <div class="spec-warn" id="ig-warn">At this value the text is fighting the bright photo on the left. Check the first tile, not the last.</div>
+      <div class="spec-warn" id="ig-warn" data-es="A este valor el texto compite con la foto clara de la izquierda. Revisa el primer cuadro, no el último.">At this value the text is fighting the bright photo on the left. Check the first tile, not the last.</div>
 
       <div class="brief-block">
-        <div class="fld-label a">Brief</div>
-        <p>New listing, open house, sold. Three posts that read as a set when they surface months apart in a feed, and that someone else can fill in without asking me anything.</p>
-        <div class="fld-label b">Constraints</div>
+        <div class="fld-label a" data-es="Brief">Brief</div>
+        <p data-es="Nuevo listado, casa abierta, vendido. Tres publicaciones que se leen como un set aunque aparezcan meses aparte en un feed, y que alguien más puede llenar sin preguntarme nada.">New listing, open house, sold. Three posts that read as a set when they surface months apart in a feed, and that someone else can fill in without asking me anything.</p>
+        <div class="fld-label b" data-es="Restricciones">Constraints</div>
         <ul class="dot-list small" style="margin-bottom:18px">
-          <li><span class="dot" style="background:#a19786"></span>Photos arrive at unpredictable crops and quality, so the layout cannot depend on the image</li>
-          <li><span class="dot" style="background:#a19786"></span>Text has to stay legible over photography without an overlay swallowing the house</li>
-          <li><span class="dot" style="background:#a19786"></span>Posted weekly, so filling it in should take minutes</li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="Las fotos llegan con recortes y calidad impredecibles, así que el diseño no puede depender de la imagen">Photos arrive at unpredictable crops and quality, so the layout cannot depend on the image</span></li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="El texto tiene que seguir siendo legible sobre la foto sin que un overlay se coma la casa">Text has to stay legible over photography without an overlay swallowing the house</span></li>
+          <li><span class="dot" style="background:#a19786"></span><span data-es="Se publica cada semana, así que llenarlo debería tomar minutos">Posted weekly, so filling it in should take minutes</span></li>
         </ul>
-        <div class="fld-label c">What I decided</div>
+        <div class="fld-label c" data-es="Lo que decidí">What I decided</div>
         <ul class="dot-list small">
-          <li><span class="dot sage"></span>The text block holds the same position on all three. Only the label and the photo change, which is what makes them read as a series.</li>
-          <li><span class="dot sage"></span>A gradient scrim instead of a flat box, so the photo stays visible and one value works over both bright and dark images</li>
-          <li><span class="dot sage"></span>The address is the headline, not the status. People scroll for the property.</li>
+          <li><span class="dot sage"></span><span data-es="El bloque de texto mantiene la misma posición en las tres. Solo cambian la etiqueta y la foto, y eso es lo que hace que se lean como una serie.">The text block holds the same position on all three. Only the label and the photo change, which is what makes them read as a series.</span></li>
+          <li><span class="dot sage"></span><span data-es="Un scrim en degradado en vez de un bloque plano, así la foto se mantiene visible y un solo valor funciona tanto en imágenes claras como oscuras">A gradient scrim instead of a flat box, so the photo stays visible and one value works over both bright and dark images</span></li>
+          <li><span class="dot sage"></span><span data-es="La dirección es el titular, no el estado. La gente se detiene a ver por la propiedad.">The address is the headline, not the status. People scroll for the property.</span></li>
         </ul>
       </div>
     </div>
 
     <div class="specimen dark" id="d-doc">
       <div class="specimen-no">04</div>
-      <div class="specimen-head"><h3 class="disp">Recruiting template system</h3><span class="flag">Real prior work, rebuilt</span></div>
-      <p class="specimen-spec">Contrario AI · adopted org-wide · around 200 documents built on it</p>
+      <div class="specimen-head"><h3 class="disp">Recruiting template system</h3><span class="flag" data-es="Trabajo real anterior, reconstruido">Real prior work, rebuilt</span></div>
+      <p class="specimen-spec" data-es="Contrario AI · adoptado en toda la organización · cerca de 200 documentos construidos sobre esta base">Contrario AI · adopted org-wide · around 200 documents built on it</p>
 
       <div class="doc-preview">
         <div class="doc-kicker">Role specification</div>
@@ -1193,25 +1203,25 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
         <div class="doc-h2">Must have</div>
         <p class="doc-p" style="margin-bottom:0">Five years building systems where money moves, and the judgment to know which correctness problems are worth slowing down for.</p>
       </div>
-      <p class="art-cap" style="color:var(--dark-muted2)">Rebuilt here from the original, which lives in a client account.</p>
+      <p class="art-cap" style="color:var(--dark-muted2)" data-es="Reconstruido aquí a partir del original, que vive en la cuenta de un cliente.">Rebuilt here from the original, which lives in a client account.</p>
 
       <div class="brief-block">
-        <div class="fld-label dark-a">Brief</div>
-        <p>Every recruiter wrote job descriptions in their own format, so clients received documents that did not look like they came from the same company. One template the team would actually use.</p>
-        <div class="fld-label dark-b">Constraints</div>
+        <div class="fld-label dark-a" data-es="Brief">Brief</div>
+        <p data-es="Cada reclutador escribía las job descriptions a su manera, así que los clientes recibían documentos que no parecían venir de la misma empresa. Una plantilla que el equipo realmente usara.">Every recruiter wrote job descriptions in their own format, so clients received documents that did not look like they came from the same company. One template the team would actually use.</p>
+        <div class="fld-label dark-b" data-es="Restricciones">Constraints</div>
         <ul class="dot-list small" style="margin-bottom:18px">
-          <li><span class="dot"></span>Documents get pasted into LinkedIn, Notion and client email, so the hierarchy has to survive losing all of its styling</li>
-          <li><span class="dot"></span>Non-designers fill them in daily, so anything fussy is broken within a week</li>
-          <li><span class="dot"></span>Existing colours and one typeface, with no licensing budget</li>
+          <li><span class="dot"></span><span data-es="Los documentos se pegan en LinkedIn, Notion y correos a clientes, así que la jerarquía tiene que sobrevivir sin ningún estilo">Documents get pasted into LinkedIn, Notion and client email, so the hierarchy has to survive losing all of its styling</span></li>
+          <li><span class="dot"></span><span data-es="Personas sin formación de diseño los llenan a diario, así que cualquier cosa delicada se rompe en una semana">Non-designers fill them in daily, so anything fussy is broken within a week</span></li>
+          <li><span class="dot"></span><span data-es="Colores existentes y una sola tipografía, sin presupuesto para licencias">Existing colours and one typeface, with no licensing budget</span></li>
         </ul>
-        <div class="fld-label dark-c">What I decided</div>
+        <div class="fld-label dark-c" data-es="Lo que decidí">What I decided</div>
         <ul class="dot-list small" style="margin-bottom:18px">
-          <li><span class="dot sage"></span>Three levels of hierarchy and no more, which are role title, section and body, sized far enough apart to read the structure at a glance</li>
-          <li><span class="dot sage"></span>Section headings carry weight rather than colour, so the page survives greyscale printing and a plain-text paste</li>
-          <li><span class="dot sage"></span>A fixed line length on body copy. That was the change that made the documents start to feel finished.</li>
+          <li><span class="dot sage"></span><span data-es="Tres niveles de jerarquía y no más: título del rol, sección y cuerpo, con tamaños lo bastante separados para leer la estructura de un vistazo">Three levels of hierarchy and no more, which are role title, section and body, sized far enough apart to read the structure at a glance</span></li>
+          <li><span class="dot sage"></span><span data-es="Los encabezados de sección llevan peso en vez de color, así la página sobrevive una impresión en escala de grises o un pegado en texto plano">Section headings carry weight rather than colour, so the page survives greyscale printing and a plain-text paste</span></li>
+          <li><span class="dot sage"></span><span data-es="Un ancho de línea fijo en el cuerpo de texto. Ese fue el cambio que hizo que los documentos empezaran a sentirse terminados.">A fixed line length on body copy. That was the change that made the documents start to feel finished.</span></li>
         </ul>
-        <div class="fld-label dark-a">Result</div>
-        <p>Around 200 job descriptions built on it, and the JD Package Engine in section 02 is this template with the writing rules attached.</p>
+        <div class="fld-label dark-a" data-es="Resultado">Result</div>
+        <p data-es="Cerca de 200 job descriptions construidas sobre esta base, y el JD Package Engine de la sección 02 es esta misma plantilla con las reglas de escritura ya integradas.">Around 200 job descriptions built on it, and the JD Package Engine in section 02 is this template with the writing rules attached.</p>
         <div class="chips">
           <span class="chip">Canva</span><span class="chip">Docs</span><span class="chip">Notion</span><span class="chip">Adobe CS</span>
         </div>
@@ -1221,17 +1231,17 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
   <div class="numbers-band">
     <div>
-      <h3 class="disp">Your numbers</h3>
-      <p>Move the sliders and take the numbers straight to Canva.</p>
+      <h3 class="disp" data-es="Tus números">Your numbers</h3>
+      <p data-es="Mueve los controles y lleva los números directo a Canva.">Move the sliders and take the numbers straight to Canva.</p>
     </div>
-    <button type="button" class="numbers-btn" id="copy-spec">Copy the spec</button>
+    <button type="button" class="numbers-btn" id="copy-spec" data-es="Copiar los datos">Copy the spec</button>
   </div>
 </section>
 
 <section id="about" class="sec">
   <div class="sec-head">
     <span class="num">§ 06</span>
-    <h2>How I got here</h2>
+    <h2 data-es="Cómo llegué aquí">How I got here</h2>
   </div>
   <div class="about-grid">
     <figure class="portrait-fig">
@@ -1239,11 +1249,11 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
       <figcaption>Lucía Fadul<br>Colombia</figcaption>
     </figure>
     <div class="about-copy">
-      <p class="lede">I'm from <strong>Córdoba</strong>, on the Colombian Caribbean coast. My first real job was at the town hall in Chinú, where I administered a database of <strong>8,000+ families</strong> whose subsidies depended on their kids staying in school and up to date on health checks. Fifty people a day came to the counter. If a record was wrong, a family didn't eat that month.</p>
-      <p>That's where the whole thing starts. I studied <strong>Systems and Telecommunications Engineering</strong>, taught adults Windows and Office at SENA, then spent two years in Boston as an au pair, which is how I actually learned English, and how I learned that a schedule for three children under five is a production system with no margin.</p>
-      <p class="pull">Everything since has been the same job in a different costume: make the process survive the person running it.</p>
-      <p>Since then it's been remote operations for US teams: executive support in Miami, a back office in Colombia, then payroll, intake and SOPs at a YC health startup, and now recruiting operations for another one, across 50+ active clients.</p>
-      <p style="margin-bottom:0">The pattern is consistent enough that I stopped pretending it was a coincidence. I get handed something repetitive and undocumented, and I hand back a written procedure that somebody else can run. Then I go find the next one.</p>
+      <p class="lede" data-es="Soy de <strong>Córdoba</strong>, en la costa Caribe colombiana. Mi primer trabajo real fue en la alcaldía de Chinú, donde administraba una base de datos de <strong>más de 8,000 familias</strong> cuyos subsidios dependían de que sus hijos siguieran en la escuela y al día con los controles de salud. Cincuenta personas al día llegaban a la ventanilla. Si un registro estaba mal, una familia no comía ese mes.">I'm from <strong>Córdoba</strong>, on the Colombian Caribbean coast. My first real job was at the town hall in Chinú, where I administered a database of <strong>8,000+ families</strong> whose subsidies depended on their kids staying in school and up to date on health checks. Fifty people a day came to the counter. If a record was wrong, a family didn't eat that month.</p>
+      <p data-es="Ahí empieza todo. Estudié <strong>Ingeniería de Sistemas y Telecomunicaciones</strong>, enseñé Windows y Office a adultos en el SENA, y luego pasé dos años en Boston como au pair, que es como realmente aprendí inglés, y como aprendí que el horario de tres niños menores de cinco años es un sistema de producción sin margen de error.">That's where the whole thing starts. I studied <strong>Systems and Telecommunications Engineering</strong>, taught adults Windows and Office at SENA, then spent two years in Boston as an au pair, which is how I actually learned English, and how I learned that a schedule for three children under five is a production system with no margin.</p>
+      <p class="pull" data-es="Todo lo que ha venido después ha sido el mismo trabajo con otro disfraz: lograr que el proceso sobreviva a la persona que lo ejecuta.">Everything since has been the same job in a different costume: make the process survive the person running it.</p>
+      <p data-es="Desde entonces ha sido operaciones remotas para equipos de EE. UU.: soporte ejecutivo en Miami, un back office en Colombia, luego nómina, intake y SOPs en una startup de salud de YC, y ahora operaciones de reclutamiento en otra, con más de 50 clientes activos.">Since then it's been remote operations for US teams: executive support in Miami, a back office in Colombia, then payroll, intake and SOPs at a YC health startup, and now recruiting operations for another one, across 50+ active clients.</p>
+      <p style="margin-bottom:0" data-es="El patrón es lo bastante consistente como para dejar de fingir que era casualidad. Me entregan algo repetitivo y sin documentar, y yo devuelvo un procedimiento escrito que cualquier otra persona puede ejecutar. Luego voy a buscar el siguiente.">The pattern is consistent enough that I stopped pretending it was a coincidence. I get handed something repetitive and undocumented, and I hand back a written procedure that somebody else can run. Then I go find the next one.</p>
     </div>
   </div>
 </section>
@@ -1251,87 +1261,87 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 <section id="record" class="sec">
   <div class="sec-head">
     <span class="num">§ 07</span>
-    <h2>Record</h2>
+    <h2 data-es="Trayectoria">Record</h2>
   </div>
 
   <div class="timeline">
     <div class="t-row">
       <span class="t-no">01</span>
       <div>
-        <div class="t-date">Feb 2026 – present</div>
-        <div class="t-role disp">Operations Assistant</div>
-        <div class="t-org">Contrario AI (YC 22) · Remote, US</div>
+        <div class="t-date" data-es="feb 2026 – presente">Feb 2026 – present</div>
+        <div class="t-role disp" data-es="Asistente de Operaciones">Operations Assistant</div>
+        <div class="t-org" data-es="Contrario AI (YC 22) · Remoto, EE. UU.">Contrario AI (YC 22) · Remote, US</div>
       </div>
-      <p class="t-desc">Day-to-day operations across 50+ active clients and recruiter partners. Built and maintains the five systems indexed above.</p>
+      <p class="t-desc" data-es="Operación del día a día con más de 50 clientes activos y socios reclutadores. Construí y mantengo los cinco sistemas indexados arriba.">Day-to-day operations across 50+ active clients and recruiter partners. Built and maintains the five systems indexed above.</p>
     </div>
     <div class="t-row">
       <span class="t-no">02</span>
       <div>
-        <div class="t-date">Mar 2025 – Apr 2026</div>
-        <div class="t-role disp">Operations Manager</div>
-        <div class="t-org">Solum Health (YC 22) · Remote, US</div>
+        <div class="t-date" data-es="mar 2025 – abr 2026">Mar 2025 – Apr 2026</div>
+        <div class="t-role disp" data-es="Gerente de Operaciones">Operations Manager</div>
+        <div class="t-org" data-es="Solum Health (YC 22) · Remoto, EE. UU.">Solum Health (YC 22) · Remote, US</div>
       </div>
-      <p class="t-desc">Multi-country payroll, client scheduling and intake, insurance verification, SOP authoring, AI agent workflow design, and QA testing alongside engineering.</p>
+      <p class="t-desc" data-es="Nómina multipaís, agendamiento e intake de clientes, verificación de seguros, redacción de SOPs, diseño de flujos para agentes de IA, y pruebas de QA junto con ingeniería.">Multi-country payroll, client scheduling and intake, insurance verification, SOP authoring, AI agent workflow design, and QA testing alongside engineering.</p>
     </div>
     <div class="t-row">
       <span class="t-no">03</span>
       <div>
-        <div class="t-date">Sep 2024 – Feb 2025</div>
-        <div class="t-role disp">Back Office Assistant</div>
-        <div class="t-org">Leanware · Remote, Colombia</div>
+        <div class="t-date" data-es="sep 2024 – feb 2025">Sep 2024 – Feb 2025</div>
+        <div class="t-role disp" data-es="Asistente de Back Office">Back Office Assistant</div>
+        <div class="t-org" data-es="Leanware · Remoto, Colombia">Leanware · Remote, Colombia</div>
       </div>
-      <p class="t-desc">Administrative, financial and operational support. Scheduling, invoicing and time tracking, with no-code automation replacing the manual steps.</p>
+      <p class="t-desc" data-es="Soporte administrativo, financiero y operativo. Agendamiento, facturación y control de horas, con automatización no-code reemplazando los pasos manuales.">Administrative, financial and operational support. Scheduling, invoicing and time tracking, with no-code automation replacing the manual steps.</p>
     </div>
     <div class="t-row">
       <span class="t-no">04</span>
       <div>
-        <div class="t-date">Sep 2022 – Aug 2024</div>
-        <div class="t-role disp">Supervisor &amp; Virtual Office Assistant</div>
-        <div class="t-org">The Org / AO Investment · Remote, US</div>
+        <div class="t-date" data-es="sep 2022 – ago 2024">Sep 2022 – Aug 2024</div>
+        <div class="t-role disp" data-es="Supervisora y Asistente Virtual de Oficina">Supervisor &amp; Virtual Office Assistant</div>
+        <div class="t-org" data-es="The Org / AO Investment · Remoto, EE. UU.">The Org / AO Investment · Remote, US</div>
       </div>
-      <p class="t-desc">Led a remote follow-up team. Built the manuals, workflows and training programs, and produced the monthly management reports leadership decided from.</p>
+      <p class="t-desc" data-es="Lideré un equipo remoto de seguimiento. Construí los manuales, flujos de trabajo y programas de capacitación, y produje los reportes gerenciales mensuales sobre los que liderazgo tomaba decisiones.">Led a remote follow-up team. Built the manuals, workflows and training programs, and produced the monthly management reports leadership decided from.</p>
     </div>
     <div class="t-row">
       <span class="t-no">05</span>
       <div>
-        <div class="t-date">Aug 2022 – Dec 2024</div>
-        <div class="t-role disp">Marketing &amp; Administrative Assistant</div>
-        <div class="t-org">Melocoton LLC · Remote, Colombia</div>
+        <div class="t-date" data-es="ago 2022 – dic 2024">Aug 2022 – Dec 2024</div>
+        <div class="t-role disp" data-es="Asistente de Marketing y Administración">Marketing &amp; Administrative Assistant</div>
+        <div class="t-org" data-es="Melocoton LLC · Remoto, Colombia">Melocoton LLC · Remote, Colombia</div>
       </div>
-      <p class="t-desc">Managed CEO and CCO calendars, cutting scheduling conflicts by 40%. Wrote the SOPs and training manuals that halved new-hire onboarding time.</p>
+      <p class="t-desc" data-es="Gestioné las agendas del CEO y la CCO, reduciendo los conflictos de horario en un 40%. Escribí los SOPs y manuales de capacitación que redujeron a la mitad el tiempo de onboarding de nuevas contrataciones.">Managed CEO and CCO calendars, cutting scheduling conflicts by 40%. Wrote the SOPs and training manuals that halved new-hire onboarding time.</p>
     </div>
     <div class="t-row">
       <span class="t-no">06</span>
       <div>
         <div class="t-date">2016 – 2022</div>
-        <div class="t-role disp">Earlier</div>
-        <div class="t-org">Fueled on Bacon · EF Education First · Town Hall Chinú · SENA</div>
+        <div class="t-role disp" data-es="Antes">Earlier</div>
+        <div class="t-org" data-es="Fueled on Bacon · EF Education First · Alcaldía de Chinú · SENA">Fueled on Bacon · EF Education First · Town Hall Chinú · SENA</div>
       </div>
-      <p class="t-desc">Executive assistant work in Miami, two years in Boston as an au pair, a public-sector database of 8,000+ beneficiary records, and IT instruction for adult learners.</p>
+      <p class="t-desc" data-es="Trabajo de asistente ejecutiva en Miami, dos años en Boston como au pair, una base de datos del sector público con más de 8,000 registros de beneficiarios, e instrucción en TI para adultos.">Executive assistant work in Miami, two years in Boston as an au pair, a public-sector database of 8,000+ beneficiary records, and IT instruction for adult learners.</p>
     </div>
   </div>
 
   <div class="skills-grid">
     <div class="skill-card">
-      <h4 class="disp">Automation &amp; AI</h4>
+      <h4 class="disp" data-es="Automatización e IA">Automation &amp; AI</h4>
       <div class="skill-tags">
         <span class="skill-tag orange">Zapier</span><span class="skill-tag orange">Make</span><span class="skill-tag orange">n8n</span><span class="skill-tag orange">Claude</span><span class="skill-tag orange">ChatGPT</span><span class="skill-tag orange">Python</span>
       </div>
     </div>
     <div class="skill-card">
-      <h4 class="disp">Ops &amp; projects</h4>
+      <h4 class="disp" data-es="Operaciones y proyectos">Ops &amp; projects</h4>
       <div class="skill-tags">
         <span class="skill-tag neutral">Notion</span><span class="skill-tag neutral">Airtable</span><span class="skill-tag neutral">ClickUp</span><span class="skill-tag neutral">Slack</span><span class="skill-tag neutral">Pylon</span><span class="skill-tag neutral">Google Workspace</span>
       </div>
     </div>
     <div class="skill-card">
-      <h4 class="disp">Finance &amp; people</h4>
+      <h4 class="disp" data-es="Finanzas y personas">Finance &amp; people</h4>
       <div class="skill-tags">
-        <span class="skill-tag green">Deel</span><span class="skill-tag green">QuickBooks</span><span class="skill-tag green">Zoho</span><span class="skill-tag green">International payroll</span><span class="skill-tag green">Contracts &amp; onboarding</span>
+        <span class="skill-tag green">Deel</span><span class="skill-tag green">QuickBooks</span><span class="skill-tag green">Zoho</span><span class="skill-tag green" data-es="Nómina internacional">International payroll</span><span class="skill-tag green" data-es="Contratos y onboarding">Contracts &amp; onboarding</span>
       </div>
     </div>
     <div class="skill-card">
-      <h4 class="disp">CRM &amp; growth</h4>
+      <h4 class="disp" data-es="CRM y crecimiento">CRM &amp; growth</h4>
       <div class="skill-tags">
         <span class="skill-tag neutral">HubSpot</span><span class="skill-tag neutral">Salesforce</span><span class="skill-tag neutral">GoHighLevel</span><span class="skill-tag neutral">Canva</span><span class="skill-tag neutral">Adobe Creative Suite</span>
       </div>
@@ -1341,9 +1351,9 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
 <section id="open" class="sec" style="padding-top:0">
   <div class="open-box">
-    <span class="num">§ 08 Open to</span>
-    <h2 class="disp">Executive Assistant. Operations. Chief of Staff support.</h2>
-    <p>Remote, US hours, English and Spanish. If there's something specific in your workflow you want to see me handle, send it over. I'd rather show the work than describe it.</p>
+    <span class="num" data-es="§ 08 Disponible para">§ 08 Open to</span>
+    <h2 class="disp" data-es="Asistencia Ejecutiva. Operaciones. Soporte a Chief of Staff.">Executive Assistant. Operations. Chief of Staff support.</h2>
+    <p data-es="Remoto, horario de EE. UU., inglés y español. Si hay algo específico en tu flujo de trabajo que quieras verme resolver, mándamelo. Prefiero mostrar el trabajo que describirlo.">Remote, US hours, English and Spanish. If there's something specific in your workflow you want to see me handle, send it over. I'd rather show the work than describe it.</p>
     <div class="open-links">
       <a href="mailto:luciafadul01@gmail.com" class="open-link primary">luciafadul01@gmail.com</a>
       <a href="https://www.linkedin.com/in/lufadulm/" target="_blank" rel="noopener" class="open-link ghost">LinkedIn</a>
@@ -1354,7 +1364,7 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
 <footer class="site-footer">
   <span>Lucía Fadul · Colombia</span>
-  <span>Designed, written and built by me</span>
+  <span data-es="Diseñado, escrito y construido por mí">Designed, written and built by me</span>
 </footer>
 
 </div>
@@ -1366,26 +1376,70 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
   var v = function(id){ return document.getElementById(id).value.trim(); };
   var byId = function(id){ return document.getElementById(id); };
 
-  /* ===================== composer ===================== */
-  var SITUATIONS = ['Cold outreach', 'Intro on behalf of an exec', 'Chasing something overdue', 'Rescheduling or apologising', 'Declining politely'];
-  var TONES = ['Direct', 'Warm', 'Formal'];
-  var comp = { sit: SITUATIONS[0], tone: TONES[0], copied: -1 };
+  /* ===================== language toggle ===================== */
+  var LANG = 'en';
+  var langListeners = [];
+  function onLangChange(fn){ langListeners.push(fn); }
 
-  function renderPills(container, items, active, onPick){
+  function applyStaticLang(){
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if (el.dataset.enCache === undefined) el.dataset.enCache = el.innerHTML;
+      el.innerHTML = LANG === 'es' ? el.dataset.es : el.dataset.enCache;
+    });
+    document.querySelectorAll('[data-es-placeholder]').forEach(function(el){
+      if (el.dataset.enPlaceholder === undefined) el.dataset.enPlaceholder = el.getAttribute('placeholder') || '';
+      el.setAttribute('placeholder', LANG === 'es' ? el.dataset.esPlaceholder : el.dataset.enPlaceholder);
+    });
+    document.documentElement.lang = LANG;
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang-btn') === LANG);
+    });
+  }
+
+  function setLang(lang){
+    if (lang !== 'en' && lang !== 'es') return;
+    LANG = lang;
+    try { localStorage.setItem('lf_lang', lang); } catch (e) {}
+    applyStaticLang();
+    langListeners.forEach(function(fn){ fn(LANG); });
+  }
+
+  (function initLang(){
+    var saved = null;
+    try { saved = localStorage.getItem('lf_lang'); } catch (e) {}
+    LANG = (saved === 'es') ? 'es' : 'en';
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){
+      b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang-btn')); });
+    });
+    applyStaticLang();
+  })();
+
+  /* ===================== composer ===================== */
+  var SIT_KEYS = ['Cold outreach', 'Intro on behalf of an exec', 'Chasing something overdue', 'Rescheduling or apologising', 'Declining politely'];
+  var SIT_LABELS = {
+    en: SIT_KEYS,
+    es: ['Contacto en frío', 'Presentación en nombre de un ejecutivo', 'Dando seguimiento a algo pendiente', 'Reprogramando o disculpándome', 'Declinando cortésmente']
+  };
+  var TONE_KEYS = ['Direct', 'Warm', 'Formal'];
+  var TONE_LABELS = { en: TONE_KEYS, es: ['Directo', 'Cálido', 'Formal'] };
+  var comp = { sit: SIT_KEYS[0], tone: TONE_KEYS[0], copied: -1 };
+
+  function renderPills(container, keys, labels, active, onPick){
     container.innerHTML = '';
-    items.forEach(function(label){
+    keys.forEach(function(key, i){
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'pill' + (label === active ? ' active' : '');
-      b.textContent = label;
-      b.addEventListener('click', function(){ onPick(label); });
+      b.type = 'button'; b.className = 'pill' + (key === active ? ' active' : '');
+      b.textContent = labels[i];
+      b.addEventListener('click', function(){ onPick(key); });
       container.appendChild(b);
     });
   }
   function renderComposerPills(){
-    renderPills(byId('c-situations'), SITUATIONS, comp.sit, function(l){ comp.sit = l; renderComposerPills(); });
-    renderPills(byId('c-tones'), TONES, comp.tone, function(l){ comp.tone = l; renderComposerPills(); });
+    renderPills(byId('c-situations'), SIT_KEYS, SIT_LABELS[LANG], comp.sit, function(k){ comp.sit = k; renderComposerPills(); });
+    renderPills(byId('c-tones'), TONE_KEYS, TONE_LABELS[LANG], comp.tone, function(k){ comp.tone = k; renderComposerPills(); });
   }
   renderComposerPills();
+  onLangChange(renderComposerPills);
 
   function buildComposer(){
     var f = {
@@ -1433,15 +1487,20 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     var all = (one + ' ' + std + ' ' + full).toLowerCase();
     var flags = banned.filter(function(b){ return all.indexOf(b.toLowerCase()) !== -1; });
 
+    var GT = {
+      en: { failed: 'Confidentiality check failed', found: 'Found in the draft: ', rewrite: '. Rewrite before this goes out.', words: ' words', copy: 'Copy', copied: 'Copied', labels: ['One line', 'Standard', 'Full'] },
+      es: { failed: 'Falló la verificación de confidencialidad', found: 'Aparece en el borrador: ', rewrite: '. Reescribe esto antes de enviarlo.', words: ' palabras', copy: 'Copiar', copied: 'Copiado', labels: ['Una línea', 'Estándar', 'Completo'] }
+    }[LANG];
+
     var guard = flags.length
-      ? '<div class="flag-box"><strong>Confidentiality check failed</strong>Found in the draft: ' + esc(flags.join(', ')) + '. Rewrite before this goes out.</div>'
+      ? '<div class="flag-box"><strong>' + GT.failed + '</strong>' + GT.found + esc(flags.join(', ')) + GT.rewrite + '</div>'
       : '';
 
-    var defs = [['One line', one, 0], ['Standard', std, 1], ['Full', full, 2]];
+    var defs = [[GT.labels[0], one, 0], [GT.labels[1], std, 1], [GT.labels[2], full, 2]];
     var cards = defs.map(function(d){
       return '<div class="out-card"><div class="out-card-head"><span class="lbl">' + d[0] + '</span>' +
-        '<span class="meta"><span class="words">' + words(d[1]) + ' words</span>' +
-        '<button type="button" class="copy-btn" data-copy-idx="' + d[2] + '">Copy</button></span></div>' +
+        '<span class="meta"><span class="words">' + words(d[1]) + GT.words + '</span>' +
+        '<button type="button" class="copy-btn" data-copy-idx="' + d[2] + '">' + GT.copy + '</button></span></div>' +
         '<p>' + esc(d[1]) + '</p></div>';
     }).join('');
 
@@ -1455,19 +1514,19 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     var text = texts[parseInt(b.getAttribute('data-copy-idx'), 10)];
     if(text === undefined) return;
     navigator.clipboard.writeText(text).then(function(){
-      var t = b.textContent; b.textContent = 'Copied';
+      var t = b.textContent; b.textContent = LANG === 'es' ? 'Copiado' : 'Copied';
       setTimeout(function(){ b.textContent = t; }, 1600);
     });
   });
 
   /* ===================== overlap finder ===================== */
   var ZONES = [
-    { city: 'Bogotá', tz: 'America/Bogota' },
-    { city: 'San Francisco', tz: 'America/Los_Angeles' },
-    { city: 'New York', tz: 'America/New_York' },
-    { city: 'London', tz: 'Europe/London' },
-    { city: 'Berlin', tz: 'Europe/Berlin' },
-    { city: 'Bangalore', tz: 'Asia/Kolkata' }
+    { city: 'Bogotá', cityEs: 'Bogotá', tz: 'America/Bogota' },
+    { city: 'San Francisco', cityEs: 'San Francisco', tz: 'America/Los_Angeles' },
+    { city: 'New York', cityEs: 'Nueva York', tz: 'America/New_York' },
+    { city: 'London', cityEs: 'Londres', tz: 'Europe/London' },
+    { city: 'Berlin', cityEs: 'Berlín', tz: 'Europe/Berlin' },
+    { city: 'Bangalore', cityEs: 'Bangalore', tz: 'Asia/Kolkata' }
   ];
   var WORK_START = 9, WORK_END = 18;
 
@@ -1483,13 +1542,19 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     var grid = ZONES.map(function(z){ return slots.map(function(d){ return hourOf(d, z.tz); }); });
     var good = slots.map(function(_, i){ return grid.every(function(row){ return row[i].h >= WORK_START && row[i].h < WORK_END; }); });
 
+    var OT = {
+      en: { yourTime: 'Your time', copyTitle: 'Copy the invite line', good: ' hours today work for all six. Click a column header to copy.', none: 'No hour today lands inside working hours everywhere. Someone takes the early one.', copied: 'Copied to your clipboard.' },
+      es: { yourTime: 'Tu hora', copyTitle: 'Copiar la línea de invitación', good: ' horas de hoy funcionan para las seis. Haz clic en un encabezado para copiar.', none: 'Ninguna hora de hoy cae en horario laboral en todas partes. Alguien se lleva la temprana.', copied: 'Copiado al portapapeles.' }
+    }[LANG];
+    var cityOf = function(z){ return LANG === 'es' ? z.cityEs : z.city; };
+
     var anchorTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    var headHtml = '<div class="tz-head-label">Your time</div>';
+    var headHtml = '<div class="tz-head-label">' + OT.yourTime + '</div>';
     slots.forEach(function(d, i){
       var t = hourOf(d, anchorTz);
       var bg = good[i] ? '#ffe1d0' : 'transparent';
       var fg = good[i] ? '#8c491a' : '#a19786';
-      headHtml += '<button type="button" title="Copy the invite line" data-k="' + i + '" style="background:' + bg + ';color:' + fg + '">' + String(t.h).padStart(2, '0') + '</button>';
+      headHtml += '<button type="button" title="' + OT.copyTitle + '" data-k="' + i + '" style="background:' + bg + ';color:' + fg + '">' + String(t.h).padStart(2, '0') + '</button>';
     });
     byId('tz-head').innerHTML = headHtml;
 
@@ -1500,34 +1565,40 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
         var fg = good[i] ? '#fdfcfa' : work ? '#3d472b' : '#a19786';
         return '<div class="tz-cell" style="background:' + bg + ';color:' + fg + '">' + String(t.h).padStart(2, '0') + '</div>';
       }).join('');
-      return '<div class="tz-row"><div class="tz-city">' + z.city + '</div>' + cells + '</div>';
+      return '<div class="tz-row"><div class="tz-city">' + cityOf(z) + '</div>' + cells + '</div>';
     }).join('');
     byId('tz-rows').innerHTML = rowsHtml;
 
     var goodCount = good.filter(Boolean).length;
-    byId('tz-hint').textContent = goodCount
-      ? goodCount + ' hours today work for all six. Click a column header to copy.'
-      : 'No hour today lands inside working hours everywhere. Someone takes the early one.';
+    byId('tz-hint').textContent = goodCount ? goodCount + OT.good : OT.none;
 
     byId('tz-head').onclick = function(e){
       var btn = e.target.closest('button[data-k]'); if(!btn) return;
       var i = parseInt(btn.getAttribute('data-k'), 10);
-      var line = ZONES.map(function(z, zi){ return String(grid[zi][i].h).padStart(2, '0') + ':' + grid[zi][i].m + ' ' + z.city; }).join(' · ');
+      var line = ZONES.map(function(z, zi){ return String(grid[zi][i].h).padStart(2, '0') + ':' + grid[zi][i].m + ' ' + cityOf(z); }).join(' · ');
       navigator.clipboard.writeText(line).then(function(){
         btn.style.background = '#7a8a5e'; btn.style.color = '#f0fae1';
-        byId('tz-hint').textContent = 'Copied to your clipboard.';
+        byId('tz-hint').textContent = OT.copied;
         setTimeout(function(){ renderOverlap(); }, 1600);
       });
     };
   }
   renderOverlap();
+  onLangChange(renderOverlap);
 
   /* ===================== follow-up queue ===================== */
   var THRESHOLD = 3;
   var queueItems = [];
   var qForm = { name: '', subject: '', date: '' };
   byId('q_date').value = new Date().toISOString().slice(0, 10);
-  byId('q-threshold-label').textContent = THRESHOLD + '-day rule, applied';
+
+  function qLabel(key){
+    var QT = {
+      en: { rule: THRESHOLD + '-day rule, applied', empty: 'Nobody in the queue. Add someone above.', notSpecified: 'Not specified', followUp: 'Follow up', waiting: 'Waiting', remove: 'Remove', pastThreshold: function(n){ return n + ' past the ' + THRESHOLD + '-day threshold'; }, nonePast: 'Nobody is past the threshold', draft: 'Draft · ' },
+      es: { rule: 'Regla de ' + THRESHOLD + ' días, aplicada', empty: 'Nadie en la cola. Agrega a alguien arriba.', notSpecified: 'No especificado', followUp: 'Dar seguimiento', waiting: 'Esperando', remove: 'Quitar', pastThreshold: function(n){ return n + ' pasaron el umbral de ' + THRESHOLD + ' días'; }, nonePast: 'Nadie ha pasado el umbral', draft: 'Borrador · ' }
+    }[LANG];
+    return QT[key];
+  }
 
   function daysWaiting(dateStr){
     var today = new Date(); today.setHours(0, 0, 0, 0);
@@ -1535,23 +1606,26 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     return Math.max(0, Math.round((today - d) / 86400000));
   }
   function renderQueue(){
+    byId('q-threshold-label').textContent = qLabel('rule');
     if(!queueItems.length){
-      byId('q-rows').innerHTML = '<div class="q-empty">Nobody in the queue. Add someone above.</div>';
+      byId('q-rows').innerHTML = '<div class="q-empty">' + qLabel('empty') + '</div>';
     } else {
       byId('q-rows').innerHTML = queueItems.map(function(it, i){
         var n = daysWaiting(it.date), over = n >= THRESHOLD;
+        var subject = it.subject === '__unspecified__' ? qLabel('notSpecified') : esc(it.subject);
         return '<div class="q-row' + (over ? ' over' : '') + '">' +
           '<span class="q-name">' + esc(it.name) + '</span>' +
-          '<span class="q-subject">' + esc(it.subject) + '</span>' +
+          '<span class="q-subject">' + subject + '</span>' +
           '<span class="q-days' + (over ? ' over' : '') + '">' + n + 'd</span>' +
-          '<span class="q-status-row"><span class="q-pill ' + (over ? 'due' : 'wait') + '">' + (over ? 'Follow up' : 'Waiting') + '</span>' +
-          '<button type="button" class="q-remove" data-idx="' + i + '" title="Remove">×</button></span></div>';
+          '<span class="q-status-row"><span class="q-pill ' + (over ? 'due' : 'wait') + '">' + (over ? qLabel('followUp') : qLabel('waiting')) + '</span>' +
+          '<button type="button" class="q-remove" data-idx="' + i + '" title="' + qLabel('remove') + '">×</button></span></div>';
       }).join('');
     }
     var overdue = queueItems.filter(function(it){ return daysWaiting(it.date) >= THRESHOLD; });
-    byId('q-overdue-label').textContent = overdue.length ? overdue.length + ' past the ' + THRESHOLD + '-day threshold' : 'Nobody is past the threshold';
+    byId('q-overdue-label').textContent = overdue.length ? qLabel('pastThreshold')(overdue.length) : qLabel('nonePast');
   }
   renderQueue();
+  onLangChange(renderQueue);
   byId('q-rows').addEventListener('click', function(e){
     var b = e.target.closest('.q-remove'); if(!b) return;
     queueItems.splice(parseInt(b.getAttribute('data-idx'), 10), 1);
@@ -1560,7 +1634,7 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
   byId('q_add').addEventListener('click', function(){
     var name = v('q_name'), subject = v('q_subject'), date = v('q_date');
     if(!name || !date){ byId('q_name').focus(); return; }
-    queueItems.push({ name: name, subject: subject || 'Not specified', date: date });
+    queueItems.push({ name: name, subject: subject || '__unspecified__', date: date });
     byId('q_name').value = ''; byId('q_subject').value = '';
     renderQueue();
   });
@@ -1568,8 +1642,9 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     var overdue = queueItems.filter(function(it){ return daysWaiting(it.date) >= THRESHOLD; });
     if(!overdue.length){ byId('q-drafts').innerHTML = ''; return; }
     byId('q-drafts').innerHTML = overdue.map(function(it){
-      var body = 'Hi ' + it.name.split(' ')[0] + ', following up on my note about ' + (it.subject === 'Not specified' ? 'the role' : it.subject) + '. I wanted to make sure it did not get buried.\n\nIf the timing is off, say so and I will close the loop. If not, send me a window and I will work to it.';
-      return '<div class="q-draft"><div class="fld-label">Draft · ' + esc(it.name) + '</div><p>' + esc(body) + '</p></div>';
+      var subject = it.subject === '__unspecified__' ? 'the role' : it.subject;
+      var body = 'Hi ' + it.name.split(' ')[0] + ', following up on my note about ' + subject + '. I wanted to make sure it did not get buried.\n\nIf the timing is off, say so and I will close the loop. If not, send me a window and I will work to it.';
+      return '<div class="q-draft"><div class="fld-label">' + qLabel('draft') + esc(it.name) + '</div><p>' + esc(body) + '</p></div>';
     }).join('');
   });
 
@@ -1589,10 +1664,12 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     drawDesign();
   });
 
+  var CONTACT_KEYS = ['Two columns', 'One stack'];
+  var CONTACT_LABELS = { en: CONTACT_KEYS, es: ['Dos columnas', 'Una columna'] };
   function renderContactButtons(){
-    var opts = ['Two columns', 'One stack'];
-    byId('bc-contact-buttons').innerHTML = opts.map(function(o){
-      return '<button type="button" class="pill' + (o === ds.contact ? ' active' : '') + '" data-contact="' + o + '" style="color:' + (o === ds.contact ? '#f9f4ed' : '#645c50') + ';border-color:' + (o === ds.contact ? 'var(--terracotta)' : 'rgba(32,30,29,0.22)') + ';background:' + (o === ds.contact ? 'var(--terracotta)' : 'transparent') + '">' + o + '</button>';
+    var labels = CONTACT_LABELS[LANG];
+    byId('bc-contact-buttons').innerHTML = CONTACT_KEYS.map(function(o, i){
+      return '<button type="button" class="pill' + (o === ds.contact ? ' active' : '') + '" data-contact="' + o + '" style="color:' + (o === ds.contact ? '#f9f4ed' : '#645c50') + ';border-color:' + (o === ds.contact ? 'var(--terracotta)' : 'rgba(32,30,29,0.22)') + ';background:' + (o === ds.contact ? 'var(--terracotta)' : 'transparent') + '">' + labels[i] + '</button>';
     }).join('');
   }
   byId('bc-contact-buttons').addEventListener('click', function(e){
@@ -1616,7 +1693,9 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
     var estIn = nm.length * size * 0.5 / 72 + nm.length * (tr / 1000) * size / 72;
     var warn = estIn > 2.9;
     byId('bc-warn').classList.toggle('on', warn);
-    byId('bc-spec').textContent = 'Canva: name ' + size + ' pt semibold, letter spacing ' + tr + '. Title 9 pt regular. Rule 0.5 pt. Contact 8 pt, line spacing 1.45.';
+    byId('bc-spec').textContent = LANG === 'es'
+      ? 'Canva: nombre ' + size + ' pt seminegrita, espaciado ' + tr + '. Título 9 pt regular. Línea 0.5 pt. Contacto 8 pt, interlineado 1.45.'
+      : 'Canva: name ' + size + ' pt semibold, letter spacing ' + tr + '. Title 9 pt regular. Rule 0.5 pt. Contact 8 pt, line spacing 1.45.';
   }
 
   function drawSign(){
@@ -1628,13 +1707,15 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
     byId('v-stepBack').textContent = ds.stepBack + ' ft';
     byId('v-rider').textContent = ds.rider.toFixed(1) + ' in';
-    byId('sign-distance').textContent = ds.stepBack === 0
-      ? 'Viewing distance: standing at the sign'
-      : 'Viewing distance: ' + ds.stepBack + ' ft back, about ' + Math.round(ds.stepBack / 3) + ' m';
+    byId('sign-distance').textContent = LANG === 'es'
+      ? (ds.stepBack === 0 ? 'Distancia de visión: parado frente al letrero' : 'Distancia de visión: ' + ds.stepBack + ' ft atrás, unos ' + Math.round(ds.stepBack / 3) + ' m')
+      : (ds.stepBack === 0 ? 'Viewing distance: standing at the sign' : 'Viewing distance: ' + ds.stepBack + ' ft back, about ' + Math.round(ds.stepBack / 3) + ' m');
 
     var warn = ds.rider > 2.2;
     byId('sign-warn').classList.toggle('on', warn);
-    byId('sign-spec').textContent = 'Canva: mark 2.1 in, name 1.6 in, phone 2.0 in, rider ' + ds.rider.toFixed(1) + ' in. Margins 2 in all round.';
+    byId('sign-spec').textContent = LANG === 'es'
+      ? 'Canva: marca 2.1 in, nombre 1.6 in, teléfono 2.0 in, rider ' + ds.rider.toFixed(1) + ' in. Márgenes de 2 in en todo el borde.'
+      : 'Canva: mark 2.1 in, name 1.6 in, phone 2.0 in, rider ' + ds.rider.toFixed(1) + ' in. Margins 2 in all round.';
   }
 
   function drawIg(){
@@ -1650,7 +1731,9 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
     var warn = ds.scrim < 55;
     byId('ig-warn').classList.toggle('on', warn);
-    byId('ig-spec').textContent = 'Canva: address ' + ds.addr + ' px semibold, tracking −20. Label 28 px, tracking +130. Text starts 64 px from the left and bottom on all three. Gradient #09100D at ' + ds.scrim + '%, transparent by ' + ds.scrimH + '% height.';
+    byId('ig-spec').textContent = LANG === 'es'
+      ? 'Canva: dirección ' + ds.addr + ' px seminegrita, espaciado −20. Etiqueta 28 px, espaciado +130. El texto inicia a 64 px del borde izquierdo e inferior en las tres. Degradado #09100D al ' + ds.scrim + '%, transparente al ' + ds.scrimH + '% de altura.'
+      : 'Canva: address ' + ds.addr + ' px semibold, tracking −20. Label 28 px, tracking +130. Text starts 64 px from the left and bottom on all three. Gradient #09100D at ' + ds.scrim + '%, transparent by ' + ds.scrimH + '% height.';
   }
 
   function specText(){
@@ -1673,10 +1756,16 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
 
   byId('copy-spec').addEventListener('click', function(){
     var btn = this;
+    var copyLabel = LANG === 'es' ? 'Copiar los datos' : 'Copy the spec';
     navigator.clipboard.writeText(specText()).then(function(){
-      btn.textContent = 'Copied';
-      setTimeout(function(){ btn.textContent = 'Copy the spec'; }, 1600);
-    }).catch(function(){ btn.textContent = 'Select the text above'; });
+      btn.textContent = LANG === 'es' ? 'Copiado' : 'Copied';
+      setTimeout(function(){ btn.textContent = copyLabel; }, 1600);
+    }).catch(function(){ btn.textContent = LANG === 'es' ? 'Selecciona el texto de arriba' : 'Select the text above'; });
+  });
+
+  onLangChange(function(){
+    renderContactButtons();
+    drawDesign();
   });
 
   window.addEventListener('resize', drawSign, { passive: true });
