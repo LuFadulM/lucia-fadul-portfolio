@@ -128,6 +128,8 @@ h2{font-family:var(--disp);font-weight:400;font-size:clamp(34px,5.2vw,64px);line
 .idx-tag.on-dark{background:rgba(246,160,107,0.16);color:var(--terracotta-light);padding:6px 13px}
 .idx-tag.on-dark.neutral{background:rgba(249,244,237,0.09);color:var(--dark-muted)}
 .idx-tag.on-tint{background:rgba(255,255,255,0.6);color:var(--sage-dark)}
+.idx-sep{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin:clamp(4px,1vw,10px) 0 0;font-size:11.5px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--terracotta-dark)}
+.idx-sep::after{content:"";flex:1;height:1px;background:var(--rule)}
 
 /* ===== §02 opened up ===== */
 .acc{display:flex;flex-direction:column;gap:12px}
@@ -538,6 +540,56 @@ textarea.dark-input{border-radius:20px;padding:13px 16px;line-height:1.5;resize:
       <div class="idx-tags">
         <span class="idx-tag" data-es="2 regiones">2 regions</span>
         <span class="idx-tag neutral" data-es="Tiempo de arranque −50%">Ramp time −50%</span>
+      </div>
+    </a>
+
+    <div class="idx-sep" data-es="Diseño y marketing">Design and marketing</div>
+
+    <a href="#d-card" class="idx-card light">
+      <div>
+        <div class="idx-no">006</div>
+        <h3>Business card</h3>
+        <p data-es="Una plantilla de tarjeta que tiene que sobrevivir a ochenta y cinco nombres distintos, con el tipo compuesto en vivo y una advertencia apenas un nombre cruza el margen seguro.">A card template that has to survive eighty-five different names, with the type set live and a warning the moment a name crosses the safe margin.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag">3.5 × 2 in</span>
+        <span class="idx-tag neutral" data-es="Imprime los números de Canva">Prints Canva numbers</span>
+      </div>
+    </a>
+
+    <a href="#d-sign" class="idx-card tint">
+      <div>
+        <div class="idx-no">007</div>
+        <h3>Lawn sign and rider</h3>
+        <p data-es="Señalética dimensionada por distancia de lectura y no por gusto, con un control para alejarte que encoge el letrero igual que caminar hacia atrás.">Signage sized by reading distance instead of taste, with a step-back control that shrinks the sign the way walking away from it does.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag on-tint">24 × 18 in</span>
+        <span class="idx-tag on-tint" data-es="1 pulgada de caja por cada 10 pies">1 in of cap per 10 ft</span>
+      </div>
+    </a>
+
+    <a href="#d-social" class="idx-card light">
+      <div>
+        <div class="idx-no">008</div>
+        <h3>Instagram set</h3>
+        <p data-es="Nuevo listado, casa abierta, vendido. Tres publicaciones que se leen como una serie aunque aparezcan meses aparte, sobre fotos claras, medias y oscuras que comparten un mismo valor de scrim.">New listing, open house, sold. Three posts that read as a series months apart, over bright, mid and dark photos that all share one scrim value.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag" data-es="1080 cuadrado">1080 square</span>
+        <span class="idx-tag neutral" data-es="3 estados, 1 plantilla">3 states, 1 template</span>
+      </div>
+    </a>
+
+    <a href="#d-doc" class="idx-card wide">
+      <div>
+        <div class="idx-no">009</div>
+        <h3>Recruiting document template</h3>
+        <p data-es="Tres niveles de jerarquía que sobreviven a un pegado en texto plano en LinkedIn, Notion o el correo de un cliente, y que llenan a diario personas que no son diseñadoras. Cerca de 200 job descriptions se construyeron sobre ella.">Three levels of hierarchy that survive a plain-text paste into LinkedIn, Notion or a client email, filled in daily by people who are not designers. Around 200 job descriptions were built on it.</p>
+      </div>
+      <div class="idx-tags">
+        <span class="idx-tag on-dark" data-es="Carta">Letter</span>
+        <span class="idx-tag on-dark neutral" data-es="Adoptada en toda la organización">Adopted org-wide</span>
       </div>
     </a>
   </div>
